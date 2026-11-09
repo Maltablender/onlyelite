@@ -115,7 +115,6 @@ footer{margin-top:44px;text-align:center;color:#5c5242;font-size:11px;letter-spa
   <div class="row">
     <a id="sIg" class="off" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="url(#igG)" stroke-width="2"><defs><linearGradient id="igG" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#feda75"/><stop offset=".35" stop-color="#fa7e1e"/><stop offset=".6" stop-color="#d62976"/><stop offset=".85" stop-color="#962fbf"/><stop offset="1" stop-color="#4f5bd5"/></linearGradient></defs><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#feda75" stroke="none"/></svg>Instagram</a>
     <a id="sYt" class="off" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12 31 31 0 0 0 1 16.8a3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-4.8 31 31 0 0 0-.5-4.8zM9.8 15.1V8.9l5.4 3.1-5.4 3.1z"/></svg>YouTube</a>
-    <a id="sDc" class="off" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3l-.6 1.3a18.3 18.3 0 0 0-5.6 0L8.6 3a19.7 19.7 0 0 0-4.9 1.4C.6 9 0 13.5.3 18a19.9 19.9 0 0 0 6 3l1.3-2.1a12.9 12.9 0 0 1-2-1l.5-.4a14.2 14.2 0 0 0 12 0l.5.4c-.7.4-1.3.7-2 1l1.3 2.1a19.9 19.9 0 0 0 6-3c.4-5.2-.7-9.7-3.6-13.6zM8.7 15.3c-1.2 0-2.1-1.1-2.1-2.4s.9-2.4 2.1-2.4 2.2 1.1 2.1 2.4c0 1.3-.9 2.4-2.1 2.4zm6.6 0c-1.2 0-2.1-1.1-2.1-2.4s.9-2.4 2.1-2.4 2.2 1.1 2.1 2.4c0 1.3-.9 2.4-2.1 2.4z"/></svg>Discord</a>
   </div>
 </section>
 <footer>
@@ -132,7 +131,7 @@ footer{margin-top:44px;text-align:center;color:#5c5242;font-size:11px;letter-spa
     else if((m=v.match(/vimeo\.com\/(\d+)/))) box.innerHTML=`<iframe src="https://player.vimeo.com/video/${m[1]}" title="Présentation Only Elite" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>`;
     else box.innerHTML=`<video src="${v.replace(/"/g,'')}" controls playsinline preload="metadata"></video>`; }
   // réseaux
-  for(const [id,k] of [['#sIg','instagram'],['#sYt','youtube'],['#sDc','discord']]){ const u=(C[k]||'').trim(); if(/^https:\/\//.test(u)){ const a=$(id); a.href=u; a.classList.remove('off'); } }
+  for(const [id,k] of [['#sIg','instagram'],['#sYt','youtube']]){ const u=(C[k]||'').trim(); if(/^https:\/\//.test(u)){ const a=$(id); a.href=u; a.classList.remove('off'); } }
   // carte Discord mise en avant
   { const d=(C.discord||'').trim(), b=$('#dcBtn'), card=$('.dc'); if(/^https:\/\//.test(d)){ b.href=d; b.removeAttribute('aria-disabled'); } else if(card){ card.style.display='none'; } }
   // détection de l'ordinateur
