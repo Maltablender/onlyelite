@@ -5,7 +5,7 @@ window.OE_SITE = {
   // réseaux (liens complets, commençant par https://)
   instagram: "https://www.instagram.com/lennyy_martinezz/",
   youtube: "https://www.youtube.com/channel/UCLoGn3o3gfSnDa0F53Kv6uA",
-  discord: "",
+  discord: "https://discord.gg/sHGmGFxcGq",
   // dépôt GitHub qui contient les fichiers du logiciel (onglet « Releases »)
   repo: "Maltablender/onlyelite",
   // fichiers à télécharger, par ordinateur (la toute dernière version publiée)
