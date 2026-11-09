@@ -3,8 +3,8 @@ window.OE_SITE = {
   // vidéo de présentation : lien YouTube, Vimeo ou fichier .mp4 (laisse vide pour l'emplacement en attente)
   video: "",
   // réseaux (liens complets, commençant par https://)
-  instagram: "",
-  youtube: "",
+  instagram: "https://www.instagram.com/lennyy_martinezz/",
+  youtube: "https://www.youtube.com/channel/UCLoGn3o3gfSnDa0F53Kv6uA",
   discord: "",
   // dépôt GitHub qui contient les fichiers du logiciel (onglet « Releases »)
   repo: "Maltablender/onlyelite",
