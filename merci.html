@@ -34,6 +34,10 @@ h1{font:400 clamp(32px,6vw,52px)/1.08 "Bodoni Moda",Georgia,serif;margin:6px 0 1
 .st{padding:14px;border-radius:14px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.07)}
 .st i{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;background:rgba(233,196,106,.15);color:var(--gold);font-style:normal;font-weight:700;font-size:12px;margin-bottom:6px}
 .st>b{display:block;font-size:14px}.st small b{color:#f3e6c4}.st small{color:var(--mut);font-size:12.5px;line-height:1.45;display:block}
+.mac{margin:18px auto 0;max-width:640px;text-align:left}.mac p{color:var(--mut);font-size:13.5px;margin:6px 0}
+.cmd{display:flex;gap:8px;align-items:stretch;margin:10px 0}.cmd code{flex:1;min-width:0;overflow:auto;white-space:nowrap;padding:12px 14px;border-radius:12px;background:#000;border:1px solid var(--line);font:12.5px ui-monospace,Menlo,Consolas,monospace;color:#f3e6c4}
+.cmd button{all:unset;cursor:pointer;padding:0 16px;border-radius:12px;font-weight:700;font-size:13px;color:#1a1306;background:linear-gradient(180deg,#ffe39a,#e9b949)}
+.mac a{color:var(--gold)}.mac ol{margin:8px 0 0 18px;padding:0;color:#d8ccb0;font-size:13.5px}.mac small{color:#8c7f63}
 .soc{margin-top:34px;text-align:center}.soc p{color:var(--mut);margin:0 0 12px}
 .soc .row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
 .soc a{display:inline-flex;align-items:center;gap:8px;padding:11px 16px;border-radius:12px;border:1px solid var(--line);color:var(--txt);text-decoration:none;font-weight:600;background:rgba(255,255,255,.03)}.soc a:hover{border-color:rgba(233,196,106,.5)}
@@ -76,6 +80,7 @@ footer{margin-top:44px;text-align:center;color:#5c5242;font-size:11px;letter-spa
   <div id="dlTxt" class="os">Détection de ton ordinateur…</div>
   <a class="btn" id="dlBtn" href="#" aria-disabled="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0-4.5-4.5M12 15l4.5-4.5"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg><span>Télécharger</span></a>
   <div class="os" id="dlOther"></div>
+  <div class="mac" id="mac" hidden></div>
   <div class="steps">
     <div class="st"><i>1</i><b>Télécharge</b><small>Le bon fichier pour ton ordinateur est choisi automatiquement.</small></div>
     <div class="st"><i>2</i><b>Installe</b><small>Ouvre le fichier. Si Windows affiche un avertissement : « Informations complémentaires » puis « Exécuter quand même ».</small></div>
@@ -109,7 +114,16 @@ footer{margin-top:44px;text-align:center;color:#5c5242;font-size:11px;letter-spa
   const btn=$('#dlBtn'), txt=$('#dlTxt'), oth=$('#dlOther');
   const set=k=>{ const u=D[k]; if(u){ btn.href=u; btn.removeAttribute('aria-disabled'); btn.querySelector('span').textContent='Télécharger pour '+N[k]; txt.textContent=k==='win'?'Ton ordinateur : Windows (64 bits)':'Ton ordinateur : '+N[k]; }
     else { btn.setAttribute('aria-disabled','true'); btn.querySelector('span').textContent='Version '+N[k]+' bientôt disponible'; txt.textContent='Ton ordinateur : '+N[k]; } };
-  if(os==='mobile'){ txt.textContent='Only Elite s\'installe sur un ordinateur. Ouvre cette page sur ton PC ou ton Mac pour le télécharger.'; btn.style.display='none'; }
+  if(os==='mac' && (C.repo||'')){
+    const base=`https://github.com/${C.repo}/releases/latest/download/`, cmd=`curl -fL "${base}Only-Elite-Mac-$( [ "$(uname -m)" = arm64 ] && echo arm64 || echo x64 ).zip" -o /tmp/oe.zip && rm -rf "/Applications/Only Elite.app" && ditto -x -k /tmp/oe.zip /Applications && open "/Applications/Only Elite.app"`;
+    btn.style.display='none'; txt.textContent='Ton ordinateur : Mac';
+    const m=$('#mac'); m.hidden=false;
+    m.innerHTML=`<p><b style="color:#f3e6c4">Installation sur Mac en 30 secondes</b> (la méthode la plus simple, sans blocage de sécurité) :</p>
+      <ol><li>Ouvre l'application <b>Terminal</b> (Cmd + Espace, tape « Terminal », Entrée).</li><li>Copie la ligne ci-dessous, colle-la dans le Terminal et appuie sur Entrée.</li><li>Only Elite s'installe dans Applications et s'ouvre tout seul.</li></ol>
+      <div class="cmd"><code id="macCmd"></code><button type="button" id="macCp">Copier</button></div>
+      <small>Tu préfères un fichier ? <a href="${base}Only-Elite-Mac-arm64.zip">Mac Apple (M1 à M4)</a> · <a href="${base}Only-Elite-Mac-x64.zip">Mac Intel</a>. Ouvre le .zip, glisse « Only Elite » dans Applications, puis fais un clic droit sur l'app › Ouvrir. Si macOS dit que l'app est endommagée, colle dans le Terminal : <code>xattr -cr "/Applications/Only Elite.app"</code></small>`;
+    $('#macCmd').textContent=cmd; $('#macCp').onclick=async()=>{ try{ await navigator.clipboard.writeText(cmd); $('#macCp').textContent='Copié ✓'; }catch(_){ const r=document.createRange(); r.selectNodeContents($('#macCmd')); getSelection().removeAllRanges(); getSelection().addRange(r); } };
+  } else if(os==='mobile'){ txt.textContent='Only Elite s\'installe sur un ordinateur. Ouvre cette page sur ton PC ou ton Mac pour le télécharger.'; btn.style.display='none'; }
   else set(os);
   const others=Object.keys(N).filter(k=>k!==os && D[k]).map(k=>`<a href="${D[k]}">${N[k]}</a>`);
   if(others.length) oth.innerHTML='Autre ordinateur : '+others.join(' · ');

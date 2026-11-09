@@ -6,10 +6,12 @@ window.OE_SITE = {
   instagram: "",
   youtube: "",
   discord: "",
-  // fichiers du logiciel à télécharger, par ordinateur
+  // dépôt GitHub qui contient les fichiers du logiciel (onglet « Releases »)
+  repo: "Maltablender/onlyelite",
+  // fichiers à télécharger, par ordinateur (la toute dernière version publiée)
   downloads: {
-    win: "",    // lien de « Installer Only Elite.exe »
-    mac: "",    // version Mac : bientôt
+    win: "https://github.com/Maltablender/onlyelite/releases/latest/download/Installer-Only-Elite.exe",
+    mac: "https://github.com/Maltablender/onlyelite/releases/latest/download/Only-Elite-Mac-arm64.zip",
     linux: ""
   }
 };
