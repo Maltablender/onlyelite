@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Bienvenue · Only Elite</title>
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#070605">
+<link rel="icon" href="icon-192.png">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@1,6..96,400&family=Inter+Tight:wght@400;600;700&display=swap">
+<style>
+:root{--bg:#070605;--txt:#f3ead6;--mut:#a89a7c;--gold:#e9c46a;--line:rgba(233,196,106,.22)}
+*{box-sizing:border-box}html,body{margin:0}
+body{min-height:100vh;background:radial-gradient(1100px 600px at 50% -10%,rgba(233,196,106,.16),transparent 60%),var(--bg);color:var(--txt);font:15px/1.6 "Inter Tight",-apple-system,"Segoe UI",Roboto,Arial,sans-serif;overflow-x:hidden}
+main{width:min(960px,100%);margin:0 auto;padding:40px 16px 70px}
+header{display:flex;justify-content:center;margin-bottom:34px}
+.hero{text-align:center;animation:in .8s cubic-bezier(.2,.8,.2,1) both}
+@keyframes in{from{opacity:0;transform:translateY(12px);filter:blur(8px)}}
+.ok{width:74px;height:74px;margin:0 auto 10px;filter:drop-shadow(0 0 18px rgba(95,214,138,.5))}
+.ok circle{stroke-dasharray:260;stroke-dashoffset:260;animation:d .8s .2s ease forwards}.ok path{stroke-dasharray:60;stroke-dashoffset:60;animation:d .45s .85s ease forwards}@keyframes d{to{stroke-dashoffset:0}}
+h1{font:400 clamp(32px,6vw,52px)/1.08 "Bodoni Moda",Georgia,serif;margin:6px 0 10px}h1 em{font-style:italic;background:linear-gradient(180deg,#fff1c4,#e9c46a 60%,#b07d24);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{color:var(--mut);max-width:560px;margin:0 auto;font-size:16px}
+.video{margin:34px auto 0;border-radius:22px;overflow:hidden;border:1px solid var(--line);background:#000;aspect-ratio:16/9;position:relative;box-shadow:0 40px 100px -40px rgba(242,193,78,.35)}
+.video iframe,.video video{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vph{position:absolute;inset:0;display:grid;place-items:center;text-align:center;background:radial-gradient(closest-side,rgba(233,196,106,.12),transparent),#0b0907;color:var(--mut)}
+.vph b{display:block;font:400 22px "Bodoni Moda",Georgia,serif;font-style:italic;color:#f3e6c4;margin-top:12px}
+.play{width:74px;height:74px;border-radius:50%;margin:0 auto;display:grid;place-items:center;background:linear-gradient(180deg,#ffe39a,#c9962c);box-shadow:0 0 40px rgba(242,193,78,.4)}
+.dl{margin:34px auto 0;padding:28px;border-radius:22px;border:1px solid var(--line);background:linear-gradient(160deg,rgba(255,255,255,.05),rgba(233,196,106,.03));text-align:center}
+.dl h2{font:400 26px "Bodoni Moda",Georgia,serif;margin:0 0 6px}.dl h2 em{font-style:italic;color:var(--gold)}
+.btn{display:inline-flex;align-items:center;gap:10px;margin-top:16px;padding:16px 28px;border-radius:14px;font-weight:700;font-size:16px;text-decoration:none;color:#1a1306;background:linear-gradient(180deg,#ffe39a,#e9b949 55%,#b9871f);box-shadow:0 14px 40px rgba(233,185,73,.35);transition:transform .15s}
+.btn:hover{transform:translateY(-2px)}.btn[aria-disabled=true]{opacity:.55;pointer-events:none}
+.os{margin-top:10px;color:var(--mut);font-size:13px}.os a{color:var(--gold)}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:22px;text-align:left}
+.st{padding:14px;border-radius:14px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.07)}
+.st i{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;background:rgba(233,196,106,.15);color:var(--gold);font-style:normal;font-weight:700;font-size:12px;margin-bottom:6px}
+.st>b{display:block;font-size:14px}.st small b{color:#f3e6c4}.st small{color:var(--mut);font-size:12.5px;line-height:1.45;display:block}
+.soc{margin-top:34px;text-align:center}.soc p{color:var(--mut);margin:0 0 12px}
+.soc .row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.soc a{display:inline-flex;align-items:center;gap:8px;padding:11px 16px;border-radius:12px;border:1px solid var(--line);color:var(--txt);text-decoration:none;font-weight:600;background:rgba(255,255,255,.03)}.soc a:hover{border-color:rgba(233,196,106,.5)}
+.soc a.off{opacity:.45;pointer-events:none}
+.soc svg{width:18px;height:18px}
+footer{margin-top:44px;text-align:center;color:#5c5242;font-size:11px;letter-spacing:.3em}
+@media(max-width:720px){.steps{grid-template-columns:1fr}}
+/* ===== logo officiel Only Elite ===== */
+.oel{--oel:1;display:inline-flex;align-items:center;gap:calc(12px*var(--oel));line-height:1;color:#f4efe4;vertical-align:middle}
+.oel-c{position:relative;width:calc(40px*var(--oel));height:calc(34px*var(--oel));display:grid;place-items:center;flex:none}
+.oel-c::before{content:"";position:absolute;inset:calc(-10px*var(--oel));border-radius:50%;background:radial-gradient(circle,rgba(242,193,78,.32),transparent 65%);filter:blur(6px);animation:oelBreathe 4.5s ease-in-out infinite}
+.oel-c svg{position:relative;width:100%;height:100%;overflow:visible;filter:drop-shadow(0 0 8px rgba(242,193,78,.45))}
+.oel-s{transform-origin:24px 4.5px;transform-box:view-box;animation:oelTw 3.6s ease-in-out infinite}
+.oel-l{stroke-dasharray:150;stroke-dashoffset:150;animation:oelDraw 1.8s .15s cubic-bezier(.65,.05,.25,1) forwards}
+.oel-w{display:flex;align-items:center;gap:calc(11px*var(--oel))}
+.oel-o{font-family:"Bodoni Moda","Didot","Bodoni 72",Georgia,serif;font-style:italic;font-weight:400;font-size:calc(27px*var(--oel));letter-spacing:-.01em;color:#f4efe4;transform:translateY(-1px)}
+.oel-r{width:1px;height:calc(20px*var(--oel));background:linear-gradient(transparent,#f2c14e,transparent)}
+.oel-e{font-family:"Inter Tight","Geist",system-ui,-apple-system,"Segoe UI",sans-serif;font-weight:600;font-size:calc(12.5px*var(--oel));letter-spacing:.46em;margin-right:-.46em;background:linear-gradient(100deg,#9c7219 0%,#f2c14e 30%,#fff6d8 50%,#f2c14e 70%,#9c7219 100%);background-size:240% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:oelSheen 6s ease-in-out infinite}
+@keyframes oelBreathe{0%,100%{opacity:.55;transform:scale(.92)}50%{opacity:1;transform:scale(1.08)}}
+@keyframes oelTw{0%,62%,100%{opacity:0;transform:scale(.2) rotate(0)}74%{opacity:1;transform:scale(1) rotate(45deg)}86%{opacity:0;transform:scale(.3) rotate(90deg)}}
+@keyframes oelDraw{to{stroke-dashoffset:0}}
+@keyframes oelSheen{0%,100%{background-position:100% 0}50%{background-position:0 0}}
+@media (prefers-reduced-motion:reduce){.oel *,.oel-c::before{animation:none!important}.oel-l{stroke-dashoffset:0}}
+
+
+</style>
+</head>
+<body>
+<main>
+<header><span class="oel"><span class="oel-c"><svg viewBox="0 0 48 40" aria-hidden="true"><defs><linearGradient id="oelG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff3cc"/><stop offset=".42" stop-color="#f2c14e"/><stop offset="1" stop-color="#8a6212"/></linearGradient><linearGradient id="oelF" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f2c14e" stop-opacity=".34"/><stop offset="1" stop-color="#f2c14e" stop-opacity=".04"/></linearGradient></defs><path d="M7 30 L4.5 11.5 L15.5 19.5 L24 4.5 L32.5 19.5 L43.5 11.5 L41 30 Z" fill="url(#oelF)"/><path d="M15.5 19.5 L24 30 L32.5 19.5 M24 4.5 L24 13" fill="none" stroke="#f2c14e" stroke-opacity=".45" stroke-width=".7"/><path class="oel-l" d="M7 30 L4.5 11.5 L15.5 19.5 L24 4.5 L32.5 19.5 L43.5 11.5 L41 30 Z" fill="none" stroke="url(#oelG)" stroke-width="1.7" stroke-linejoin="round"/><rect x="6.5" y="32.6" width="35" height="3.2" rx="1.6" fill="url(#oelG)"/><path d="M24 15.2 l3.1 4.1 -3.1 4.1 -3.1 -4.1z" fill="#fff3cc"/><circle cx="4.5" cy="11.5" r="1.7" fill="#ffe6a6"/><circle cx="43.5" cy="11.5" r="1.7" fill="#ffe6a6"/><circle cx="24" cy="4.5" r="2" fill="#fff3cc"/><path class="oel-s" d="M24 -1.6 L24.7 3.8 L30 4.5 L24.7 5.2 L24 10.6 L23.3 5.2 L18 4.5 L23.3 3.8 Z" fill="#fffaf0"/></svg></span><span class="oel-w"><span class="oel-o">Only</span><span class="oel-r" aria-hidden="true"></span><span class="oel-e">ELITE</span></span></span>
+</header>
+<section class="hero">
+  <svg class="ok" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="41" fill="none" stroke="#5fd68a" stroke-width="5"/><path d="M31 52l13 13 26-29" fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  <h1>Merci, et bienvenue<br>chez <em>Only Elite</em></h1>
+  <p class="sub">Ton accès est activé. Regarde la vidéo pour bien démarrer, puis télécharge le logiciel.</p>
+</section>
+<div class="video" id="video"><div class="vph"><div><div class="play"><svg width="26" height="26" viewBox="0 0 24 24" fill="#1a1306"><path d="M8 5v14l11-7z"/></svg></div><b>La vidéo de présentation arrive ici</b><small>Comment utiliser Only Elite, étape par étape</small></div></div></div>
+<section class="dl">
+  <h2>Télécharge <em>Only Elite</em></h2>
+  <div id="dlTxt" class="os">Détection de ton ordinateur…</div>
+  <a class="btn" id="dlBtn" href="#" aria-disabled="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0-4.5-4.5M12 15l4.5-4.5"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg><span>Télécharger</span></a>
+  <div class="os" id="dlOther"></div>
+  <div class="steps">
+    <div class="st"><i>1</i><b>Télécharge</b><small>Le bon fichier pour ton ordinateur est choisi automatiquement.</small></div>
+    <div class="st"><i>2</i><b>Installe</b><small>Ouvre le fichier. Si Windows affiche un avertissement : « Informations complémentaires » puis « Exécuter quand même ».</small></div>
+    <div class="st"><i>3</i><b>Connecte-toi</b><small>Crée ton compte avec <b>la même adresse e-mail que ton paiement</b> : ton accès est reconnu tout seul.</small></div>
+  </div>
+</section>
+<section class="soc">
+  <p>Rejoins la communauté Only Elite</p>
+  <div class="row">
+    <a id="sIg" class="off" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>Instagram</a>
+    <a id="sYt" class="off" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12 31 31 0 0 0 1 16.8a3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-4.8 31 31 0 0 0-.5-4.8zM9.8 15.1V8.9l5.4 3.1-5.4 3.1z"/></svg>YouTube</a>
+    <a id="sDc" class="off" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3l-.6 1.3a18.3 18.3 0 0 0-5.6 0L8.6 3a19.7 19.7 0 0 0-4.9 1.4C.6 9 0 13.5.3 18a19.9 19.9 0 0 0 6 3l1.3-2.1a12.9 12.9 0 0 1-2-1l.5-.4a14.2 14.2 0 0 0 12 0l.5.4c-.7.4-1.3.7-2 1l1.3 2.1a19.9 19.9 0 0 0 6-3c.4-5.2-.7-9.7-3.6-13.6zM8.7 15.3c-1.2 0-2.1-1.1-2.1-2.4s.9-2.4 2.1-2.4 2.2 1.1 2.1 2.4c0 1.3-.9 2.4-2.1 2.4zm6.6 0c-1.2 0-2.1-1.1-2.1-2.4s.9-2.4 2.1-2.4 2.2 1.1 2.1 2.4c0 1.3-.9 2.4-2.1 2.4z"/></svg>Discord</a>
+  </div>
+</section>
+<footer>ONLY ELITE · LE LOGICIEL DES AGENCES</footer>
+</main>
+<script src="config.js"></script>
+<script>
+(()=>{ const C=window.OE_SITE||{}, $=s=>document.querySelector(s);
+  // vidéo : lien YouTube, Vimeo ou fichier .mp4
+  const v=(C.video||'').trim(), box=$('#video');
+  if(v){ let m; if((m=v.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|shorts\/|embed\/))([\w-]{11})/))) box.innerHTML=`<iframe src="https://www.youtube-nocookie.com/embed/${m[1]}?rel=0&modestbranding=1" title="Présentation Only Elite" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen></iframe>`;
+    else if((m=v.match(/vimeo\.com\/(\d+)/))) box.innerHTML=`<iframe src="https://player.vimeo.com/video/${m[1]}" title="Présentation Only Elite" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>`;
+    else box.innerHTML=`<video src="${v.replace(/"/g,'')}" controls playsinline preload="metadata"></video>`; }
+  // réseaux
+  for(const [id,k] of [['#sIg','instagram'],['#sYt','youtube'],['#sDc','discord']]){ const u=(C[k]||'').trim(); if(/^https:\/\//.test(u)){ const a=$(id); a.href=u; a.classList.remove('off'); } }
+  // détection de l'ordinateur
+  const ua=navigator.userAgent, plat=(navigator.userAgentData&&navigator.userAgentData.platform)||navigator.platform||'';
+  const os=/Win/i.test(plat)||/Windows/i.test(ua)?'win':/Mac/i.test(plat)||/Mac OS X/i.test(ua)?(/iPhone|iPad/i.test(ua)?'mobile':'mac'):/Android|iPhone|iPad/i.test(ua)?'mobile':/Linux|X11/i.test(plat+ua)?'linux':'win';
+  const D=C.downloads||{}, N={win:'Windows',mac:'Mac',linux:'Linux'};
+  const btn=$('#dlBtn'), txt=$('#dlTxt'), oth=$('#dlOther');
+  const set=k=>{ const u=D[k]; if(u){ btn.href=u; btn.removeAttribute('aria-disabled'); btn.querySelector('span').textContent='Télécharger pour '+N[k]; txt.textContent=k==='win'?'Ton ordinateur : Windows (64 bits)':'Ton ordinateur : '+N[k]; }
+    else { btn.setAttribute('aria-disabled','true'); btn.querySelector('span').textContent='Version '+N[k]+' bientôt disponible'; txt.textContent='Ton ordinateur : '+N[k]; } };
+  if(os==='mobile'){ txt.textContent='Only Elite s\'installe sur un ordinateur. Ouvre cette page sur ton PC ou ton Mac pour le télécharger.'; btn.style.display='none'; }
+  else set(os);
+  const others=Object.keys(N).filter(k=>k!==os && D[k]).map(k=>`<a href="${D[k]}">${N[k]}</a>`);
+  if(others.length) oth.innerHTML='Autre ordinateur : '+others.join(' · ');
+})();
+</script>
+</body>
+</html>
