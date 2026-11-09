@@ -43,6 +43,13 @@ h1{font:400 clamp(32px,6vw,52px)/1.08 "Bodoni Moda",Georgia,serif;margin:6px 0 1
 .soc a{display:inline-flex;align-items:center;gap:8px;padding:11px 16px;border-radius:12px;border:1px solid var(--line);color:var(--txt);text-decoration:none;font-weight:600;background:rgba(255,255,255,.03)}.soc a:hover{border-color:rgba(233,196,106,.5)}
 .soc a.off{opacity:.45;pointer-events:none}
 .soc svg{width:18px;height:18px}
+.dc{margin:22px auto 0;padding:30px 28px;border-radius:22px;text-align:center;position:relative;overflow:hidden;border:1px solid rgba(88,101,242,.4);background:radial-gradient(600px 220px at 50% -40%,rgba(88,101,242,.28),transparent 70%),linear-gradient(160deg,rgba(88,101,242,.14),rgba(233,196,106,.03))}
+.dc-badge{display:inline-flex;align-items:center;width:62px;height:62px;border-radius:18px;justify-content:center;margin:0 auto 10px;background:linear-gradient(160deg,#5865f2,#3c45c4);box-shadow:0 14px 36px rgba(88,101,242,.45)}
+.dc-badge svg{width:34px;height:34px;color:#fff}
+.dc h2{font:400 26px "Bodoni Moda",Georgia,serif;margin:0 0 6px}.dc h2 em{font-style:italic;color:#aeb6ff}
+.dc p{color:var(--mut);max-width:520px;margin:0 auto;font-size:14.5px}
+.dcb{color:#fff!important;background:linear-gradient(180deg,#7984ff,#5865f2 55%,#3c45c4)!important;box-shadow:0 14px 40px rgba(88,101,242,.5)!important}
+.dc small{display:block;margin-top:12px;color:#8c93c9;font-size:12.5px;line-height:1.5}
 footer{margin-top:44px;text-align:center;color:#5c5242;font-size:11px;letter-spacing:.3em}
 @media(max-width:720px){.steps{grid-template-columns:1fr}}
 /* ===== logo officiel Only Elite ===== */
@@ -87,6 +94,13 @@ footer{margin-top:44px;text-align:center;color:#5c5242;font-size:11px;letter-spa
     <div class="st"><i>3</i><b>Connecte-toi</b><small>Crée ton compte avec <b>la même adresse e-mail que ton paiement</b> : ton accès est reconnu tout seul.</small></div>
   </div>
 </section>
+<section class="dc">
+  <span class="dc-badge"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3l-.6 1.3a18.3 18.3 0 0 0-5.6 0L8.6 3a19.7 19.7 0 0 0-4.9 1.4C.6 9 0 13.5.3 18a19.9 19.9 0 0 0 6 3l1.3-2.1a12.9 12.9 0 0 1-2-1l.5-.4a14.2 14.2 0 0 0 12 0l.5.4c-.7.4-1.3.7-2 1l1.3 2.1a19.9 19.9 0 0 0 6-3c.4-5.2-.7-9.7-3.6-13.6zM8.7 15.3c-1.2 0-2.1-1.1-2.1-2.4s.9-2.4 2.1-2.4 2.2 1.1 2.1 2.4c0 1.3-.9 2.4-2.1 2.4zm6.6 0c-1.2 0-2.1-1.1-2.1-2.4s.9-2.4 2.1-2.4 2.2 1.1 2.1 2.4c0 1.3-.9 2.4-2.1 2.4z"/></svg></span>
+  <h2>Rejoins le <em>Discord</em> Only Elite</h2>
+  <p>La communauté privée des agences Only Elite : entraide entre fondateurs, ressources, scripts, et les mises à jour du logiciel en avant-première. 💬</p>
+  <a class="btn dcb" id="dcBtn" href="#" target="_blank" rel="noopener" aria-disabled="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3l-.6 1.3a18.3 18.3 0 0 0-5.6 0L8.6 3a19.7 19.7 0 0 0-4.9 1.4C.6 9 0 13.5.3 18a19.9 19.9 0 0 0 6 3l1.3-2.1a12.9 12.9 0 0 1-2-1l.5-.4a14.2 14.2 0 0 0 12 0l.5.4c-.7.4-1.3.7-2 1l1.3 2.1a19.9 19.9 0 0 0 6-3c.4-5.2-.7-9.7-3.6-13.6zM8.7 15.3c-1.2 0-2.1-1.1-2.1-2.4s.9-2.4 2.1-2.4 2.2 1.1 2.1 2.4c0 1.3-.9 2.4-2.1 2.4zm6.6 0c-1.2 0-2.1-1.1-2.1-2.4s.9-2.4 2.1-2.4 2.2 1.1 2.1 2.4c0 1.3-.9 2.4-2.1 2.4z"/></svg><span>Rejoindre le serveur</span></a>
+  <small>Clique, connecte ton compte Discord et réponds à 4 petites questions — ton rôle et l'accès aux salons sont débloqués automatiquement. 👑</small>
+</section>
 <section class="soc">
   <p>💬 Rejoins la communauté Only Elite</p>
   <div class="row">
@@ -110,6 +124,8 @@ footer{margin-top:44px;text-align:center;color:#5c5242;font-size:11px;letter-spa
     else box.innerHTML=`<video src="${v.replace(/"/g,'')}" controls playsinline preload="metadata"></video>`; }
   // réseaux
   for(const [id,k] of [['#sIg','instagram'],['#sYt','youtube'],['#sDc','discord']]){ const u=(C[k]||'').trim(); if(/^https:\/\//.test(u)){ const a=$(id); a.href=u; a.classList.remove('off'); } }
+  // carte Discord mise en avant
+  { const d=(C.discord||'').trim(), b=$('#dcBtn'), card=$('.dc'); if(/^https:\/\//.test(d)){ b.href=d; b.removeAttribute('aria-disabled'); } else if(card){ card.style.display='none'; } }
   // détection de l'ordinateur
   const ua=navigator.userAgent, plat=(navigator.userAgentData&&navigator.userAgentData.platform)||navigator.platform||'';
   const os=/Win/i.test(plat)||/Windows/i.test(ua)?'win':/Mac/i.test(plat)||/Mac OS X/i.test(ua)?(/iPhone|iPad/i.test(ua)?'mobile':'mac'):/Android|iPhone|iPad/i.test(ua)?'mobile':/Linux|X11/i.test(plat+ua)?'linux':'win';
