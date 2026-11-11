@@ -1175,5 +1175,6 @@ window.__oeGrid=72;/* fond animé « scène dorée » : sol de grille en perspec
   // compteur de points de l'exemple qui monte quand la section apparaît
   const pe=document.getElementById('xLbPts'); let done=false; const io=new IntersectionObserver(es=>{ if(done||!es.some(e=>e.isIntersecting)) return; done=true; const to=4380, t0=performance.now(); const st=n=>{ const x=Math.min(1,(n-t0)/2600), v=Math.round(to*(1-Math.pow(1-x,3))); pe.textContent=v.toLocaleString('fr-FR'); if(x<1) requestAnimationFrame(st); }; requestAnimationFrame(st); },{threshold:.3}); if(pe) io.observe(pe);
 })();
-</script></body>
+</script><script src="cookies.js" defer></script>
+</body>
 </html>
