@@ -1,0 +1,21 @@
+# Secrets & clés — ne JAMAIS versionner (surtout : ce dépôt est public via GitHub Pages)
+.env
+.env.*
+*.key
+*.pem
+*.p12
+*.pfx
+oe-sign.key
+*oe-sign*
+secrets*
+*secret*
+*.credentials
+service-account*.json
+
+# Système / éditeurs
+.DS_Store
+Thumbs.db
+node_modules/
+*.log
+.vscode/
+.idea/
