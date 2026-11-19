@@ -669,6 +669,8 @@ input::placeholder { color: var(--smoke); font-weight: 500; }
 .ed-day i { font: 800 14px/1 var(--f-d); font-style: normal; letter-spacing: .05em; color: var(--smoke); }
 .ed-day b { font: 600 9.5px/1.15 var(--f-b); color: var(--smoke); }
 .ed-day.has i { color: var(--ash); }
+.ed-day em { font: 600 8.5px/1 var(--f-b); font-style: normal; color: var(--smoke); opacity: .8; }
+.ed-cta:has(> .btn:nth-child(3)) { grid-template-columns: auto auto 1fr; }
 .ed-day.has b { color: #ff8a94; }
 .ed-day[aria-pressed="true"] { background: var(--iron-3); border-color: var(--bone); }
 .ed-day[aria-pressed="true"] i { color: var(--bone); }
@@ -3786,7 +3788,7 @@ const ART = (function () {
           if (e.r && cleanReps(e.r)) q.r = cleanReps(e.r);
           ex.push(q);
         });
-        if (ex.length) { o.d[w] = { ex }; if (v.n) o.d[w].n = String(v.n).slice(0, 22); if (v.a) o.d[w].a = 1; }
+        if (ex.length) { o.d[w] = { ex }; if (v.n) o.d[w].n = String(v.n).slice(0, 22); if (v.a) o.d[w].a = 1; if (v.b) o.d[w].b = 1; }
       }
     }
     if (Array.isArray(g.h)) o.h = g.h.filter(e => Array.isArray(e) && /^\d{4}-\d\d-\d\d$/.test(e[0]) && /^[01]{7}$/.test(e[1])).slice(-40);
@@ -4623,13 +4625,59 @@ const ART = (function () {
     return out;
   }
   const sameSet = (a, b) => a.length === b.length && a.every(x => b.indexOf(x) >= 0);
+  /* La semaine s'équilibre toute seule. Les jours que Lenny a choisis lui-même restent tels quels ; les autres jours
+     d'entraînement (séance d'origine, ou déjà ajustés par l'app : b = 1) changent de séance pour que chaque muscle soit
+     travaillé, sans deux fois le même muscle dans la semaine ni deux jours de suite. */
+  const MAINS = ['pecs', 'dos', 'jambes', 'epaules', 'biceps', 'triceps'];
+  const SPLITS = [['pecs', 'triceps'], ['dos', 'biceps'], ['jambes'], ['epaules', 'abdos'], ['biceps', 'triceps'], ['jambes', 'abdos'], ['pecs', 'epaules'], ['dos', 'triceps']];
+  const isFree = w => { const c = S.g.d[w]; return c === undefined ? !!PLAN[w] : !!(c && c.ex && c.b); };
+  function weekCost(gw, cur) {
+    let cost = 0;
+    const cnt = {};
+    gw.forEach(function (gs) { if (gs) gs.forEach(function (g) { cnt[g] = (cnt[g] || 0) + 1; }); });
+    MAINS.forEach(function (g) { const n = cnt[g] || 0; if (!n) cost += 10; else if (n > 1) cost += (BIG.indexOf(g) >= 0 ? 5 : 2) * (n - 1); });
+    for (let w = 0; w < 7; w++) {
+      const a = gw[w], b = gw[(w + 1) % 7];
+      if (a && b) a.forEach(function (g) { if (g !== 'abdos' && b.indexOf(g) >= 0) cost += 6; });
+      if (cur[w] && a && !sameSet(cur[w], a)) cost += 1;                                   // à coût égal, on ne change rien
+    }
+    return cost;
+  }
+  function balanceWeek() {
+    const cur = [], free = [];
+    for (let w = 0; w < 7; w++) { const se = sessDay(w); cur.push(se ? se.gs.slice() : null); if (se && isFree(w)) free.push(w); }
+    if (!free.length || free.length === cur.filter(Boolean).length) return [];             // rien de choisi à la main : la semaine d'origine est déjà équilibrée
+    const gw = cur.slice(), opts = free.map(w => SPLITS.concat([cur[w]]));
+    let best = null, bestC = weekCost(cur, cur);
+    (function dfs(i) {
+      if (i === free.length) { const c = weekCost(gw, cur); if (c < bestC) { bestC = c; best = free.map(w => gw[w]); } return; }
+      opts[i].forEach(function (gs) { gw[free[i]] = gs; dfs(i + 1); });
+      gw[free[i]] = cur[free[i]];
+    })(0);
+    if (!best) return [];
+    const changed = [];
+    free.forEach(function (w, i) {
+      const gs = best[i];
+      if (sameSet(gs, cur[w])) return;
+      const def = PLAN[w] ? groupsOf(SESSIONS[PLAN[w]].ex.map(id => ({ id }))) : null;
+      if (def && sameSet(def, gs)) delete S.g.d[w];
+      else S.g.d[w] = { ex: compose(gs, []), a: 1, b: 1 };
+      changed.push(w);
+    });
+    return changed;
+  }
   function edCommit(msg, mode) {
     const p = edTop().p, w = p.w, c = S.g.d[w];
-    if (c && c.ex && mode !== 'keep') { if (mode === 'auto') c.a = 1; else delete c.a; }             // une retouche à la main : la séance n'est plus « automatique »
+    if (c && c.ex && mode !== 'undo') delete c.b;                                              // il a touché ce jour : c'est son choix, on n'y touche plus
+    if (c && c.ex && mode !== 'keep' && mode !== 'undo') { if (mode === 'auto') c.a = 1; else delete c.a; }   // une retouche à la main : la séance n'est plus « automatique »
     if (c && c.ex && !c.ex.length) { if (PLAN[w]) S.g.d[w] = 0; else delete S.g.d[w]; }        // plus aucun exercice : c'est un jour de repos
     else if (c && c.ex && !c.n && PLAN[w]) {                                                   // redevenue identique à la séance d'origine : ce n'est plus une séance modifiée
       const def = SESSIONS[PLAN[w]].ex;
       if (c.ex.length === def.length && c.ex.every((e, i) => e.id === def[i] && !e.s && !e.r)) delete S.g.d[w];
+    }
+    if (mode !== 'undo') {
+      const ch = balanceWeek().filter(x => x !== w);
+      if (ch.length) msg = (msg ? msg + ' ' : '') + listFr(ch.map(x => cap(JOURS[x]) + ' passe en ' + sessDay(x).n.toLowerCase())) + ', pour équilibrer ta semaine.';
     }
     p.cf = 0;
     if (p.pre) { if (p.pre !== edState()) p.undo = p.pre; p.pre = null; }                      // l'état d'avant devient « annulable » seulement si quelque chose a changé
@@ -4641,11 +4689,11 @@ const ART = (function () {
     let nDays = 0;
     GORDER.forEach(function (g) { cov[g] = 0; });
     let h = bar0('Mes séances') + '<div class="sheet-scroll"><h1 class="sh-title" style="margin-top:10px">Composer ma semaine</h1>' +
-      '<p class="sh-sub">Choisis un jour, puis une séance toute prête ou les parties du corps : les exercices se mettent tout seuls. Le bouton à double flèche change de machine. Tout est enregistré tout de suite.</p><div class="ed-days">';
+      '<p class="sh-sub">Choisis un jour, puis une séance toute prête ou les parties du corps : les exercices se mettent tout seuls. Les jours que tu ne touches pas s’ajustent d’eux-mêmes pour que chaque muscle soit travaillé, sans doublon. Tout est enregistré tout de suite : passe d’un jour à l’autre sans fermer.</p><div class="ed-days">';
     for (let i = 0; i < 7; i++) {
       const s = sessDay(i);
       if (s) { nDays++; s.gs.forEach(function (g) { cov[g]++; }); }
-      h += '<button class="ed-day' + (s ? ' has' : '') + '" data-a="edday" data-w="' + i + '" aria-pressed="' + (i === w ? 'true' : 'false') + '" aria-label="' + cap(JOURS[i]) + ' : ' + esc(s ? s.n : 'repos') + '"><i>' + J3[i] + '</i><b>' + (s ? s.lab.join('<br>') : 'Repos') + '</b></button>';
+      h += '<button class="ed-day' + (s ? ' has' : '') + '" data-a="edday" data-w="' + i + '" aria-pressed="' + (i === w ? 'true' : 'false') + '" aria-label="' + cap(JOURS[i]) + ' : ' + esc(s ? s.n : 'repos') + '"><i>' + J3[i] + '</i><b>' + (s ? s.lab.join('<br>') : 'Repos') + '</b>' + (s && S.g.d[i] && S.g.d[i].b ? '<em>auto</em>' : '') + '</button>';
     }
     const nSets = se ? se.ex.reduce((n, e) => n + cfgOf(e).sets, 0) : 0;
     h += '</div><div class="ed-head"><p class="eyebrow">' + cap(JOURS[w]) + (custom ? '<span class="tag tag-plan">Modifié</span>' : '') + '</p><h2 class="ed-name">' + esc(se ? se.n : 'Repos') + '</h2><p class="small">' +
@@ -4699,7 +4747,7 @@ const ART = (function () {
     if (custom && PLAN[w]) act += '<button class="btn btn-ghost btn-s" data-a="edreset">Séance d’origine</button>';
     if (act) h += '<div class="row" style="margin-top:24px">' + act + '</div>';
     if (Object.keys(S.g.d).length) h += '<button class="btn btn-ghost btn-s btn-wide" data-a="edresetall" style="margin-top:8px">' + (p.cf ? 'Confirmer : toute la semaine d’origine' : 'Remettre toute la semaine d’origine') + '</button>';
-    return h + '</div><div class="sheet-cta ed-cta">' + (p.undo ? '<button class="btn btn-ghost" data-a="edundo" aria-label="Annuler le dernier changement">' + ICON.undo + 'Annuler</button>' : '') + '<button class="btn btn-ember" data-a="close">Terminé</button></div>';
+    return h + '</div><div class="sheet-cta ed-cta">' + (p.undo ? '<button class="btn btn-ghost" data-a="edundo" aria-label="Annuler le dernier changement">' + ICON.undo + 'Annuler</button>' : '') + '<button class="btn btn-ghost" data-a="ednext">' + cap(JOURS[(w + 1) % 7]) + '</button><button class="btn btn-ember" data-a="close">Terminé</button></div>';
   }
   /* ---------- Profil : chaque personne a le sien, ses repas et ses portions suivent ---------- */
   const taille = () => ((S.set.h || 187) / 100).toFixed(2).replace('.', ',') + NB + 'm';
@@ -4936,13 +4984,17 @@ const ART = (function () {
     session: el => { if (sessAt(E.parseKey(el.dataset.d))) openSheet('session', { d: el.dataset.d }); },
     plan: el => openSheet('edit', { w: clamp(+el.dataset.w || 0, 0, 6) }),
     edday: function (el) { edKeep(); const p = edTop().p; p.w = clamp(+el.dataset.w || 0, 0, 6); p.cf = 0; p.ng = null; renderTop(); },
+    ednext: function () {
+      edKeep(); const p = edTop().p; p.w = (p.w + 1) % 7; p.cf = 0; p.ng = null; renderTop();
+      const sc = $('#sheets .sheet:last-child .sheet-scroll'); if (sc) sc.scrollTop = 0;
+    },
     edundo: function () {
       edKeep();
       const p = edTop().p;
       if (!p.undo) return;
       const o = JSON.parse(p.undo);
       S.g.d = o.d; S.g.c = o.c; S.g.i = o.i; p.undo = null; p.pre = null; p.cf = 0;
-      edCommit('Dernier changement annulé.', 'keep');
+      edCommit('Dernier changement annulé.', 'undo');
     },
     edgrp: function (el) {
       edSnap();
