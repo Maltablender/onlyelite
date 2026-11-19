@@ -1638,7 +1638,7 @@ const STK = (x) => ['stack', x, 66, 22, 112, 24];
 const EXOS = {
   /* ======================= PECTORAUX ======================= */
   chest_press: {
-    n: 'Développé assis à la machine', lab: 'CHEST PRESS', zone: 'Machines guidées', sets: 4, reps: '8 à 10', rest: 120,
+    pz: 'milieu', n: 'Développé assis à la machine', lab: 'CHEST PRESS', zone: 'Machines guidées', sets: 4, reps: '8 à 10', rest: 120,
     mus: ['pecs', 'triceps', 'delts'], q: 'chest press machine exécution technique',
     s: ['Règle le siège pour que les poignées arrivent à mi-poitrine.', 'Bonne charge : la 10e répétition est dure mais propre.'],
     p: ['Dos et tête collés au dossier, pieds à plat.', 'Sors la poitrine et serre les omoplates dans le dossier. Garde-les serrées.'],
@@ -1650,49 +1650,49 @@ const EXOS = {
       ['l', [92, 54], 'hand', 3.2, 'steel', 'f'], ['c', 'hand', 3.4, 'grip', 'f'], STK(150)]
   },
   incline_db: {
-    n: 'Développé incliné aux haltères', lab: 'Banc réglable + haltères', zone: 'Poids libres', sets: 4, reps: '8 à 10', rest: 120,
+    pz: 'haut', n: 'Développé incliné aux haltères', lab: 'Banc réglable + haltères', zone: 'Poids libres', sets: 4, reps: '8 à 10', rest: 120,
     mus: ['pecs', 'delts', 'triceps'], q: 'développé incliné haltères exécution technique',
     s: ['Banc incliné à 30° (2e ou 3e cran). Plus haut, ce sont les épaules qui prennent.', 'Pose les haltères sur tes cuisses, puis bascule en arrière en les amenant aux épaules.'],
     p: ['Pieds à plat, omoplates serrées, léger creux en bas du dos.', 'Haltères au niveau du haut des pecs, coudes à 45° du corps.'],
     x: ['Pousse vers le haut en rapprochant légèrement les haltères.', 'Redescends en 3 secondes jusqu’au niveau de la poitrine.'],
     e: ['Coudes écartés à 90° : mauvais pour les épaules.', 'Faire rebondir les haltères en bas.'],
-    f: 'Le haut de la poitrine, sous les clavicules.',
+    f: 'Le haut de la poitrine, juste sous les clavicules : la zone qui reste plate chez la plupart des gens. Fais-le en premier, quand tu es frais.',
     v: 's', base: { hip: [86, 146], lean: -52, foot: [124, 176], neck: 8 }, A: { hand: [60, 100], as: .82 }, B: { hand: [54, 70], as: 1 },
     m: [['l', [82, 152], [31, 113], 7, 'pad'], ['l', [84, 153], [108, 153], 7, 'padd'], ['l', [56, 130], [52, 182], 4, 'fr'], ['l', [96, 156], [100, 182], 4, 'fr'],
       ['db', 'handF', 'b'], ['db', 'hand', 'f']]
   },
   pec_deck: {
-    n: 'Butterfly', lab: 'PEC FLY / REAR DELT', zone: 'Machines guidées', sets: 3, reps: '12', rest: 75,
+    pz: 'interieur', n: 'Butterfly', lab: 'PEC FLY / REAR DELT', zone: 'Machines guidées', sets: 3, reps: '12', rest: 75,
     mus: ['pecs', 'delts'], q: 'butterfly pec deck machine exécution',
     s: ['Siège réglé pour que tes mains soient à hauteur d’épaules.', 'Règle l’ouverture des bras pour partir avec un bon étirement, sans douleur.'],
     p: ['Dos collé, poitrine sortie.', 'Coudes légèrement fléchis et figés : ils ne bougent plus.'],
-    x: ['Ramène les poignées devant toi, comme si tu serrais un tronc d’arbre.', 'Serre 1 seconde quand les mains se touchent, reviens lentement.'],
+    x: ['Ramène les poignées devant toi, comme si tu serrais un tronc d’arbre.', 'Serre fort 2 secondes quand les mains se touchent, en contractant le centre de la poitrine, puis reviens lentement.'],
     e: ['Plier et déplier les coudes : ça devient un développé.', 'Les épaules qui montent vers les oreilles.'],
-    f: 'L’intérieur des pecs, au centre de la poitrine.',
+    f: 'L’intérieur des pecs, au centre de la poitrine. C’est la contraction de 2 secondes qui le dessine.',
     v: 'f', base: { hip: [100, 143], foot: [86, 182], sit: 1 }, A: { th: -6, be: 12, e1: 11, e2: -9 }, B: { th: 99, be: 22, e1: 19, e2: -3 },
     m: [['l', [58, 49], [142, 49], 5, 'fr'], ['l', [100, 49], [100, 93], 5, 'fr'], ['r', 87, 89, 26, 60, 0, 'pad'], ['r', 80, 145, 40, 8, 0, 'padd'], ['l', [100, 153], [100, 182], 5, 'fr'],
       ['l', [68, 49], 'handL', 3.2, 'steel', 'f', 1], ['c', 'handL', 3.4, 'grip', 'f', 1]]
   },
   cable_fly: {
-    n: 'Écarté à la poulie vis-à-vis', lab: 'CABLE CROSSOVER', zone: 'Poulies réglables', sets: 3, reps: '12 à 15', rest: 60,
+    pz: 'bas', n: 'Écarté à la poulie vis-à-vis', lab: 'CABLE CROSSOVER', zone: 'Poulies réglables', sets: 3, reps: '12 à 15', rest: 60,
     mus: ['pecs', 'delts'], q: 'écarté poulie vis à vis haut exécution',
     s: ['Monte les deux poulies au cran le plus haut, une poignée de chaque côté.', 'Prends une poignée dans chaque main et avance d’un pas au centre.'],
     p: ['Un pied devant l’autre, buste légèrement penché en avant.', 'Bras ouverts, coudes un peu fléchis.'],
     x: ['Ramène les mains vers le bas et le centre, devant ton bassin.', 'Serre 1 seconde, puis remonte en contrôlant.'],
     e: ['Trop lourd : le dos se cambre et les bras poussent au lieu de serrer.', 'Remonter trop vite.'],
-    f: 'Le bas et le centre des pecs.',
+    f: 'Le bas des pecs, sur leur bord inférieur, et le centre quand les mains se croisent.',
     v: 'f', base: { hip: [100, 112], foot: [88, 180] }, A: { th: -8, be: 14, e1: -18, e2: -36 }, B: { th: 120, be: 14, e1: 58, e2: 52 },
     m: [['l', [22, 182], [22, 14], 5, 'fr', 'b', 1], ['l', [22, 14], [178, 14], 5, 'fr'], ['c', [26, 22], 4.5, 'steel', 'b', 1],
       ['l', [26, 22], 'handL', 1.3, 'cab', 'f', 1], ['c', 'handL', 3.2, 'grip', 'f', 1]]
   },
   dips_assist: {
-    n: 'Dips à la machine assistée', lab: 'ASSISTED DIP / CHIN', zone: 'Machines guidées', sets: 3, reps: '8 à 12', rest: 90,
+    pz: 'bas', n: 'Dips à la machine assistée', lab: 'ASSISTED DIP / CHIN', zone: 'Machines guidées', sets: 3, reps: '8 à 12', rest: 90,
     mus: ['pecs', 'triceps', 'delts'], q: 'dips machine assistée exécution',
     s: ['Choisis le contrepoids : plus tu mets lourd, plus la machine t’aide.', 'Attrape les poignées basses et pose les genoux sur le coussin.'],
     p: ['Buste penché en avant d’environ 20° : c’est ce qui met les pecs au travail.', 'Épaules basses, loin des oreilles.'],
     x: ['Descends jusqu’à ce que tes bras forment un angle droit.', 'Remonte en poussant, sans verrouiller sèchement les coudes.'],
     e: ['Descendre trop bas en forçant sur les épaules.', 'Rester droit comme un piquet : tout passe dans les triceps.'],
-    f: 'Le bas des pecs et les triceps.',
+    f: 'Le bas des pecs, qui dessine le contour de la poitrine, et les triceps. Plus tu te penches en avant, plus ce sont les pecs.',
     v: 's', base: { hand: [103, 113] }, A: { hip: [93, 132], lean: 18, foot: [71, 168] }, B: { hip: [96, 112], lean: 8, foot: [74, 148] },
     m: [['l', [60, 182], [60, 20], 5, 'fr'], ['l', [60, 22], [112, 22], 5, 'fr'], ['l', [60, 113], [112, 113], 4, 'fr'], ['l', [96, 113], [112, 113], 4.5, 'grip', 'f'],
       ['l', ['knee', -9, 13], [60, 162], 3, 'steel'], ['rp', ['knee', -9, 10], 30, 6, 0, 'pad'], ['stack', 142, 66, 22, 112, -20]]
@@ -1993,7 +1993,7 @@ const EXOS = {
 };
 
 const SESSIONS = {
-  pecs: { n: 'Pectoraux', sub: 'Pectoraux + abdos', dur: 65, hero: 'chest_press', ex: ['chest_press', 'incline_db', 'pec_deck', 'cable_fly', 'dips_assist', 'crunch_machine'] },
+  pecs: { n: 'Pectoraux', sub: 'Haut, milieu, bas et intérieur des pecs + abdos', dur: 70, hero: 'incline_db', ex: ['incline_db', 'chest_press', 'low_fly', 'pec_deck', 'dips_assist', 'crunch_machine'] },
   dos: { n: 'Dos', sub: 'Dos complet', dur: 60, hero: 'lat_pulldown', ex: ['lat_pulldown', 'seated_row', 'assisted_pullup', 'straight_arm', 'back_ext'] },
   jambes: { n: 'Jambes', sub: 'Cuisses, fessiers, mollets', dur: 70, hero: 'leg_press', ex: ['leg_press', 'smith_squat', 'leg_ext', 'leg_curl', 'rdl', 'calf'] },
   epaules: { n: 'Épaules', sub: 'Épaules + trapèzes + abdos', dur: 65, hero: 'shoulder_press', ex: ['shoulder_press', 'lateral_raise', 'reverse_fly', 'face_pull', 'shrug', 'leg_raise', 'plank'] },
@@ -2005,7 +2005,7 @@ const SESSIONS = {
 Object.assign(EXOS, {
   /* ---------- Pectoraux ---------- */
   bench_smith: {
-    n: 'Développé couché à la barre guidée', lab: 'SMITH MACHINE + banc plat', zone: 'Poids libres', sets: 4, reps: '6 à 8', rest: 150,
+    pz: 'milieu', n: 'Développé couché à la barre guidée', lab: 'SMITH MACHINE + banc plat', zone: 'Poids libres', sets: 4, reps: '6 à 8', rest: 150,
     mus: ['pecs', 'triceps', 'delts'], q: 'développé couché smith machine technique',
     s: ['Banc plat sous la barre : elle doit descendre sur le bas de tes pecs, pas sur le cou.', 'Commence avec la barre seule pour régler la position.'],
     p: ['Pieds à plat au sol, fesses et omoplates collées au banc.', 'Mains un peu plus larges que les épaules.'],
@@ -2017,7 +2017,7 @@ Object.assign(EXOS, {
       ['plates', 'hand', 13, 'b'], ['c', 'hand', 2.6, 'grip', 'f']]
   },
   bench_db: {
-    n: 'Développé couché aux haltères', lab: 'Banc plat + haltères', zone: 'Poids libres', sets: 4, reps: '8 à 10', rest: 120,
+    pz: 'milieu', n: 'Développé couché aux haltères', lab: 'Banc plat + haltères', zone: 'Poids libres', sets: 4, reps: '8 à 10', rest: 120,
     mus: ['pecs', 'triceps', 'delts'], q: 'développé couché haltères technique',
     s: ['Assieds-toi au bout du banc, haltères sur les cuisses, puis allonge-toi en les amenant aux épaules.'],
     p: ['Pieds à plat, omoplates serrées, haltères au niveau de la poitrine.', 'Coudes à 45° du corps.'],
@@ -2028,7 +2028,7 @@ Object.assign(EXOS, {
     m: [['r', 38, 158, 86, 7, 0, 'pad'], ['l', [50, 165], [50, 182], 4, 'fr'], ['l', [112, 165], [112, 182], 4, 'fr'], ['db', 'handF', 'b'], ['db', 'hand', 'f']]
   },
   incline_smith: {
-    n: 'Développé incliné à la barre guidée', lab: 'SMITH MACHINE + banc incliné', zone: 'Poids libres', sets: 4, reps: '8 à 10', rest: 120,
+    pz: 'haut', n: 'Développé incliné à la barre guidée', lab: 'SMITH MACHINE + banc incliné', zone: 'Poids libres', sets: 4, reps: '8 à 10', rest: 120,
     mus: ['pecs', 'delts', 'triceps'], q: 'développé incliné smith machine',
     s: ['Banc incliné à 30°, placé pour que la barre descende sous les clavicules.'],
     p: ['Dos collé, pieds à plat, omoplates serrées.', 'Mains un peu plus larges que les épaules.'],
@@ -2039,8 +2039,20 @@ Object.assign(EXOS, {
     m: [['l', [56, 182], [56, 12], 4, 'fr', 'b'], ['l', [38, 12], [74, 12], 5, 'fr'], ['l', [82, 152], [31, 113], 7, 'pad'], ['l', [84, 153], [108, 153], 7, 'padd'], ['l', [96, 156], [100, 182], 4, 'fr'],
       ['plates', 'hand', 13, 'b'], ['c', 'hand', 2.6, 'grip', 'f']]
   },
+  low_fly: {
+    pz: 'hautint', n: 'Écarté à la poulie de bas en haut', lab: 'CABLE CROSSOVER, poulies basses', zone: 'Poulies réglables', sets: 3, reps: '12 à 15', rest: 60,
+    mus: ['pecs', 'delts'], q: 'écarté poulie basse vers le haut haut des pectoraux',
+    s: ['Descends les deux poulies au cran le plus bas, une poignée de chaque côté.', 'Avance d’un pas au centre, entre les deux poulies.'],
+    p: ['Debout bien droit, poitrine sortie, épaules basses.', 'Bras le long du corps, légèrement écartés, paumes vers l’avant, coudes un peu fléchis.'],
+    x: ['Monte les mains vers le haut et le centre, jusqu’à la hauteur du menton, comme pour ramasser quelque chose devant toi.', 'Serre 2 secondes quand les mains se touchent, puis redescends lentement.'],
+    e: ['Hausser les épaules : ce sont alors les trapèzes qui travaillent.', 'Plier les coudes pour pousser : le geste doit rester un arc de cercle.'],
+    f: 'Le haut des pecs, sous les clavicules, et leur intérieur quand les mains se rejoignent.',
+    v: 'f', base: { hip: [100, 112], foot: [88, 180] }, A: { th: -6, be: 12, e1: 52, e2: 62 }, B: { th: 104, be: 18, e1: 6, e2: -2 },
+    m: [['l', [22, 182], [22, 14], 5, 'fr', 'b', 1], ['l', [22, 14], [178, 14], 5, 'fr'], ['c', [26, 172], 4.5, 'steel', 'b', 1],
+      ['l', [26, 172], 'handL', 1.3, 'cab', 'f', 1], ['c', 'handL', 3.2, 'grip', 'f', 1]]
+  },
   pushups: {
-    n: 'Pompes', lab: 'Au sol, sur un tapis', zone: 'Zone fonctionnelle', sets: 3, reps: '12 à 15', rest: 60,
+    pz: 'milieu', n: 'Pompes', lab: 'Au sol, sur un tapis', zone: 'Zone fonctionnelle', sets: 3, reps: '12 à 15', rest: 60,
     mus: ['pecs', 'triceps', 'delts'], q: 'pompes technique parfaite',
     s: ['Mains au sol un peu plus larges que les épaules, sous la poitrine.'],
     p: ['Corps gainé, droit des talons à la tête.', 'Fesses ni en l’air ni affaissées.'],
@@ -2297,7 +2309,7 @@ const PLAN = ['pecs', 'dos', 'jambes', 'epaules', 'bras', null, null];
 /* Les parties du corps qu'il peut combiner dans une séance, avec leurs exercices du plus utile au moins utile.
    n = nom, s = nom court, a = avec l'article, k = nombre d'exercices ajoutés d'un coup quand il choisit cette partie. */
 const GROUPS = {
-  pecs: { n: 'Pectoraux', s: 'Pecs', a: 'les pectoraux', k: 3, ex: ['chest_press', 'incline_db', 'pec_deck', 'cable_fly', 'bench_smith', 'dips_assist', 'bench_db', 'incline_smith', 'pushups'] },
+  pecs: { n: 'Pectoraux', s: 'Pecs', a: 'les pectoraux', k: 3, ex: ['incline_db', 'chest_press', 'dips_assist', 'low_fly', 'pec_deck', 'cable_fly', 'incline_smith', 'bench_smith', 'bench_db', 'pushups'] },
   dos: { n: 'Dos', s: 'Dos', a: 'le dos', k: 3, ex: ['lat_pulldown', 'seated_row', 'assisted_pullup', 'db_row', 'straight_arm', 'low_row', 'close_pulldown', 'back_ext'] },
   jambes: { n: 'Jambes', s: 'Jambes', a: 'les jambes', k: 4, ex: ['leg_press', 'smith_squat', 'leg_ext', 'leg_curl', 'rdl', 'calf', 'hip_thrust', 'goblet', 'lunges', 'lying_curl', 'abductor', 'adductor', 'glute_kick'] },
   epaules: { n: 'Épaules', s: 'Épaules', a: 'les épaules', k: 3, ex: ['shoulder_press', 'lateral_raise', 'reverse_fly', 'db_press', 'face_pull', 'upright_row', 'front_raise', 'shrug'] },
@@ -3764,7 +3776,7 @@ const ART = (function () {
   const LS = 'jotunn.v1';
   /* g = les séances composées par Lenny : d = jours modifiés (0 = repos, ou { ex: [{ id, s, r }], n }), c = ses propres exercices,
      i = compteur de ces exercices, h = historique des jours d'entraînement (pour juger les jours passés avec le programme de l'époque) */
-  const DEFG = () => ({ d: {}, c: {}, i: 0, h: [] });
+  const DEFG = () => ({ v: 2, d: {}, c: {}, i: 0, h: [] });
   const cleanReps = v => String(v).replace(/[^0-9a-zà ]/gi, '').trim().slice(0, 12);
   const DEF = () => ({ set: { v: 2, name: '', h: 187, w0: 65, goal: 80, budget: 70, kadj: 0, start: null, al: [], ex: [] }, j: {}, c: {}, pl: {}, w: {}, p: {}, g: DEFG() });
   function normG(g) {
@@ -3790,6 +3802,11 @@ const ART = (function () {
         });
         if (ex.length) { o.d[w] = { ex }; if (v.n) o.d[w].n = String(v.n).slice(0, 22); if (v.a) o.d[w].a = 1; if (v.b) o.d[w].b = 1; }
       }
+    }
+    /* v2 : les séances pecs composées automatiquement prennent la nouvelle répartition haut, milieu, bas et intérieur */
+    if (+g.v !== 2) for (let w = 0; w < 7; w++) {
+      const d = o.d[w];
+      if (d && d.ex && d.a && d.ex.every(e => EXOS[e.id]) && d.ex.some(e => GRP_OF[e.id] === 'pecs')) d.ex = compose(groupsOf(d.ex), d.ex);
     }
     if (Array.isArray(g.h)) o.h = g.h.filter(e => Array.isArray(e) && /^\d{4}-\d\d-\d\d$/.test(e[0]) && /^[01]{7}$/.test(e[1])).slice(-40);
     return o;
@@ -4530,6 +4547,17 @@ const ART = (function () {
     return h;
   }
 
+  /* Quelle partie des pectoraux chaque exercice vise */
+  const PZ = { haut: 'haut des pecs', milieu: 'milieu des pecs', bas: 'bas des pecs', interieur: 'intérieur des pecs', hautint: 'haut et intérieur des pecs' };
+  const pzOf = id => { const x = EXOS[id]; return x && PZ[x.pz] ? PZ[x.pz] : ''; };
+  function pecNote(ex) {
+    const z = {}; ex.forEach(function (e) { const x = EXOS[e.id]; if (x && x.pz) (x.pz === 'hautint' ? ['haut', 'interieur'] : [x.pz]).forEach(k => { z[k] = 1; }); });
+    if (!Object.keys(z).length) return '';
+    const all = ['haut', 'milieu', 'bas', 'interieur'], miss = all.filter(k => !z[k]);
+    return '<div class="note">' + (miss.length ? ICON.x : ICON.check) + '<span>' + (miss.length
+      ? '<b>Pecs : il manque ' + listFr(miss.map(k => 'le ' + PZ[k].replace(' des pecs', ''))) + '.</b> Ajoute un exercice qui le vise pour gonfler toute la poitrine.'
+      : '<b>Tout le pec est travaillé : haut, milieu, bas et intérieur.</b> Le haut passe en premier, quand tu es frais : c’est la zone qui reste plate chez la plupart.') + '</span></div>';
+  }
   function shSession(p) {
     const d = E.parseKey(p.d), se = sessAt(d);
     if (!se) return bar0(cap(fmtLong(d))) + '<div class="sheet-scroll"><h1 class="sh-title" style="margin-top:10px">Repos</h1><p class="plain">Il n’y a plus de séance ce jour-là.</p></div>';
@@ -4538,11 +4566,11 @@ const ART = (function () {
     let h = bar0(cap(fmtLong(d))) + '<div class="sheet-scroll"><h1 class="sh-title" style="font-size:' + (se.n.length > 12 ? 42 : 54) + 'px;margin-top:10px">' + esc(se.n) + '</h1><p class="sh-sub">' + esc(se.sub) + ', environ ' + se.dur + ' minutes</p>' +
       '<div class="chips">' + tag(st) + mus.map(l => '<span class="chip">' + l + '</span>').join('') + '</div>' +
       '<div class="prog" aria-hidden="true">' + se.ex.map(function (e, i) { const n = x[e.id] || 0; return '<i' + (n >= cf[i].sets ? ' class="full"' : n ? ' class="part"' : '') + '></i>'; }).join('') + '</div>' +
-      '<div class="note">' + ICON.clock + '<span><b>Échauffement.</b> ' + RULES[1][1] + '</span></div><h2 class="h3">Exercices<span>touche pour voir le mouvement</span></h2>';
+      '<div class="note">' + ICON.clock + '<span><b>Échauffement.</b> ' + RULES[1][1] + '</span></div>' + pecNote(se.ex) + '<h2 class="h3">Exercices<span>touche pour voir le mouvement</span></h2>';
     const nextI = done ? -1 : se.ex.findIndex((e, i) => (x[e.id] || 0) < cf[i].sets);
     se.ex.forEach(function (e, i) {
       const ex = exo(e.id), c = cf[i], n = Math.min(x[e.id] || 0, c.sets), nx = i === nextI;
-      h += '<button class="exo' + (n >= c.sets ? ' is-done' : '') + (nx ? ' is-next' : '') + '" data-a="exo" data-id="' + e.id + '" data-d="' + p.d + '">' + (nx ? '<svg class="rig" viewBox="0 0 200 200" data-rig="' + e.id + '" aria-hidden="true"></svg>' : thumb(e.id)) + '<span>' + (nx && !future ? '<span class="tag tag-today">' + (n ? 'En cours' : 'À faire') + '</span>' : '') + '<span class="exo-t">' + (i + 1) + '. ' + esc(ex.n) + '</span><span class="exo-s">' + c.sets + ' × ' + esc(c.reps) + ', repos ' + restTxt(c.rest) + '</span></span><span class="exo-n">' + n + '/' + c.sets + '</span></button>';
+      h += '<button class="exo' + (n >= c.sets ? ' is-done' : '') + (nx ? ' is-next' : '') + '" data-a="exo" data-id="' + e.id + '" data-d="' + p.d + '">' + (nx ? '<svg class="rig" viewBox="0 0 200 200" data-rig="' + e.id + '" aria-hidden="true"></svg>' : thumb(e.id)) + '<span>' + (nx && !future ? '<span class="tag tag-today">' + (n ? 'En cours' : 'À faire') + '</span>' : '') + '<span class="exo-t">' + (i + 1) + '. ' + esc(ex.n) + '</span><span class="exo-s">' + (pzOf(e.id) ? cap(pzOf(e.id)) + '. ' : '') + c.sets + ' × ' + esc(c.reps) + ', repos ' + restTxt(c.rest) + '</span></span><span class="exo-n">' + n + '/' + c.sets + '</span></button>';
     });
     h += '<button class="btn btn-ghost btn-wide" data-a="plan" data-w="' + se.w + '" style="margin-top:6px">' + ICON.edit + 'Modifier la séance du ' + JOURS[se.w] + '</button>' +
       '<div class="note">' + ICON.check + '<span><b>' + RULES[0][0] + '.</b> ' + RULES[0][1] + '</span></div></div><div class="sheet-cta">';
@@ -4564,7 +4592,7 @@ const ART = (function () {
       : '<div class="sh-hero stage"><i class="stage-glow rep" style="' + repSync() + '"></i><svg class="rig" viewBox="0 0 200 200" data-rig="' + p.id + '" aria-hidden="true"></svg></div>' + (ex.hold ? '' : tempo());
     const video = '<div class="row" style="margin-top:20px"><a class="btn btn-ghost" href="' + yt(ex.q) + '" target="_blank" rel="noopener">' + ICON.play + 'Voir le mouvement en vidéo</a></div>';
     return bar0(esc(ex.zone)) + '<div class="sheet-scroll">' + stage +
-      '<h1 class="sh-title">' + esc(ex.n) + '</h1><div class="chips" style="margin-bottom:6px"><span class="machine">' + esc(ex.lab) + '</span></div>' +
+      '<h1 class="sh-title">' + esc(ex.n) + '</h1><div class="chips" style="margin-bottom:6px"><span class="machine">' + esc(ex.lab) + '</span>' + (pzOf(p.id) ? '<span class="chip">' + cap(pzOf(p.id)) + '</span>' : '') + '</div>' +
       '<div class="chips"><span class="chip chip-ember">' + c.sets + ' × ' + esc(c.reps) + '</span><span class="chip">' + ICON.clock + 'repos ' + restTxt(c.rest) + '</span>' + (ex.user ? '<span class="chip">' + GROUPS[grpOf(p.id)].n + '</span>' : ex.mus.map(k => '<span class="chip">' + MUSCLES[k] + '</span>').join('')) + '</div>' +
       '<h2 class="h3">Mes séries<span>' + n + ' sur ' + c.sets + '</span></h2><section class="card"><div class="sets">' + sets + '</div>' +
       (c.hold ? '<button class="tchip" style="margin-top:12px" data-a="timer" data-sec="' + c.hold + '" data-l="Gainage">' + ICON.clock + 'Lancer ' + c.hold + ' secondes</button>' :
@@ -4712,11 +4740,12 @@ const ART = (function () {
       se.ex.forEach(function (e, i) {
         const x = exo(e.id), c = cfgOf(e), opts = (x.hold ? REPS_T : REPS).slice();
         if (opts.indexOf(c.reps) < 0) opts.unshift(c.reps);
-        h += '<div class="edx"><div class="edx-a">' + thumb(e.id) + '<div><b>' + (i + 1) + '. ' + esc(x.n) + '</b><span>' + GROUPS[grpOf(e.id)].n + ', ' + esc(x.user ? 'ajouté par toi' : x.lab) + '</span></div></div>' +
+        h += '<div class="edx"><div class="edx-a">' + thumb(e.id) + '<div><b>' + (i + 1) + '. ' + esc(x.n) + '</b><span>' + (pzOf(e.id) ? cap(pzOf(e.id)) : GROUPS[grpOf(e.id)].n) + ', ' + esc(x.user ? 'ajouté par toi' : x.lab) + '</span></div></div>' +
           '<div class="edx-b"><div class="stp"><button class="iconbtn" data-a="edsets" data-i="' + i + '" data-v="-1" aria-label="Une série de moins"' + (c.sets <= 1 ? ' disabled' : '') + '>' + ICON.minus + '</button><b aria-label="' + plural(c.sets, 'série') + '">' + c.sets + '</b><button class="iconbtn" data-a="edsets" data-i="' + i + '" data-v="1" aria-label="Une série de plus"' + (c.sets >= 8 ? ' disabled' : '') + '>' + ICON.plus + '</button></div><span class="edx-x" aria-hidden="true">×</span>' +
           '<select class="sel" data-g="reps" data-i="' + i + '" aria-label="' + (x.hold ? 'Durée de chaque série' : 'Répétitions par série') + '">' + opts.map(o => '<option' + (o === c.reps ? ' selected' : '') + '>' + esc(o) + '</option>').join('') + '</select>' +
           '<button class="iconbtn" data-a="edswap" data-i="' + i + '" aria-label="Changer de machine : ' + esc(x.n) + '">' + ICON.swap + '</button><button class="iconbtn" data-a="edmv" data-i="' + i + '" aria-label="Monter d’un rang"' + (i ? '' : ' disabled') + '>' + ICON.up + '</button><button class="iconbtn" data-a="eddel" data-i="' + i + '" aria-label="Retirer ' + esc(x.n) + ' de la séance">' + ICON.trash + '</button></div></div>';
       });
+      h += pecNote(se.ex);
       if (se.dur > 90) h += '<div class="note">' + ICON.clock + '<span><b>Séance longue.</b> Après 75 à 90 minutes, la qualité des séries baisse : retire un exercice ou une série.</span></div>';
       else if (se.ex.length < 3) h += '<div class="note">' + ICON.clock + '<span><b>Séance courte.</b> Ajoute un exercice ou deux pour qu’elle compte.</span></div>';
       let lib = '';
@@ -4725,7 +4754,7 @@ const ART = (function () {
         if (!ids.length) return;
         lib += '<p class="ed-gt">' + GROUPS[g].n + '</p>' + ids.map(function (id) {
           const x = exo(id);
-          return '<div class="edl"><button class="edl-m" data-a="edadd" data-id="' + id + '" aria-label="Ajouter ' + esc(x.n) + '">' + thumb(id) + '<span><b>' + esc(x.n) + '</b><i>' + esc(x.user ? 'Ajouté par toi' : x.lab) + ', ' + x.sets + ' × ' + esc(x.reps) + '</i></span>' + ICON.plus + '</button>' +
+          return '<div class="edl"><button class="edl-m" data-a="edadd" data-id="' + id + '" aria-label="Ajouter ' + esc(x.n) + '">' + thumb(id) + '<span><b>' + esc(x.n) + '</b><i>' + (pzOf(id) ? cap(pzOf(id)) + ', ' : '') + esc(x.user ? 'Ajouté par toi' : x.lab) + ', ' + x.sets + ' × ' + esc(x.reps) + '</i></span>' + ICON.plus + '</button>' +
             (x.user ? '<button class="iconbtn" data-a="edrm" data-id="' + id + '" aria-label="Supprimer ' + esc(x.n) + ' pour de bon">' + ICON.trash + '</button>' : '') + '</div>';
         }).join('');
       });
