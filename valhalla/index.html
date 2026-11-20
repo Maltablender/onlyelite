@@ -8,7 +8,7 @@
 <style>html,body{background:#000;color-scheme:dark}</style>
 <script>/* iPhone, appli installée : selon la version d'iOS, la hauteur annoncée par le navigateur (100 %, 100vh, taille de l'écran)
    ne correspond pas à la zone vraiment visible. On suit en direct la zone visible, et l'appli s'y loge exactement. */
-(function(){try{var d=document.documentElement,f=function(){var v=window.visualViewport,h=Math.round(v&&v.height?Math.min(v.height,innerHeight):innerHeight);if(h>200)d.style.setProperty('--appH',h+'px')};f();addEventListener('resize',f);if(window.visualViewport)visualViewport.addEventListener('resize',f);addEventListener('orientationchange',function(){setTimeout(f,300)});addEventListener('pageshow',f);document.addEventListener('visibilitychange',function(){if(!document.hidden)setTimeout(f,50)})}catch(e){}})();</script>
+(function(){try{var d=document.documentElement,f=function(){var v=window.visualViewport,h=Math.round(v&&v.height?Math.min(v.height,innerHeight):innerHeight);if(h>200)d.style.setProperty('--appH',h+'px');try{var p=document.createElement('div');p.style.cssText='position:fixed;top:0;height:0;visibility:hidden;padding-top:env(safe-area-inset-top)';document.documentElement.appendChild(p);var top=parseFloat(getComputedStyle(p).paddingTop)||0;p.remove();var gap=screen.height-h;if(navigator.standalone&&top>0&&gap>20&&!matchMedia('(orientation: landscape)').matches)d.style.setProperty('--sab','0px');else d.style.removeProperty('--sab')}catch(e){}};f();addEventListener('resize',f);if(window.visualViewport)visualViewport.addEventListener('resize',f);addEventListener('orientationchange',function(){setTimeout(f,300)});addEventListener('pageshow',f);document.addEventListener('visibilitychange',function(){if(!document.hidden)setTimeout(f,50)})}catch(e){}})();</script>
 <title>Valhalla</title>
 <meta name="robots" content="noindex, nofollow">
 <link rel="manifest" href="manifest.webmanifest">
@@ -19,7 +19,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-title" content="Valhalla">
 <script>window.VALHALLA_SB = {"url": "https://inmzqkaerclawagbpofr.supabase.co", "key": "sb_publishable_t-5OQk1H4K_Dxm9yx7nwjQ_XqPqryLi"};</script>
-<script>window.VBUILD = "1795140157";(function(){function chk(){try{fetch(location.pathname+"?v="+Date.now(),{cache:"no-store"}).then(function(r){return r.text()}).then(function(t){var m=t.match(/VBUILD = "(\d+)"/);if(!m||m[1]===window.VBUILD)return;if(sessionStorage.getItem("valhalla.vb")===m[1])return;sessionStorage.setItem("valhalla.vb",m[1]);location.replace(location.pathname+"?v="+m[1])}).catch(function(){})}catch(e){}}chk();document.addEventListener("visibilitychange",function(){if(!document.hidden)chk()})})();</script>
+<script>window.VBUILD = "1795140798";(function(){function chk(){try{fetch(location.pathname+"?v="+Date.now(),{cache:"no-store"}).then(function(r){return r.text()}).then(function(t){var m=t.match(/VBUILD = "(\d+)"/);if(!m||m[1]===window.VBUILD)return;if(sessionStorage.getItem("valhalla.vb")===m[1])return;sessionStorage.setItem("valhalla.vb",m[1]);location.replace(location.pathname+"?v="+m[1])}).catch(function(){})}catch(e){}}chk();document.addEventListener("visibilitychange",function(){if(!document.hidden)chk()})})();</script>
 <link rel="apple-touch-startup-image" href="launch-1320x2868.png" media="(device-width: 440px) and (device-height: 956px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
 <link rel="apple-touch-startup-image" href="launch-1290x2796.png" media="(device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
 <link rel="apple-touch-startup-image" href="launch-1284x2778.png" media="(device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
@@ -115,7 +115,7 @@ svg { display: block; }
 .tabs {
   flex: none; display: grid; grid-template-columns: repeat(5, 1fr); position: relative; z-index: 5;
   background: linear-gradient(180deg, #110d0e, #080606); border-top: 1px solid var(--line);
-  padding: 7px 6px calc(8px + env(safe-area-inset-bottom));
+  padding: 7px 6px calc(8px + var(--sab, env(safe-area-inset-bottom)));
   transition: transform .4s var(--out);
 }
 #app.has-sheet .tabs { transform: translateY(100%); }
@@ -482,7 +482,7 @@ details.fold[open] > summary .ray-c svg { transform: rotate(180deg); }
 .sheet-bar .eyebrow { flex: 1; text-align: center; }
 .sheet-bar i { width: 44px; }
 .sheet-scroll { flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain; padding: 0 var(--pad) 26px; scrollbar-width: none; }
-.sheet-cta { flex: none; padding: 10px var(--pad) calc(12px + env(safe-area-inset-bottom)); border-top: 1px solid var(--line); background: linear-gradient(180deg, #110d0e, #080606); display: grid; gap: 8px; }
+.sheet-cta { flex: none; padding: 10px var(--pad) calc(12px + var(--sab, env(safe-area-inset-bottom))); border-top: 1px solid var(--line); background: linear-gradient(180deg, #110d0e, #080606); display: grid; gap: 8px; }
 .sh-hero { position: relative; display: grid; justify-items: center; margin: 0 calc(var(--pad) * -1); padding: 6px 0 14px; background: radial-gradient(52% 62% at 50% 54%, rgba(255, 42, 60, .4), rgba(196, 16, 31, .08) 60%, transparent 78%); }
 .sh-hero .dish { width: 226px; height: 226px; filter: drop-shadow(0 18px 26px rgba(0, 0, 0, .55)); }
 .sh-hero .pk { width: 196px; height: 196px; filter: drop-shadow(0 16px 22px rgba(0, 0, 0, .5)); }
@@ -632,7 +632,7 @@ input::placeholder { color: var(--smoke); font-weight: 500; }
 .sync.on i { background: var(--gold); box-shadow: 0 0 8px var(--gold); }
 
 /* ---------- minuteur, message, célébration ---------- */
-.timer { position: absolute; left: 50%; transform: translateX(-50%); bottom: calc(88px + env(safe-area-inset-bottom)); z-index: 60; display: flex; align-items: center; gap: 12px; padding: 7px 7px 7px 18px; border-radius: 999px; background: var(--bone); color: #140c0d; box-shadow: 0 14px 40px rgba(0, 0, 0, .7); white-space: nowrap; overflow: hidden; animation: rise .32s var(--spring); }
+.timer { position: absolute; left: 50%; transform: translateX(-50%); bottom: calc(88px + var(--sab, env(safe-area-inset-bottom))); z-index: 60; display: flex; align-items: center; gap: 12px; padding: 7px 7px 7px 18px; border-radius: 999px; background: var(--bone); color: #140c0d; box-shadow: 0 14px 40px rgba(0, 0, 0, .7); white-space: nowrap; overflow: hidden; animation: rise .32s var(--spring); }
 .timer::before { content: ""; position: absolute; left: 0; bottom: 0; height: 4px; width: calc(var(--p, 1) * 100%); background: var(--ember); transition: width .3s linear; }
 .timer span { font: 600 12.5px/1 var(--f-b); }
 .timer b { font: 800 29px/1 var(--f-d); font-variant-numeric: tabular-nums; min-width: 60px; text-align: center; }
@@ -641,8 +641,8 @@ input::placeholder { color: var(--smoke); font-weight: 500; }
 .timer.end { background: var(--gold); animation: pop .5s var(--spring); }
 /* feuille ouverte : le minuteur se range en haut, il ne cache jamais les boutons de séries */
 #app.has-sheet .timer { bottom: auto; top: calc(var(--top) + 9px); }
-.toast { position: absolute; left: 50%; transform: translateX(-50%); bottom: calc(94px + env(safe-area-inset-bottom)); z-index: 65; width: max-content; max-width: calc(100% - 36px); padding: 12px 17px; border-radius: 14px; background: var(--bone); color: #140c0d; font: 600 13.5px/1.35 var(--f-b); box-shadow: 0 14px 40px rgba(0, 0, 0, .7); text-align: center; animation: rise .32s var(--spring); }
-#app:not(.has-sheet) #timer:not([hidden]) ~ .toast { bottom: calc(152px + env(safe-area-inset-bottom)); }
+.toast { position: absolute; left: 50%; transform: translateX(-50%); bottom: calc(94px + var(--sab, env(safe-area-inset-bottom))); z-index: 65; width: max-content; max-width: calc(100% - 36px); padding: 12px 17px; border-radius: 14px; background: var(--bone); color: #140c0d; font: 600 13.5px/1.35 var(--f-b); box-shadow: 0 14px 40px rgba(0, 0, 0, .7); text-align: center; animation: rise .32s var(--spring); }
+#app:not(.has-sheet) #timer:not([hidden]) ~ .toast { bottom: calc(152px + var(--sab, env(safe-area-inset-bottom))); }
 @keyframes rise { from { opacity: 0; transform: translate(-50%, 16px) scale(.94); } to { opacity: 1; transform: translate(-50%, 0) scale(1); } }
 .fx { position: absolute; inset: 0; z-index: 70; display: grid; place-content: center; justify-items: center; gap: 10px; padding: 24px; text-align: center; background: radial-gradient(70% 44% at 50% 42%, rgba(214, 20, 38, .62), rgba(120, 10, 20, .22) 55%, transparent 78%), #090707; animation: fxin .28s ease-out; }
 .fx.out { opacity: 0; transition: opacity .35s; }
