@@ -8,7 +8,7 @@
 <style>html,body{background:#000;color-scheme:dark}</style>
 <script>/* iPhone, appli installée : selon la version d'iOS, la hauteur annoncée par le navigateur (100 %, 100vh, taille de l'écran)
    ne correspond pas à la zone vraiment visible. On suit en direct la zone visible, et l'appli s'y loge exactement. */
-(function(){try{var d=document.documentElement,f=function(){var v=window.visualViewport,h=Math.round(v&&v.height?Math.min(v.height,innerHeight):innerHeight);if(h>200)d.style.setProperty('--appH',h+'px');try{var p=document.createElement('div');p.style.cssText='position:fixed;top:0;height:0;visibility:hidden;padding-top:env(safe-area-inset-top)';document.documentElement.appendChild(p);var top=parseFloat(getComputedStyle(p).paddingTop)||0;p.remove();var gap=screen.height-h;if(navigator.standalone&&top>0&&gap>20&&!matchMedia('(orientation: landscape)').matches)d.style.setProperty('--sab','0px');else d.style.removeProperty('--sab')}catch(e){}};f();addEventListener('resize',f);if(window.visualViewport)visualViewport.addEventListener('resize',f);addEventListener('orientationchange',function(){setTimeout(f,300)});addEventListener('pageshow',f);document.addEventListener('visibilitychange',function(){if(!document.hidden)setTimeout(f,50)})}catch(e){}})();</script>
+(function(){try{var d=document.documentElement,f=function(){var v=window.visualViewport,h=Math.round(v&&v.height?Math.min(v.height,innerHeight):innerHeight);if(h>200)d.style.setProperty('--appH',h+'px');try{var p=document.createElement('div');p.style.cssText='position:fixed;top:0;height:0;visibility:hidden;padding-top:env(safe-area-inset-top)';document.documentElement.appendChild(p);var top=parseFloat(getComputedStyle(p).paddingTop)||0;p.remove();var gap=screen.height-h;if(navigator.standalone&&top>0&&gap>20&&!matchMedia('(orientation: landscape)').matches){d.classList.add('ios-full');d.style.setProperty('--appH',screen.height+'px')}else d.classList.remove('ios-full')}catch(e){}};f();addEventListener('resize',f);if(window.visualViewport)visualViewport.addEventListener('resize',f);addEventListener('orientationchange',function(){setTimeout(f,300)});addEventListener('pageshow',f);document.addEventListener('visibilitychange',function(){if(!document.hidden)setTimeout(f,50)})}catch(e){}})();</script>
 <title>Valhalla</title>
 <meta name="robots" content="noindex, nofollow">
 <link rel="manifest" href="manifest.webmanifest">
@@ -19,7 +19,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Valhalla">
 <script>window.VALHALLA_SB = {"url": "https://inmzqkaerclawagbpofr.supabase.co", "key": "sb_publishable_t-5OQk1H4K_Dxm9yx7nwjQ_XqPqryLi"};</script>
-<script>window.VBUILD = "1795142066";(function(){function chk(){try{fetch(location.pathname+"?v="+Date.now(),{cache:"no-store"}).then(function(r){return r.text()}).then(function(t){var m=t.match(/VBUILD = "(\d+)"/);if(!m||m[1]===window.VBUILD)return;if(sessionStorage.getItem("valhalla.vb")===m[1])return;sessionStorage.setItem("valhalla.vb",m[1]);location.replace(location.pathname+"?v="+m[1])}).catch(function(){})}catch(e){}}chk();document.addEventListener("visibilitychange",function(){if(!document.hidden)chk()})})();</script>
+<script>window.VBUILD = "1795142435";(function(){function chk(){try{fetch(location.pathname+"?v="+Date.now(),{cache:"no-store"}).then(function(r){return r.text()}).then(function(t){var m=t.match(/VBUILD = "(\d+)"/);if(!m||m[1]===window.VBUILD)return;if(sessionStorage.getItem("valhalla.vb")===m[1])return;sessionStorage.setItem("valhalla.vb",m[1]);location.replace(location.pathname+"?v="+m[1])}).catch(function(){})}catch(e){}}chk();document.addEventListener("visibilitychange",function(){if(!document.hidden)chk()})})();</script>
 <link rel="apple-touch-startup-image" href="launch-1320x2868.png" media="(device-width: 440px) and (device-height: 956px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
 <link rel="apple-touch-startup-image" href="launch-1290x2796.png" media="(device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
 <link rel="apple-touch-startup-image" href="launch-1284x2778.png" media="(device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
@@ -833,6 +833,11 @@ input::placeholder { color: var(--smoke); font-weight: 500; }
 .crew-line { margin-top: 14px; font: 700 15px/1.35 var(--f-b); color: var(--bone); }
 .crew-seen { margin-top: 4px; }
 .crew-leg .q-R { margin: 0; width: 14px; height: 3px; }
+
+/* iPhone, barre d'état transparente : iOS annonce une hauteur trop courte, mais affiche bien la page jusqu'en bas.
+   On place l'appli dans la page (pas en position fixe, que l'iPhone coupe à sa fausse hauteur), sur toute la hauteur de l'écran. */
+html.ios-full, html.ios-full body { height: var(--appH); overflow: hidden; }
+html.ios-full #stage { position: absolute; top: 0; left: 0; right: 0; height: var(--appH); }
 
 </style>
 </head>
