@@ -19,7 +19,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Valhalla">
 <script>window.VALHALLA_SB = {"url": "https://inmzqkaerclawagbpofr.supabase.co", "key": "sb_publishable_t-5OQk1H4K_Dxm9yx7nwjQ_XqPqryLi"};</script>
-<script>window.VBUILD = "1795141616";(function(){function chk(){try{fetch(location.pathname+"?v="+Date.now(),{cache:"no-store"}).then(function(r){return r.text()}).then(function(t){var m=t.match(/VBUILD = "(\d+)"/);if(!m||m[1]===window.VBUILD)return;if(sessionStorage.getItem("valhalla.vb")===m[1])return;sessionStorage.setItem("valhalla.vb",m[1]);location.replace(location.pathname+"?v="+m[1])}).catch(function(){})}catch(e){}}chk();document.addEventListener("visibilitychange",function(){if(!document.hidden)chk()})})();</script>
+<script>window.VBUILD = "1795141966";(function(){function chk(){try{fetch(location.pathname+"?v="+Date.now(),{cache:"no-store"}).then(function(r){return r.text()}).then(function(t){var m=t.match(/VBUILD = "(\d+)"/);if(!m||m[1]===window.VBUILD)return;if(sessionStorage.getItem("valhalla.vb")===m[1])return;sessionStorage.setItem("valhalla.vb",m[1]);location.replace(location.pathname+"?v="+m[1])}).catch(function(){})}catch(e){}}chk();document.addEventListener("visibilitychange",function(){if(!document.hidden)chk()})})();</script>
 <link rel="apple-touch-startup-image" href="launch-1320x2868.png" media="(device-width: 440px) and (device-height: 956px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
 <link rel="apple-touch-startup-image" href="launch-1290x2796.png" media="(device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
 <link rel="apple-touch-startup-image" href="launch-1284x2778.png" media="(device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
@@ -82,9 +82,7 @@ svg { display: block; }
 #stage { position: fixed; top: 0; left: 0; right: 0; height: 100%; height: 100dvh; height: var(--appH, 100dvh); display: grid; place-items: center; }
 #device { position: relative; width: 100%; height: 100%; overflow: hidden; background: var(--iron-1); container-type: inline-size; }
 #app { position: absolute; inset: 0; display: flex; flex-direction: column; --top: calc(env(safe-area-inset-top) + 10px); }
-/* La page défile sous l'heure, la batterie et la Dynamic Island ; un voile flouté les garde lisibles, comme les applis natives */
-#app::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: env(safe-area-inset-top); z-index: 40; pointer-events: none;
-  background: linear-gradient(180deg, rgba(5, 3, 4, .72), rgba(5, 3, 4, .38)); -webkit-backdrop-filter: blur(16px) saturate(1.5); backdrop-filter: blur(16px) saturate(1.5); }
+/* La page défile sous l'heure, la batterie et la Dynamic Island, sans voile : complètement transparent */
 /* Le haut de l'appli se fond dans la barre d'état noire de l'iPhone : un seul dégradé, sans cassure */
 @media (max-width: 559px) { #device { background: linear-gradient(180deg, #000 0, #000 calc(env(safe-area-inset-top) + 8px), var(--iron-1) calc(env(safe-area-inset-top) + 120px)); } }
 /* grain très léger : matière mate, comme du fer brossé */
