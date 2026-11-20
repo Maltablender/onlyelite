@@ -1634,6 +1634,13 @@ const MUSCLES = {
 };
 
 const STK = (x) => ['stack', x, 66, 22, 112, 24];
+/* Colonne de poulie réglable Basic-Fit : tour orange en arche, rail noir devant, chariot noir à goupille jaune, poulie.
+   x : bord gauche de la tour ; rx : position du rail ; py : hauteur du chariot (la poulie d'où part le câble) */
+const COL = (x, rx, py, ly) => [['stack', x, 26, 22, 152, 24], ['l', [rx, 182], [rx, 24], 3, 'blk', ly || 'b'], ['l', [rx, 24], [x + 11, 24], 3, 'blk', ly || 'b'],
+  ['rp', [rx, py], 9, 14, 0, 'blk', ly || 'b'], ['k', [rx + (rx < x ? -6 : 6), py - 3], ly || 'b'], ['c', [rx, py + 4], 3.6, 'steel', ly || 'b']];
+/* Smith machine Basic-Fit : deux montants orange, traverse en haut, socle, tige de guidage de la barre et butées de sécurité */
+const SMITH = (gx, x1, x2) => [['l', [x1, 182], [x1, 14], 5, 'fr'], ['l', [x2, 182], [x2, 14], 5, 'fr'], ['l', [x1 - 4, 14], [x2 + 4, 14], 6, 'fr'], ['l', [x1 - 6, 181], [x2 + 6, 181], 4, 'blk'],
+  ['l', [gx, 176], [gx, 18], 1.8, 'steel'], ['rp', [x1, 140], 9, 4, 0, 'blk'], ['rp', [x2, 140], 9, 4, 0, 'blk']];
 
 const EXOS = {
   /* ======================= PECTORAUX ======================= */
@@ -1682,8 +1689,8 @@ const EXOS = {
     e: ['Trop lourd : le dos se cambre et les bras poussent au lieu de serrer.', 'Remonter trop vite.'],
     f: 'Le bas des pecs, sur leur bord inférieur, et le centre quand les mains se croisent.',
     v: 'f', base: { hip: [100, 112], foot: [88, 180] }, A: { th: -8, be: 14, e1: -18, e2: -36 }, B: { th: 120, be: 14, e1: 58, e2: 52 },
-    m: [['l', [22, 182], [22, 14], 5, 'fr', 'b', 1], ['l', [22, 14], [178, 14], 5, 'fr'], ['c', [26, 22], 4.5, 'steel', 'b', 1],
-      ['l', [26, 22], 'handL', 1.3, 'cab', 'f', 1], ['c', 'handL', 3.2, 'grip', 'f', 1]]
+    m: [['stack', 2, 26, 20, 152, 24], ['stack', 178, 26, 20, 152, 24], ['l', [12, 16], [188, 16], 5, 'fr'], ['l', [32, 182], [32, 20], 3, 'blk', 'b', 1], ['rp', [32, 22], 9, 14, 0, 'blk', 'b', 1], ['k', [38, 19], 'b', 1], ['c', [32, 26], 3.6, 'steel', 'b', 1],
+      ['l', [32, 26], 'handL', 1.3, 'cab', 'f', 1], ['c', 'handL', 3.2, 'grip', 'f', 1]]
   },
   dips_assist: {
     pz: 'bas', n: 'Dips à la chaise romaine', lab: 'CHAISE ROMAINE (dips)', zone: 'Zone abdos et tractions', sets: 3, reps: '6 à 12', rest: 90,
@@ -1756,7 +1763,7 @@ const EXOS = {
     e: ['Plier les coudes : ça devient un exercice de triceps.', 'Se redresser à chaque répétition.'],
     f: 'Le grand dorsal, sans les biceps. Parfait pour apprendre à sentir ton dos.',
     v: 's', base: { hip: [84, 110], lean: 16, foot: [86, 176] }, A: { a1: 126, a2: 137 }, B: { a1: 5, a2: 14 },
-    m: [['l', [178, 182], [178, 10], 5, 'fr'], ['l', [178, 12], [146, 12], 5, 'fr'], ['c', [148, 16], 4.5, 'steel'], ['l', [148, 16], 'hand', 1.3, 'cab', 'f'], ['c', 'hand', 3.6, 'grip', 'f'], STK(152)]
+    m: [...COL(160, 146, 26), ['l', [146, 30], 'hand', 1.3, 'cab', 'f'], ['l', ['hand', -1, -5], ['hand', 1, 5], 3.6, 'grip', 'f']]
   },
   back_ext: {
     n: 'Extensions lombaires à la machine', lab: 'BACK EXTENSION', zone: 'Machines guidées', sets: 3, reps: '12', rest: 75,
@@ -1793,7 +1800,7 @@ const EXOS = {
     e: ['Les talons qui décollent.', 'Le dos qui s’arrondit en bas.'],
     f: 'Les cuisses, les fessiers et le gainage.',
     v: 's', base: { foot: [104, 176], elbL: [14, -3], handL: [-2, -5], as: .62 }, A: { hip: [82.6, 142], lean: 32 }, B: { hip: [102.2, 108.5], lean: 6 },
-    m: [['l', [103, 182], [103, 12], 4, 'fr'], ['l', [86, 12], [120, 12], 5, 'fr'], ['plates', ['sh', -4, -3], 13, 'b'], ['c', ['sh', -4, -3], 2.6, 'grip', 'f']]
+    m: [...SMITH(103, 76, 134), ['plates', ['sh', -4, -3], 13, 'b'], ['c', ['sh', -4, -3], 2.6, 'grip', 'f']]
   },
   leg_ext: {
     n: 'Leg extension', lab: 'LEG EXTENSION', zone: 'Machines guidées', sets: 3, reps: '12', rest: 75,
@@ -1888,7 +1895,7 @@ const EXOS = {
     e: ['Les coudes qui tombent.', 'Tirer avec le bas du dos.'],
     f: 'L’arrière des épaules et le haut du dos. Excellent pour la posture.',
     v: 'f', back: 1, base: { hip: [100, 112], foot: [88, 180] }, A: { th: 100, be: 10, e1: -6, e2: -10 }, B: { th: 6, be: 105, e1: -3, e2: -55 },
-    m: [['l', [100, 182], [100, 8], 5, 'fr'], ['c', [100, 56], 4.5, 'steel'], ['l', [100, 56], 'handL', 1.3, 'cab', 'b', 1], ['c', 'handL', 3, 'grip', 'b', 1]]
+    m: [['stack', 89, 26, 22, 152, 24], ['rp', [100, 56], 9, 14, 0, 'blk'], ['c', [100, 60], 3.6, 'steel'], ['l', [100, 60], 'handL', 1.3, 'cab', 'b', 1], ['c', 'handL', 3, 'grip', 'b', 1]]
   },
   shrug: {
     n: 'Shrugs aux haltères', lab: 'Haltères lourds', zone: 'Poids libres', sets: 3, reps: '12', rest: 75,
@@ -1968,7 +1975,7 @@ const EXOS = {
     e: ['Les coudes qui s’écartent ou qui avancent.', 'Pousser avec les épaules.'],
     f: 'L’arrière du bras, en forme de fer à cheval.',
     v: 's', base: { hip: [88, 110], lean: 10, foot: [90, 176] }, A: { a1: 8, a2: 112 }, B: { a1: 6, a2: 5 },
-    m: [['l', [178, 182], [178, 8], 5, 'fr'], ['l', [178, 10], [120, 10], 5, 'fr'], ['c', [122, 14], 4.5, 'steel'], ['l', [122, 14], 'hand', 1.3, 'cab', 'f'], ['l', ['hand', -1, -4], ['hand', 1, 5], 3.4, 'grip', 'f'], STK(152)]
+    m: [...COL(156, 140, 26), ['l', [140, 30], 'hand', 1.3, 'cab', 'f'], ['l', ['hand', -1, -4], ['hand', 1, 5], 3.4, 'grip', 'f']]
   },
   seated_dip: {
     n: 'Extension triceps à la machine', lab: 'TRICEPS EXTENSION', zone: 'Machines guidées', sets: 3, reps: '10 à 12', rest: 90,
@@ -1991,7 +1998,7 @@ const EXOS = {
     e: ['Les coudes qui s’ouvrent sur les côtés.', 'Cambrer le dos.'],
     f: 'La partie haute et intérieure du triceps : celle qui donne du volume au bras.',
     v: 's', base: { hip: [92, 110], lean: 20, foot: [94, 176], elbL: [-22, 12], neck: 6 }, A: { hand: [106, 40] }, B: { hand: [141, 32.5] },
-    m: [['l', [24, 182], [24, 10], 5, 'fr'], ['l', [24, 12], [46, 12], 5, 'fr'], ['c', [46, 18], 4.5, 'steel'], ['l', [46, 18], 'hand', 1.3, 'cab', 'b'], ['c', 'hand', 3.2, 'grip', 'f']]
+    m: [...COL(14, 44, 26), ['l', [44, 30], 'hand', 1.3, 'cab', 'b'], ['c', 'hand', 3.2, 'grip', 'f']]
   }
 };
 
@@ -2016,7 +2023,7 @@ Object.assign(EXOS, {
     e: ['Rebondir sur la poitrine.', 'Les coudes à 90° du corps : garde-les à 45°.'],
     f: 'Toute la poitrine, et l’arrière des bras en fin de poussée.',
     v: 's', base: { hip: [112, 148], lean: -90, foot: [134, 176], neck: -6 }, A: { hand: [72, 126] }, B: { hand: [68, 103] },
-    m: [['l', [70, 182], [70, 12], 4, 'fr', 'b'], ['l', [52, 12], [88, 12], 5, 'fr'], ['r', 38, 158, 86, 7, 0, 'pad'], ['l', [50, 165], [50, 182], 4, 'fr'], ['l', [112, 165], [112, 182], 4, 'fr'],
+    m: [...SMITH(70, 40, 100), ['r', 38, 158, 86, 7, 0, 'pad'], ['l', [50, 165], [50, 182], 4, 'fr'], ['l', [112, 165], [112, 182], 4, 'fr'],
       ['plates', 'hand', 13, 'b'], ['c', 'hand', 2.6, 'grip', 'f']]
   },
   bench_db: {
@@ -2039,7 +2046,7 @@ Object.assign(EXOS, {
     e: ['Banc trop redressé : ce sont les épaules qui travaillent.', 'Décoller les fesses du banc.'],
     f: 'Le haut de la poitrine, sous les clavicules.',
     v: 's', base: { hip: [86, 146], lean: -52, foot: [124, 176], neck: 8 }, A: { hand: [58, 100] }, B: { hand: [54, 70] },
-    m: [['l', [56, 182], [56, 12], 4, 'fr', 'b'], ['l', [38, 12], [74, 12], 5, 'fr'], ['l', [82, 152], [31, 113], 7, 'pad'], ['l', [84, 153], [108, 153], 7, 'padd'], ['l', [96, 156], [100, 182], 4, 'fr'],
+    m: [...SMITH(56, 26, 90), ['l', [82, 152], [31, 113], 7, 'pad'], ['l', [84, 153], [108, 153], 7, 'padd'], ['l', [96, 156], [100, 182], 4, 'fr'],
       ['plates', 'hand', 13, 'b'], ['c', 'hand', 2.6, 'grip', 'f']]
   },
   low_fly: {
@@ -2051,8 +2058,8 @@ Object.assign(EXOS, {
     e: ['Hausser les épaules : ce sont alors les trapèzes qui travaillent.', 'Plier les coudes pour pousser : le geste doit rester un arc de cercle.'],
     f: 'Le haut des pecs, sous les clavicules, et leur intérieur quand les mains se rejoignent.',
     v: 'f', base: { hip: [100, 112], foot: [88, 180] }, A: { th: -6, be: 12, e1: 52, e2: 62 }, B: { th: 104, be: 18, e1: 6, e2: -2 },
-    m: [['l', [22, 182], [22, 14], 5, 'fr', 'b', 1], ['l', [22, 14], [178, 14], 5, 'fr'], ['c', [26, 172], 4.5, 'steel', 'b', 1],
-      ['l', [26, 172], 'handL', 1.3, 'cab', 'f', 1], ['c', 'handL', 3.2, 'grip', 'f', 1]]
+    m: [['stack', 2, 26, 20, 152, 24], ['stack', 178, 26, 20, 152, 24], ['l', [12, 16], [188, 16], 5, 'fr'], ['l', [32, 182], [32, 20], 3, 'blk', 'b', 1], ['rp', [32, 170], 9, 14, 0, 'blk', 'b', 1], ['k', [38, 167], 'b', 1], ['c', [32, 174], 3.6, 'steel', 'b', 1],
+      ['l', [32, 174], 'handL', 1.3, 'cab', 'f', 1], ['c', 'handL', 3.2, 'grip', 'f', 1]]
   },
   hack_squat: {
     n: 'Hack squat ou pendulum squat', lab: 'HACK SQUAT / PENDULUM', zone: 'Machines à disques', sets: 4, reps: '8 à 10', rest: 150,
@@ -2227,7 +2234,7 @@ Object.assign(EXOS, {
     e: ['Monter jusqu’au menton avec des mains serrées : ça abîme les épaules.', 'Tirer avec élan.'],
     f: 'Le côté des épaules et les trapèzes.',
     v: 'f', base: { hip: [100, 112], foot: [88, 180], ed: 1 }, A: { hand: [88, 112] }, B: { hand: [88, 74] },
-    m: [['l', [100, 182], [100, 172], 5, 'fr'], ['c', [100, 176], 4.5, 'steel'], ['l', [100, 176], 'handC', 1.3, 'cab'], ['bar', 'handL', 'handR', 6, 'grip', 'f']]
+    m: [['rp', [100, 174], 12, 10, 0, 'blk'], ['k', [108, 172], 'b'], ['c', [100, 176], 3.6, 'steel'], ['l', [100, 176], 'handC', 1.3, 'cab'], ['bar', 'handL', 'handR', 6, 'grip', 'f']]
   },
   /* ---------- Biceps ---------- */
   db_curl: {
@@ -2250,7 +2257,7 @@ Object.assign(EXOS, {
     e: ['Reculer les épaules pour tirer.', 'Remonter les coudes.'],
     f: 'Le biceps, sous tension tout le long.',
     v: 's', base: { hip: [96, 108], lean: -2, foot: [98, 176] }, A: { a1: 3, a2: 14 }, B: { a1: 12, a2: 150 },
-    m: [['l', [146, 182], [146, 166], 5, 'fr'], ['c', [146, 172], 4.5, 'steel'], ['l', [146, 172], 'hand', 1.3, 'cab', 'f'], ['c', 'hand', 2.8, 'grip', 'f']]
+    m: [...COL(160, 146, 166), ['l', [146, 170], 'hand', 1.3, 'cab', 'f'], ['l', ['hand', -2, 0], ['hand', 4, 0], 3.4, 'grip', 'f']]
   },
   incline_curl: {
     n: 'Curl incliné aux haltères', lab: 'Banc incliné + haltères', zone: 'Poids libres', sets: 3, reps: '10 à 12', rest: 75,
@@ -2273,7 +2280,7 @@ Object.assign(EXOS, {
     e: ['Écarter les coudes.', 'Se pencher sur la barre.'],
     f: 'L’arrière des bras.',
     v: 's', base: { hip: [88, 110], lean: 10, foot: [90, 176] }, A: { a1: 8, a2: 112 }, B: { a1: 6, a2: 5 },
-    m: [['l', [178, 182], [178, 8], 5, 'fr'], ['l', [178, 10], [120, 10], 5, 'fr'], ['c', [122, 14], 4.5, 'steel'], ['l', [122, 14], 'hand', 1.3, 'cab', 'f'], ['c', 'hand', 2.8, 'grip', 'f'], STK(152)]
+    m: [...COL(156, 140, 26), ['l', [140, 30], 'hand', 1.3, 'cab', 'f'], ['l', ['hand', -2, 1], ['hand', 12, 3], 3.4, 'grip', 'f']]
   },
   skull: {
     n: 'Barre au front', lab: 'Banc plat + barre EZ', zone: 'Poids libres', sets: 3, reps: '10', rest: 90,
@@ -2307,7 +2314,7 @@ Object.assign(EXOS, {
     e: ['Tirer avec les bras.', 'Descendre les fesses vers les talons.'],
     f: 'Tout le ventre, surtout le haut.',
     v: 's', base: { hip: [96, 140], foot: [64, 178], fa: 180, elbL: [6, 12], handL: [-4, 8] }, A: { lean: 10 }, B: { lean: 62, neck: 14 },
-    m: [['l', [160, 182], [160, 10], 5, 'fr'], ['l', [160, 12], [130, 12], 5, 'fr'], ['c', [132, 16], 4.5, 'steel'], ['l', [132, 16], 'hand', 1.3, 'cab', 'f'], ['r', 56, 180, 60, 3.5, 0, 'pad']]
+    m: [...COL(158, 142, 26), ['l', [142, 30], 'hand', 1.3, 'cab', 'f'], ['r', 56, 180, 60, 3.5, 0, 'pad']]
   },
   floor_crunch: {
     n: 'Crunch au sol', lab: 'Tapis', zone: 'Zone fonctionnelle', sets: 3, reps: '20', rest: 45,
