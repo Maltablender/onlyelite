@@ -8,7 +8,7 @@
 <style>html,body{background:#000;color-scheme:dark}</style>
 <script>/* iPhone, appli installée : selon la version d'iOS, la hauteur annoncée par le navigateur (100 %, 100vh, taille de l'écran)
    ne correspond pas à la zone vraiment visible. On suit en direct la zone visible, et l'appli s'y loge exactement. */
-(function(){try{var d=document.documentElement,f=function(){var v=window.visualViewport,h=Math.round(v&&v.height?Math.min(v.height,innerHeight):innerHeight);if(h>200)d.style.setProperty('--appH',h+'px');try{var p=document.createElement('div');p.style.cssText='position:fixed;top:0;height:0;visibility:hidden;padding-top:env(safe-area-inset-top)';document.documentElement.appendChild(p);var top=parseFloat(getComputedStyle(p).paddingTop)||0;p.remove();var gap=screen.height-h;if(navigator.standalone&&top>0&&gap>20&&!matchMedia('(orientation: landscape)').matches){d.classList.add('ios-full');d.style.setProperty('--appH',screen.height+'px')}else d.classList.remove('ios-full')}catch(e){}};f();addEventListener('resize',f);if(window.visualViewport)visualViewport.addEventListener('resize',f);addEventListener('orientationchange',function(){setTimeout(f,300)});addEventListener('pageshow',f);document.addEventListener('visibilitychange',function(){if(!document.hidden)setTimeout(f,50)})}catch(e){}})();</script>
+(function(){try{var d=document.documentElement,f=function(){var v=window.visualViewport,h=Math.round(v&&v.height?Math.min(v.height,innerHeight):innerHeight);if(h>200)d.style.setProperty('--appH',h+'px');try{var p=document.createElement('div');p.style.cssText='position:fixed;top:0;height:0;visibility:hidden;padding-top:env(safe-area-inset-top)';document.documentElement.appendChild(p);var top=parseFloat(getComputedStyle(p).paddingTop)||0;p.remove();var gap=screen.height-h;var land=matchMedia('(orientation: landscape)').matches;if(navigator.standalone&&!land&&(d.classList.contains('ios-full')||(top>0&&gap>20))){d.classList.add('ios-full');d.style.setProperty('--appH',screen.height+'px')}else if(land)d.classList.remove('ios-full')}catch(e){}};f();addEventListener('resize',f);if(window.visualViewport)visualViewport.addEventListener('resize',f);addEventListener('orientationchange',function(){setTimeout(f,300)});addEventListener('pageshow',f);document.addEventListener('visibilitychange',function(){if(!document.hidden)setTimeout(f,50)})}catch(e){}})();</script>
 <title>Valhalla</title>
 <meta name="robots" content="noindex, nofollow">
 <link rel="manifest" href="manifest.webmanifest">
@@ -19,7 +19,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Valhalla">
 <script>window.VALHALLA_SB = {"url": "https://inmzqkaerclawagbpofr.supabase.co", "key": "sb_publishable_t-5OQk1H4K_Dxm9yx7nwjQ_XqPqryLi"};</script>
-<script>window.VBUILD = "1795142981";(function(){var pend=null;function chk(){try{fetch(location.pathname+"?v="+Date.now(),{cache:"no-store"}).then(function(r){return r.text()}).then(function(t){var m=t.match(/VBUILD = "(\d+)"/);if(m&&m[1]!==window.VBUILD&&sessionStorage.getItem("valhalla.vb")!==m[1])pend=m[1]}).catch(function(){})}catch(e){}}chk();document.addEventListener("visibilitychange",function(){if(document.hidden){if(pend){try{sessionStorage.setItem("valhalla.vb",pend)}catch(e){}location.replace(location.pathname+"?v="+pend)}}else chk()})})();</script>
+<script>window.VBUILD = "1795143729";(function(){var pend=null;function chk(){try{fetch(location.pathname+"?v="+Date.now(),{cache:"no-store"}).then(function(r){return r.text()}).then(function(t){var m=t.match(/VBUILD = "(\d+)"/);if(m&&m[1]!==window.VBUILD&&sessionStorage.getItem("valhalla.vb")!==m[1])pend=m[1]}).catch(function(){})}catch(e){}}chk();document.addEventListener("visibilitychange",function(){if(document.hidden){if(pend){try{sessionStorage.setItem("valhalla.vb",pend)}catch(e){}location.replace(location.pathname+"?v="+pend)}}else chk()})})();</script>
 <link rel="apple-touch-startup-image" href="launch-1320x2868.png" media="(device-width: 440px) and (device-height: 956px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
 <link rel="apple-touch-startup-image" href="launch-1290x2796.png" media="(device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
 <link rel="apple-touch-startup-image" href="launch-1284x2778.png" media="(device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
@@ -763,7 +763,7 @@ input::placeholder { color: var(--smoke); font-weight: 500; }
 .prof > svg { width: 18px; height: 18px; color: var(--smoke); }
 
 /* ---------- Connexion (lien public) ---------- */
-#auth { position: fixed; inset: 0; z-index: 90; background: radial-gradient(90% 60% at 50% 18%, rgba(255, 42, 60, .22), transparent 70%), #0e0c0c; overflow-y: auto; display: grid; place-items: start center; }
+#auth { position: fixed; inset: 0; z-index: 96; background: radial-gradient(90% 60% at 50% 18%, rgba(255, 42, 60, .22), transparent 70%), #0e0c0c; overflow-y: auto; display: grid; place-items: start center; }
 #auth[hidden] { display: none; }
 .auth-in { width: 100%; max-width: 420px; padding: max(56px, env(safe-area-inset-top)) 24px 40px; }
 .auth-logo { display: flex; align-items: center; gap: 12px; margin-bottom: 34px; }
@@ -837,7 +837,9 @@ input::placeholder { color: var(--smoke); font-weight: 500; }
 /* iPhone, barre d'état transparente : iOS annonce une hauteur trop courte, mais affiche bien la page jusqu'en bas.
    On place l'appli dans la page (pas en position fixe, que l'iPhone coupe à sa fausse hauteur), sur toute la hauteur de l'écran. */
 html.ios-full, html.ios-full body { height: var(--appH); overflow: hidden; }
-html.ios-full #stage { position: absolute; top: 0; left: 0; right: 0; height: var(--appH); }
+html.ios-full #stage, html.ios-full #auth, html.ios-full #splash { position: absolute; top: 0; left: 0; right: 0; bottom: auto; height: var(--appH); }
+/* tant que l'écran de connexion est là, l'appli dessous ne doit jamais dépasser */
+body:has(#auth:not([hidden])) #tabs { visibility: hidden; }
 
 </style>
 </head>
