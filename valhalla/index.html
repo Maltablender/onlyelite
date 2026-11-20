@@ -19,7 +19,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-title" content="Valhalla">
 <script>window.VALHALLA_SB = {"url": "https://inmzqkaerclawagbpofr.supabase.co", "key": "sb_publishable_t-5OQk1H4K_Dxm9yx7nwjQ_XqPqryLi"};</script>
-<script>window.VBUILD = "1795140798";(function(){function chk(){try{fetch(location.pathname+"?v="+Date.now(),{cache:"no-store"}).then(function(r){return r.text()}).then(function(t){var m=t.match(/VBUILD = "(\d+)"/);if(!m||m[1]===window.VBUILD)return;if(sessionStorage.getItem("valhalla.vb")===m[1])return;sessionStorage.setItem("valhalla.vb",m[1]);location.replace(location.pathname+"?v="+m[1])}).catch(function(){})}catch(e){}}chk();document.addEventListener("visibilitychange",function(){if(!document.hidden)chk()})})();</script>
+<script>window.VBUILD = "1795141289";(function(){function chk(){try{fetch(location.pathname+"?v="+Date.now(),{cache:"no-store"}).then(function(r){return r.text()}).then(function(t){var m=t.match(/VBUILD = "(\d+)"/);if(!m||m[1]===window.VBUILD)return;if(sessionStorage.getItem("valhalla.vb")===m[1])return;sessionStorage.setItem("valhalla.vb",m[1]);location.replace(location.pathname+"?v="+m[1])}).catch(function(){})}catch(e){}}chk();document.addEventListener("visibilitychange",function(){if(!document.hidden)chk()})})();</script>
 <link rel="apple-touch-startup-image" href="launch-1320x2868.png" media="(device-width: 440px) and (device-height: 956px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
 <link rel="apple-touch-startup-image" href="launch-1290x2796.png" media="(device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
 <link rel="apple-touch-startup-image" href="launch-1284x2778.png" media="(device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
@@ -82,6 +82,8 @@ svg { display: block; }
 #stage { position: fixed; top: 0; left: 0; right: 0; height: 100%; height: 100dvh; height: var(--appH, 100dvh); display: grid; place-items: center; }
 #device { position: relative; width: 100%; height: 100%; overflow: hidden; background: var(--iron-1); container-type: inline-size; }
 #app { position: absolute; inset: 0; display: flex; flex-direction: column; padding-top: env(safe-area-inset-top); --top: calc(env(safe-area-inset-top) + 10px); }
+/* Le haut de l'appli se fond dans la barre d'état noire de l'iPhone : un seul dégradé, sans cassure */
+@media (max-width: 559px) { #device { background: linear-gradient(180deg, #000 0, #000 calc(env(safe-area-inset-top) + 8px), var(--iron-1) calc(env(safe-area-inset-top) + 120px)); } }
 /* grain très léger : matière mate, comme du fer brossé */
 #app::after {
   content: ""; position: absolute; inset: 0; z-index: 90; pointer-events: none; opacity: .055;
@@ -115,7 +117,7 @@ svg { display: block; }
 .tabs {
   flex: none; display: grid; grid-template-columns: repeat(5, 1fr); position: relative; z-index: 5;
   background: linear-gradient(180deg, #110d0e, #080606); border-top: 1px solid var(--line);
-  padding: 7px 6px calc(8px + var(--sab, env(safe-area-inset-bottom)));
+  padding: 7px 6px calc(4px + max(0px, var(--sab, env(safe-area-inset-bottom)) - 16px));
   transition: transform .4s var(--out);
 }
 #app.has-sheet .tabs { transform: translateY(100%); }
