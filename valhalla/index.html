@@ -19,7 +19,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-title" content="Valhalla">
 <script>window.VALHALLA_SB = {"url": "https://inmzqkaerclawagbpofr.supabase.co", "key": "sb_publishable_t-5OQk1H4K_Dxm9yx7nwjQ_XqPqryLi"};</script>
-<script>window.VBUILD = "1795138479";(function(){function chk(){try{fetch(location.pathname+"?v="+Date.now(),{cache:"no-store"}).then(function(r){return r.text()}).then(function(t){var m=t.match(/VBUILD = "(\d+)"/);if(!m||m[1]===window.VBUILD)return;if(sessionStorage.getItem("valhalla.vb")===m[1])return;sessionStorage.setItem("valhalla.vb",m[1]);location.replace(location.pathname+"?v="+m[1])}).catch(function(){})}catch(e){}}chk();document.addEventListener("visibilitychange",function(){if(!document.hidden)chk()})})();</script>
+<script>window.VBUILD = "1795138799";(function(){function chk(){try{fetch(location.pathname+"?v="+Date.now(),{cache:"no-store"}).then(function(r){return r.text()}).then(function(t){var m=t.match(/VBUILD = "(\d+)"/);if(!m||m[1]===window.VBUILD)return;if(sessionStorage.getItem("valhalla.vb")===m[1])return;sessionStorage.setItem("valhalla.vb",m[1]);location.replace(location.pathname+"?v="+m[1])}).catch(function(){})}catch(e){}}chk();document.addEventListener("visibilitychange",function(){if(!document.hidden)chk()})})();</script>
 <link rel="apple-touch-startup-image" href="launch-1320x2868.png" media="(device-width: 440px) and (device-height: 956px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
 <link rel="apple-touch-startup-image" href="launch-1290x2796.png" media="(device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
 <link rel="apple-touch-startup-image" href="launch-1284x2778.png" media="(device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
@@ -2033,11 +2033,11 @@ const EXOS = {
 };
 
 const SESSIONS = {
-  pecs: { n: 'Pectoraux', sub: 'Haut, milieu, bas et intérieur des pecs + abdos', dur: 70, hero: 'incline_db', ex: ['incline_db', 'chest_press', 'low_fly', 'pec_deck', 'dips_assist', 'crunch_machine'] },
-  dos: { n: 'Dos', sub: 'Dos complet', dur: 60, hero: 'lat_pulldown', ex: ['lat_pulldown', 'seated_row', 'low_row', 'straight_arm', 'back_ext'] },
-  jambes: { n: 'Jambes', sub: 'Cuisses, fessiers, mollets', dur: 70, hero: 'leg_press', ex: ['leg_press', 'hack_squat', 'leg_ext', 'lying_curl', 'rdl', 'calf'] },
-  epaules: { n: 'Épaules', sub: 'Épaules + trapèzes + abdos', dur: 65, hero: 'shoulder_press', ex: ['shoulder_press', 'lateral_raise', 'reverse_fly', 'face_pull', 'shrug', 'leg_raise', 'plank'] },
-  bras: { n: 'Bras', sub: 'Biceps + triceps', dur: 55, hero: 'preacher', ex: ['ez_curl', 'preacher', 'hammer', 'pushdown', 'seated_dip', 'overhead_ext'] }
+  pecs: { n: 'Pectoraux', sub: 'Haut, milieu, bas et intérieur des pecs + abdos', dur: 80, hero: 'incline_db', ex: ['incline_db', 'chest_press', 'low_fly', 'pec_deck', 'dips_assist', 'cable_fly', 'crunch_machine', 'leg_raise'] },
+  dos: { n: 'Dos', sub: 'Dos complet', dur: 80, hero: 'lat_pulldown', ex: ['lat_pulldown', 'seated_row', 'low_row', 'close_pulldown', 'straight_arm', 'db_row', 'back_ext'] },
+  jambes: { n: 'Jambes', sub: 'Cuisses, fessiers, mollets', dur: 90, hero: 'leg_press', ex: ['leg_press', 'hack_squat', 'leg_ext', 'lying_curl', 'rdl', 'hip_thrust', 'calf', 'seated_calf'] },
+  epaules: { n: 'Épaules', sub: 'Épaules complètes + trapèzes + abdos', dur: 85, hero: 'shoulder_press', ex: ['shoulder_press', 'lateral_raise', 'db_press', 'reverse_fly', 'face_pull', 'upright_row', 'shrug', 'crunch_machine', 'plank'] },
+  bras: { n: 'Bras', sub: 'Biceps + triceps', dur: 75, hero: 'preacher', ex: ['ez_curl', 'preacher', 'hammer', 'incline_curl', 'pushdown', 'seated_dip', 'overhead_ext', 'pushdown_bar'] }
 };
 
 /* ======================= LE RESTE DE LA SALLE =======================
@@ -2102,6 +2102,18 @@ Object.assign(EXOS, {
     v: 's', base: { foot: [116, 172], fa: -18, elbL: [14, -3], handL: [-2, -5], as: .62, lean: -20, neck: -4 }, A: { hip: [96, 148] }, B: { hip: [84, 110] },
     m: [['l', [50, 70], [92, 182], 4, 'fr'], ['l', [62, 64], [104, 176], 4, 'fr'], ['l', ['~', 2, -9], ['~', 40, -9], 9, 'pad'], ['rp', ['~', -1, -3], 9, 5, 0, 'pad', 'f'],
       ['l', [104, 176], [138, 164], 6, 'fr'], ['l', [138, 164], [142, 182], 4, 'fr'], ['l', [82, 182], [146, 182], 4, 'fr']]
+  },
+  seated_calf: {
+    n: 'Mollets assis à la machine', lab: 'SEATED CALF', zone: 'Machines guidées', nok: 1, sets: 4, reps: '12 à 15', rest: 60,
+    mus: ['calves'], q: 'seated calf raise machine exécution',
+    s: ['Assieds-toi, cale le coussin sur le bas de tes cuisses, juste au-dessus des genoux (molette jaune).', 'Avant des pieds sur la marche, talons dans le vide, puis débloque la sécurité.'],
+    p: ['Dos droit, mains sur les poignées du coussin.', 'Genoux pliés à angle droit.'],
+    x: ['Monte les talons le plus haut possible et tiens 1 seconde.', 'Redescends lentement jusqu’à sentir l’étirement au fond du mollet.'],
+    e: ['Rebondir en bas.', 'Pousser avec les cuisses au lieu des mollets.'],
+    f: 'Le mollet en profondeur (le soléaire), qui donne de l’épaisseur à la jambe. Il complète les mollets debout.',
+    v: 's', base: { hip: [80, 140], lean: -2, toe: [126, 170], hand: [108, 126] }, A: { foot: [112, 174] }, B: { foot: [114, 163] },
+    m: [['r', 56, 146, 42, 7, 0, 'pad'], ['l', [72, 153], [72, 182], 4, 'blk'], ['l', [56, 182], [140, 182], 4, 'blk'], ['r', 112, 171, 28, 7, 0, 'blk'], ['l', [126, 178], [126, 182], 4, 'blk'],
+      ['l', ['knee', -2, -9], [148, 126], 4, 'blk', 'f'], ['rp', ['knee', -2, -9], 20, 7, 0, 'pad', 'f'], ['plates', ['knee', 30, -4], 11, 'f'], ['l', [148, 126], [148, 182], 4, 'fr'], ['cam', [148, 126], 5, 'f'], ['k', [78, 166], 'b']]
   },
   pushups: {
     pz: 'milieu', n: 'Pompes', lab: 'Au sol, sur un tapis', zone: 'Zone fonctionnelle', sets: 3, reps: '12 à 15', rest: 60,
@@ -2367,7 +2379,7 @@ const PLAN = ['pecs', 'dos', 'jambes', 'epaules', 'bras', null, null];
 const GROUPS = {
   pecs: { n: 'Pectoraux', s: 'Pecs', a: 'les pectoraux', k: 3, ex: ['incline_db', 'chest_press', 'dips_assist', 'low_fly', 'pec_deck', 'cable_fly', 'incline_smith', 'bench_smith', 'bench_db', 'pushups'] },
   dos: { n: 'Dos', s: 'Dos', a: 'le dos', k: 3, ex: ['lat_pulldown', 'seated_row', 'low_row', 'close_pulldown', 'straight_arm', 'assisted_pullup', 'db_row', 'back_ext'] },
-  jambes: { n: 'Jambes', s: 'Jambes', a: 'les jambes', k: 4, ex: ['leg_press', 'hack_squat', 'leg_ext', 'lying_curl', 'rdl', 'calf', 'hip_thrust', 'smith_squat', 'goblet', 'lunges', 'leg_curl', 'abductor', 'adductor', 'glute_kick'] },
+  jambes: { n: 'Jambes', s: 'Jambes', a: 'les jambes', k: 4, ex: ['leg_press', 'hack_squat', 'leg_ext', 'lying_curl', 'rdl', 'calf', 'seated_calf', 'hip_thrust', 'smith_squat', 'goblet', 'lunges', 'leg_curl', 'abductor', 'adductor', 'glute_kick'] },
   epaules: { n: 'Épaules', s: 'Épaules', a: 'les épaules', k: 3, ex: ['shoulder_press', 'lateral_raise', 'reverse_fly', 'db_press', 'face_pull', 'upright_row', 'front_raise', 'shrug'] },
   biceps: { n: 'Biceps', s: 'Biceps', a: 'les biceps', k: 2, ex: ['ez_curl', 'preacher', 'hammer', 'incline_curl', 'db_curl', 'cable_curl'] },
   triceps: { n: 'Triceps', s: 'Triceps', a: 'les triceps', k: 2, ex: ['pushdown', 'seated_dip', 'overhead_ext', 'skull', 'pushdown_bar', 'kickback'] },
@@ -3886,7 +3898,7 @@ const ART = (function () {
   const LS = 'jotunn.v1';
   /* g = les séances composées par Lenny : d = jours modifiés (0 = repos, ou { ex: [{ id, s, r }], n }), c = ses propres exercices,
      i = compteur de ces exercices, h = historique des jours d'entraînement (pour juger les jours passés avec le programme de l'époque) */
-  const DEFG = () => ({ v: 2, d: {}, c: {}, i: 0, h: [] });
+  const DEFG = () => ({ v: 3, d: {}, c: {}, i: 0, h: [] });
   const cleanReps = v => String(v).replace(/[^0-9a-zà ]/gi, '').trim().slice(0, 12);
   const DEF = () => ({ set: { v: 2, name: '', h: 187, w0: 65, goal: 80, budget: 70, kadj: 0, start: null, al: [], ex: [] }, j: {}, c: {}, pl: {}, w: {}, p: {}, g: DEFG() });
   function normG(g) {
@@ -3914,9 +3926,10 @@ const ART = (function () {
       }
     }
     /* v2 : les séances pecs composées automatiquement prennent la nouvelle répartition haut, milieu, bas et intérieur */
-    if (+g.v !== 2) for (let w = 0; w < 7; w++) {
+    /* v3 : séances plus fournies. Les séances composées automatiquement (pas retouchées à la main) prennent les nouveaux exercices */
+    if (+g.v !== 3) for (let w = 0; w < 7; w++) {
       const d = o.d[w];
-      if (d && d.ex && d.a && d.ex.every(e => EXOS[e.id]) && d.ex.some(e => GRP_OF[e.id] === 'pecs')) d.ex = compose(groupsOf(d.ex), d.ex);
+      if (d && d.ex && d.a && d.ex.every(e => EXOS[e.id])) d.ex = compose(groupsOf(d.ex), d.ex);
     }
     if (Array.isArray(g.h)) o.h = g.h.filter(e => Array.isArray(e) && /^\d{4}-\d\d-\d\d$/.test(e[0]) && /^[01]{7}$/.test(e[1])).slice(-40);
     return o;
@@ -4743,9 +4756,9 @@ const ART = (function () {
   function autoN(g, main) {
     if (g === 'abdos') return main ? 2 : 4;
     const big = BIG.indexOf(g) >= 0;
-    if (main <= 1) return g === 'jambes' ? 6 : big ? 5 : 4;
-    if (main === 2) return big ? (g === 'jambes' ? 5 : 4) : 3;
-    if (main === 3) return big ? 3 : 2;
+    if (main <= 1) return g === 'jambes' ? 8 : big ? 7 : 5;
+    if (main === 2) return big ? (g === 'jambes' ? 6 : 5) : 4;
+    if (main === 3) return big ? 4 : 3;
     return 2;
   }
   function compose(gs, keep) {
