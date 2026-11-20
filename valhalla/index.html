@@ -6,9 +6,9 @@
 <meta name="theme-color" content="#000000">
 <meta name="color-scheme" content="dark">
 <style>html,body{background:#000;color-scheme:dark}</style>
-<script>/* iPhone, appli installée : la hauteur donnée par le navigateur est fausse (trop courte ou trop haute selon la version d'iOS).
-   On prend la vraie taille de l'écran du téléphone, qui ne change jamais. */
-(function(){try{if(!navigator.standalone)return;var d=document.documentElement,f=function(){var l=matchMedia('(orientation: landscape)').matches,w=screen.width,h=screen.height;d.style.setProperty('--appH',(l?Math.min(w,h):Math.max(w,h))+'px')};f();addEventListener('resize',f);addEventListener('orientationchange',function(){setTimeout(f,300)})}catch(e){}})();</script>
+<script>/* iPhone, appli installée : selon la version d'iOS, la hauteur annoncée par le navigateur (100 %, 100vh, taille de l'écran)
+   ne correspond pas à la zone vraiment visible. On suit en direct la zone visible, et l'appli s'y loge exactement. */
+(function(){try{var d=document.documentElement,f=function(){var v=window.visualViewport,h=Math.round(v&&v.height?Math.min(v.height,innerHeight):innerHeight);if(h>200)d.style.setProperty('--appH',h+'px')};f();addEventListener('resize',f);if(window.visualViewport)visualViewport.addEventListener('resize',f);addEventListener('orientationchange',function(){setTimeout(f,300)});addEventListener('pageshow',f);document.addEventListener('visibilitychange',function(){if(!document.hidden)setTimeout(f,50)})}catch(e){}})();</script>
 <title>Valhalla</title>
 <meta name="robots" content="noindex, nofollow">
 <link rel="manifest" href="manifest.webmanifest">
@@ -16,7 +16,7 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-title" content="Valhalla">
 <script>window.VALHALLA_SB = {"url": "https://inmzqkaerclawagbpofr.supabase.co", "key": "sb_publishable_t-5OQk1H4K_Dxm9yx7nwjQ_XqPqryLi"};</script>
 <link rel="apple-touch-startup-image" href="launch-1320x2868.png" media="(device-width: 440px) and (device-height: 956px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
