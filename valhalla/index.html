@@ -62,7 +62,8 @@ svg { display: block; }
 [hidden] { display: none !important; }
 
 /* ---------- cadre téléphone ---------- */
-#stage { height: 100%; display: grid; place-items: center; }
+#stage { position: fixed; top: 0; left: 0; right: 0; height: 100%; height: 100dvh; display: grid; place-items: center; }
+@media all and (display-mode: standalone) { #stage { height: 100vh; } }
 #device { position: relative; width: 100%; height: 100%; overflow: hidden; background: var(--iron-1); container-type: inline-size; }
 #app { position: absolute; inset: 0; display: flex; flex-direction: column; padding-top: env(safe-area-inset-top); --top: calc(env(safe-area-inset-top) + 10px); }
 /* grain très léger : matière mate, comme du fer brossé */
@@ -194,9 +195,11 @@ svg { display: block; }
 .view.first .hero .btn { animation: ctain .5s var(--spring) calc(var(--d0) + .34s) backwards; }
 /* Ouverture : le contour de la rune se dessine en néon depuis son sommet, brille, puis fonce vers nous :
    l'appli apparaît à travers la rune, comme si on passait au travers */
-#splash { position: fixed; inset: 0; z-index: 94; pointer-events: none; background: #000; animation: spbg 0s linear 1.38s forwards; --cx: 50vw; --cy: 50vh; }
-#splash svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
-#splash .sz { transform: translate(var(--cx), var(--cy)) scale(2.3) translate(-24px, -24px); animation: runezoom .52s cubic-bezier(.72, 0, .86, .02) 1.38s forwards; will-change: transform; }
+#splash { position: fixed; inset: 0; z-index: 94; pointer-events: none; background: #000; overflow: hidden; animation: spbg 0s linear 1.38s forwards, spgone .2s linear 2.05s forwards; }
+/* La rune est au centre de l'écran sans aucun calcul (certains téléphones ne connaissent pas encore la taille de l'écran au lancement).
+   Le zoom se fait autour d'un point de la jambe gauche de la rune : c'est par là que l'appli apparaît. */
+#splash .sz { position: absolute; left: 50%; top: 50%; width: 48px; height: 48px; margin: -24px 0 0 -24px; transform-origin: 12.5px 30px; transform: translate(-14.95px, 7.8px) scale(2.3); animation: runezoom .52s cubic-bezier(.72, 0, .86, .02) 1.38s forwards; }
+#splash svg { display: block; width: 48px; height: 48px; overflow: visible; }
 #splash .s-bg { fill: #000; }
 #splash .s-cov { fill: #000; animation: hide 0s linear 1.38s forwards; }
 #splash .s-halo { fill: url(#sp-halo); opacity: 0; animation: halo 1.1s ease-out .55s forwards; }
@@ -206,9 +209,10 @@ svg { display: block; }
 #splash .s-c { stroke: #ffdadd; stroke-width: .55; }
 #splash .s-neon { animation: neon .5s linear .98s; }
 @keyframes runedraw { to { stroke-dashoffset: 0; } }
-@keyframes runezoom { to { transform: translate(var(--cx), var(--cy)) scale(95) translate(-12.5px, -30px); } }
+@keyframes runezoom { to { transform: translate(-14.95px, 7.8px) scale(95); } }
 @keyframes hide { to { opacity: 0; } }
 @keyframes spbg { to { background: transparent; } }
+@keyframes spgone { to { opacity: 0; visibility: hidden; } }
 @keyframes halo { 40% { opacity: .9; } to { opacity: .55; } }
 @keyframes neon { 0%, 100% { opacity: 1; } 18% { opacity: .55; } 26% { opacity: 1; } 52% { opacity: .82; } 60% { opacity: 1; } }
 /* l'accueil défile : l'athlète recule un peu et le titre s'efface (navigateurs récents) */
@@ -776,8 +780,8 @@ input::placeholder { color: var(--smoke); font-weight: 500; }
   <div id="sheets"></div>
   <div id="timer" class="timer" hidden><span></span><b></b><button data-a="timer-stop" aria-label="Arrêter le minuteur"></button></div>
   <div id="toast" class="toast" role="status" hidden></div>
-  <div id="splash" aria-hidden="true"><svg><defs><radialGradient id="sp-halo"><stop offset="0" stop-color="#ff2a3c" stop-opacity=".42"/><stop offset=".55" stop-color="#c10f1f" stop-opacity=".16"/><stop offset="1" stop-color="#c10f1f" stop-opacity="0"/></radialGradient></defs><g class="sz"><path class="s-bg" fill-rule="evenodd" d="M-3000-3000H3000V3000H-3000ZM9 43V5l30 11v27h-7V20.9L16 15v28z"/><path class="s-cov" d="M9 43V5l30 11v27h-7V20.9L16 15v28z"/><circle class="s-halo" cx="24" cy="24" r="22"/><g class="s-neon"><path class="s-l s-g" pathLength="100" d="M9 5L39 16V43H32V20.9"/><path class="s-l s-g" pathLength="100" d="M9 5V43H16V15L32 20.9"/><path class="s-l s-m" pathLength="100" d="M9 5L39 16V43H32V20.9"/><path class="s-l s-m" pathLength="100" d="M9 5V43H16V15L32 20.9"/><path class="s-l s-c" pathLength="100" d="M9 5L39 16V43H32V20.9"/><path class="s-l s-c" pathLength="100" d="M9 5V43H16V15L32 20.9"/></g></g></svg></div>
-  <script>try{var sp=document.getElementById('splash');if(sessionStorage.getItem('jotunn.vu'))sp.remove();else{sessionStorage.setItem('jotunn.vu','1');var r=sp.getBoundingClientRect();sp.style.setProperty('--cx',(r.width||innerWidth)/2+'px');sp.style.setProperty('--cy',(r.height||innerHeight)/2+'px')}}catch(e){}</script>
+  <div id="splash" aria-hidden="true"><div class="sz"><svg viewBox="0 0 48 48" width="48" height="48" overflow="visible"><defs><radialGradient id="sp-halo"><stop offset="0" stop-color="#ff2a3c" stop-opacity=".42"/><stop offset=".55" stop-color="#c10f1f" stop-opacity=".16"/><stop offset="1" stop-color="#c10f1f" stop-opacity="0"/></radialGradient></defs><path class="s-bg" fill-rule="evenodd" d="M-400-400H450V450H-400ZM9 43V5l30 11v27h-7V20.9L16 15v28z"/><path class="s-cov" d="M9 43V5l30 11v27h-7V20.9L16 15v28z"/><circle class="s-halo" cx="24" cy="24" r="22"/><g class="s-neon"><path class="s-l s-g" pathLength="100" d="M9 5L39 16V43H32V20.9"/><path class="s-l s-g" pathLength="100" d="M9 5V43H16V15L32 20.9"/><path class="s-l s-m" pathLength="100" d="M9 5L39 16V43H32V20.9"/><path class="s-l s-m" pathLength="100" d="M9 5V43H16V15L32 20.9"/><path class="s-l s-c" pathLength="100" d="M9 5L39 16V43H32V20.9"/><path class="s-l s-c" pathLength="100" d="M9 5V43H16V15L32 20.9"/></g></svg></div></div>
+  <script>try{var sp=document.getElementById('splash');if(sessionStorage.getItem('jotunn.vu'))sp.remove();else{sessionStorage.setItem('jotunn.vu','1');setTimeout(function(){if(sp.parentNode)sp.parentNode.removeChild(sp)},2600)}}catch(e){}</script>
 </div></div></div>
 <script>
 /* ============================================================
