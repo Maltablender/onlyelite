@@ -6,6 +6,9 @@
 <meta name="theme-color" content="#000000">
 <meta name="color-scheme" content="dark">
 <style>html,body{background:#000;color-scheme:dark}</style>
+<script>/* iPhone, appli installée : la hauteur donnée par le navigateur est fausse (trop courte ou trop haute selon la version d'iOS).
+   On prend la vraie taille de l'écran du téléphone, qui ne change jamais. */
+(function(){try{if(!navigator.standalone)return;var d=document.documentElement,f=function(){var l=matchMedia('(orientation: landscape)').matches,w=screen.width,h=screen.height;d.style.setProperty('--appH',(l?Math.min(w,h):Math.max(w,h))+'px')};f();addEventListener('resize',f);addEventListener('orientationchange',function(){setTimeout(f,300)})}catch(e){}})();</script>
 <title>Valhalla</title>
 <meta name="robots" content="noindex, nofollow">
 <link rel="manifest" href="manifest.webmanifest">
@@ -75,8 +78,7 @@ svg { display: block; }
 [hidden] { display: none !important; }
 
 /* ---------- cadre téléphone ---------- */
-#stage { position: fixed; top: 0; left: 0; right: 0; height: 100%; height: 100dvh; display: grid; place-items: center; }
-@media all and (display-mode: standalone) { #stage { height: 100vh; } }
+#stage { position: fixed; top: 0; left: 0; right: 0; height: 100%; height: 100dvh; height: var(--appH, 100dvh); display: grid; place-items: center; }
 #device { position: relative; width: 100%; height: 100%; overflow: hidden; background: var(--iron-1); container-type: inline-size; }
 #app { position: absolute; inset: 0; display: flex; flex-direction: column; padding-top: env(safe-area-inset-top); --top: calc(env(safe-area-inset-top) + 10px); }
 /* grain très léger : matière mate, comme du fer brossé */
