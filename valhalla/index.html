@@ -1646,8 +1646,8 @@ const EXOS = {
     e: ['Les épaules qui roulent vers l’avant en fin de poussée.', 'Décoller le dos pour tricher.'],
     f: 'Au milieu de la poitrine. Si tu sens surtout les épaules, baisse le siège d’un cran.',
     v: 's', base: { hip: [78, 140], lean: -4, foot: [114, 174], hc: [92, 54, 58] }, A: { ha: 4 }, B: { ha: 27 },
-    m: [['l', [58, 182], [58, 52], 5, 'fr'], ['l', [58, 54], [94, 54], 5, 'fr'], ['r', 60, 90, 8, 56, -4, 'pad'], ['r', 62, 146, 44, 7, 0, 'padd'], ['l', [84, 153], [84, 182], 4, 'fr'],
-      ['l', [92, 54], 'hand', 3.2, 'steel', 'f'], ['c', 'hand', 3.4, 'grip', 'f'], STK(22), ['l', [33, 179], [58, 179], 3.5, 'fr'], ['l', [44, 64], [58, 64], 4, 'fr']]
+    m: [['l', [58, 182], [58, 52], 5, 'blk'], ['l', [58, 54], [94, 54], 5, 'blk'], ['r', 60, 90, 8, 56, -4, 'pad'], ['r', 62, 146, 44, 7, 0, 'padd'], ['l', [84, 153], [84, 182], 4, 'blk'],
+      ['l', [92, 54], 'hand', 3.2, 'steel', 'f'], ['c', 'hand', 3.4, 'grip', 'f'], STK(22), ['l', [33, 179], [58, 179], 3.5, 'blk'], ['l', [44, 64], [58, 64], 4, 'blk']]
   },
   incline_db: {
     pz: 'haut', n: 'Développé incliné aux haltères', lab: 'Banc réglable + haltères', zone: 'Poids libres', sets: 4, reps: '8 à 10', rest: 120,
@@ -1670,7 +1670,7 @@ const EXOS = {
     e: ['Plier et déplier les coudes : ça devient un développé.', 'Les épaules qui montent vers les oreilles.'],
     f: 'L’intérieur des pecs, au centre de la poitrine. C’est la contraction de 2 secondes qui le dessine.',
     v: 'f', base: { hip: [100, 143], foot: [86, 182], sit: 1 }, A: { th: -6, be: 12, e1: 11, e2: -9 }, B: { th: 99, be: 22, e1: 19, e2: -3 },
-    m: [['l', [58, 49], [142, 49], 5, 'fr'], ['l', [100, 49], [100, 93], 5, 'fr'], ['r', 87, 89, 26, 60, 0, 'pad'], ['r', 80, 145, 40, 8, 0, 'padd'], ['l', [100, 153], [100, 182], 5, 'fr'],
+    m: [['stack', 89, 34, 22, 140, 24], ['l', [58, 49], [142, 49], 5, 'fr'], ['l', [100, 49], [100, 93], 5, 'fr'], ['r', 87, 89, 26, 60, 0, 'pad'], ['r', 80, 145, 40, 8, 0, 'padd'], ['l', [100, 153], [100, 182], 5, 'fr'],
       ['l', [68, 49], 'handL', 3.2, 'steel', 'f', 1], ['c', 'handL', 3.4, 'grip', 'f', 1]]
   },
   cable_fly: {
@@ -1706,8 +1706,8 @@ const EXOS = {
     e: ['Tirer avec les bras ou avec les cuisses.', 'Aller vite : les abdos se construisent en contrôle.'],
     f: 'Toute la sangle abdominale, surtout le haut.',
     v: 's', base: { hip: [78, 140], foot: [112, 174], handL: [-4, 12] }, A: { lean: -6 }, B: { lean: 30, neck: 12 },
-    m: [['l', [54, 182], [54, 84], 5, 'fr'], ['r', 54, 92, 8, 54, -6, 'pad'], ['r', 62, 146, 44, 7, 0, 'padd'], ['l', [84, 153], [84, 182], 4, 'fr'],
-      ['c', [120, 168], 5, 'pad'], ['l', [120, 172], [104, 182], 3, 'fr'], ['l', 'hip', ['~', 30, -15], 3.2, 'steel'], ['l', ['~', 30, -15], ['~', -9, -14], 3.2, 'steel'], ['l', ['~', -9, -14], 'hand', 3.2, 'steel'], ['c', 'hand', 3.4, 'grip', 'f'], STK(18), ['l', [29, 179], [54, 179], 3.5, 'fr'], ['l', [40, 90], [54, 90], 4, 'fr']]
+    m: [['l', [54, 182], [54, 84], 5, 'blk'], ['r', 54, 92, 8, 54, -6, 'pad'], ['r', 62, 146, 44, 7, 0, 'padd'], ['l', [84, 153], [84, 182], 4, 'blk'],
+      ['c', [120, 168], 5, 'pad'], ['l', [120, 172], [104, 182], 3, 'blk'], ['l', 'hip', ['~', 30, -15], 3.2, 'steel'], ['l', ['~', 30, -15], ['~', -9, -14], 3.2, 'steel'], ['l', ['~', -9, -14], 'hand', 3.2, 'steel'], ['c', 'hand', 3.4, 'grip', 'f'], STK(18), ['l', [29, 179], [54, 179], 3.5, 'blk'], ['l', [40, 90], [54, 90], 4, 'blk']]
   },
 
   /* ======================= DOS ======================= */
@@ -1720,8 +1720,8 @@ const EXOS = {
     e: ['Tirer derrière la nuque.', 'Se balancer en arrière pour s’aider de l’élan.'],
     f: 'Sous les aisselles, sur les côtés du dos : les « ailes ».',
     v: 'f', back: 1, base: { hip: [100, 145], foot: [86, 184], sit: 1 }, A: { hand: [62, 55] }, B: { hand: [60, 95] },
-    m: [['l', [34, 182], [34, 12], 5, 'fr', 'b', 1], ['l', [34, 12], [166, 12], 5, 'fr'], ['c', [100, 15], 4.5, 'steel'], ['l', [100, 15], 'handC', 1.3, 'cab'],
-      ['bar', 'handL', 'handR', 10, 'grip', 'b'], ['l', [100, 155], [100, 184], 5, 'fr'], ['r', 76, 138, 48, 7, 0, 'pad'], ['r', 80, 147, 40, 8, 0, 'padd', 'm']]
+    m: [['stack', 89, 26, 22, 150, 24], ['l', [34, 182], [34, 12], 5, 'fr', 'b', 1], ['l', [34, 12], [166, 12], 5, 'fr'], ['c', [100, 15], 4.5, 'steel'], ['l', [100, 15], 'handC', 1.3, 'cab'],
+      ['bar', 'handL', 'handR', 4, 'grip', 'b'], ['l', ['handL', -4, 0], ['handL', -14, 7], 3.6, 'grip', 'b'], ['l', ['handR', 4, 0], ['handR', 14, 7], 3.6, 'grip', 'b'], ['l', [100, 155], [100, 184], 5, 'fr'], ['r', 76, 138, 48, 7, 0, 'pad'], ['r', 80, 147, 40, 8, 0, 'padd', 'm']]
   },
   seated_row: {
     n: 'Tirage horizontal assis', lab: 'SEATED ROW', zone: 'Machines guidées', sets: 4, reps: '10', rest: 120,
@@ -1773,16 +1773,16 @@ const EXOS = {
 
   /* ======================= JAMBES ======================= */
   leg_press: {
-    n: 'Presse à cuisses', lab: 'LEG PRESS', zone: 'Machines guidées', sets: 4, reps: '10', rest: 150,
+    n: 'Presse à cuisses', lab: 'LEG PRESS', zone: 'Machines guidées', nok: 1, sets: 4, reps: '10', rest: 150,
     mus: ['quads', 'glutes'], q: 'presse à cuisses exécution position des pieds',
     s: ['Bassin bien au fond du siège, dossier confortable.', 'Pieds à largeur d’épaules, au milieu du plateau.'],
     p: ['Le bas du dos reste collé au siège du début à la fin.', 'Genoux dans l’axe des pieds.'],
     x: ['Descends en 3 secondes jusqu’à 90° aux genoux.', 'Pousse avec tout le pied, sans jamais verrouiller les genoux.'],
     e: ['Décoller les fesses en bas.', 'Les genoux qui rentrent vers l’intérieur.'],
     f: 'Les cuisses et les fessiers.',
-    v: 's', base: { hip: [72, 152], lean: -48, hand: [82, 148], neck: 14, fa: -128 }, A: { foot: [100, 122] }, B: { foot: [118, 104] },
-    m: [['l', [84, 176], [160, 94], 4, 'fr'], ['l', [66, 158], [28, 116], 8, 'pad'], ['l', [62, 164], [92, 164], 7, 'padd'], ['l', [70, 168], [70, 182], 4, 'fr'], ['l', [158, 96], [158, 182], 4, 'fr'],
-      ['l', ['foot', 8, -4], ['foot', 22, 10], 4, 'fr', 'f'], ['c', ['foot', 18, -14], 10, 'plate', 'f'], ['c', ['foot', 18, -14], 3, 'steel', 'f'], ['l', ['foot', -7, -13], ['foot', 13, 7], 5, 'steel', 'f']]
+    v: 's', base: { hip: [62, 150], lean: -38, neck: 12, hand: [72, 152], fa: -96 }, A: { foot: [100, 134] }, B: { foot: [127, 132] },
+    m: [['l', [30, 176], [176, 176], 4, 'blk'], ['l', ['~', 4, -11], ['~', 44, -11], 10, 'pad'], ['r', 40, 154, 42, 8, 0, 'pad'], ['l', [58, 162], [58, 176], 4, 'blk'], ['l', [36, 176], [44, 136], 4, 'blk'],
+      STK(88), ['l', ['foot', 8, 12], ['foot', 12, 42], 4.5, 'blk', 'f'], ['rp', ['foot', 6, -5], 7, 36, 0, 'padd', 'f'], ['l', ['foot', 8, -22], ['foot', 8, 12], 2.4, 'blk', 'f'], ['k', [64, 168], 'f']]
   },
   smith_squat: {
     n: 'Squat à la barre guidée', lab: 'SMITH MACHINE', zone: 'Poids libres', sets: 4, reps: '8', rest: 150,
@@ -1853,7 +1853,7 @@ const EXOS = {
     e: ['Cambrer le dos.', 'Descendre trop bas en forçant sur les épaules.'],
     f: 'Le devant et le dessus des épaules.',
     v: 'f', base: { hip: [100, 145], foot: [86, 184], sit: 1, hc: [100, 91, 47.5] }, A: { ha: -92 }, B: { ha: -140 },
-    m: [['r', 88, 91, 24, 58, 0, 'pad'], ['r', 80, 147, 40, 8, 0, 'padd'], ['l', [100, 155], [100, 184], 5, 'fr'],
+    m: [['stack', 89, 30, 22, 144, 24], ['r', 88, 91, 24, 58, 0, 'pad'], ['r', 80, 147, 40, 8, 0, 'padd'], ['l', [100, 155], [100, 184], 5, 'fr'],
       ['l', [100, 91], 'handL', 3.2, 'steel', 'b', 1], ['l', ['handL', -7, 0], ['handL', 7, 0], 4, 'grip', 'f', 1]]
   },
   lateral_raise: {
@@ -1876,7 +1876,7 @@ const EXOS = {
     e: ['Serrer les omoplates en premier : garde le travail dans l’épaule.', 'Charger trop lourd.'],
     f: 'L’arrière des épaules.',
     v: 'f', back: 1, base: { hip: [100, 143], foot: [86, 182], sit: 1 }, A: { th: 100, be: 22, e1: 13, e2: -6 }, B: { th: -12, be: 10, e1: 6, e2: -4 },
-    m: [['l', [62, 49], [138, 49], 5, 'fr'], ['l', [100, 49], [100, 93], 5, 'fr'], ['r', 87, 91, 26, 58, 0, 'pad'], ['l', [100, 153], [100, 182], 5, 'fr'], ['r', 80, 145, 40, 8, 0, 'padd', 'm'],
+    m: [['stack', 89, 34, 22, 140, 24], ['l', [62, 49], [138, 49], 5, 'fr'], ['l', [100, 49], [100, 93], 5, 'fr'], ['r', 87, 91, 26, 58, 0, 'pad'], ['l', [100, 153], [100, 182], 5, 'fr'], ['r', 80, 145, 40, 8, 0, 'padd', 'm'],
       ['l', [70, 49], 'handL', 3.2, 'steel', 'b', 1], ['c', 'handL', 3.4, 'grip', 'b', 1]]
   },
   face_pull: {
@@ -1945,8 +1945,8 @@ const EXOS = {
     e: ['Décoller les coudes du coussin.', 'Lâcher la descente.'],
     f: 'Le bas du biceps, près du coude.',
     v: 's', base: { hip: [70, 144], lean: 14, foot: [104, 176] }, A: { a1: 52, a2: 80 }, B: { a1: 52, a2: 166 },
-    m: [['r', 54, 150, 36, 7, 0, 'padd'], ['l', [72, 157], [72, 182], 4, 'fr'], ['l', [100, 118], [100, 182], 5, 'fr'], ['l', [86, 107], [112, 119], 8, 'pad'],
-      ['l', ['elb', 1.8, -.8], 'hand', 3.2, 'steel', 'f'], ['c', 'hand', 3.4, 'grip', 'f'], STK(152), ['l', [100, 179], [152, 179], 3.5, 'fr']]
+    m: [['r', 54, 150, 36, 7, 0, 'padd'], ['l', [72, 157], [72, 182], 4, 'blk'], ['l', [100, 118], [100, 182], 5, 'blk'], ['l', [86, 107], [112, 119], 8, 'pad'],
+      ['l', ['elb', 1.8, -.8], 'hand', 3.2, 'steel', 'f'], ['c', 'hand', 3.4, 'grip', 'f'], STK(152), ['l', [100, 179], [152, 179], 3.5, 'blk']]
   },
   hammer: {
     n: 'Curl marteau aux haltères', lab: 'Deux haltères', zone: 'Poids libres', sets: 3, reps: '12', rest: 60,
@@ -1998,7 +1998,7 @@ const EXOS = {
 const SESSIONS = {
   pecs: { n: 'Pectoraux', sub: 'Haut, milieu, bas et intérieur des pecs + abdos', dur: 70, hero: 'incline_db', ex: ['incline_db', 'chest_press', 'low_fly', 'pec_deck', 'dips_assist', 'crunch_machine'] },
   dos: { n: 'Dos', sub: 'Dos complet', dur: 60, hero: 'lat_pulldown', ex: ['lat_pulldown', 'seated_row', 'low_row', 'straight_arm', 'back_ext'] },
-  jambes: { n: 'Jambes', sub: 'Cuisses, fessiers, mollets', dur: 70, hero: 'leg_press', ex: ['leg_press', 'hack_squat', 'leg_ext', 'leg_curl', 'rdl', 'calf'] },
+  jambes: { n: 'Jambes', sub: 'Cuisses, fessiers, mollets', dur: 70, hero: 'leg_press', ex: ['leg_press', 'hack_squat', 'leg_ext', 'lying_curl', 'rdl', 'calf'] },
   epaules: { n: 'Épaules', sub: 'Épaules + trapèzes + abdos', dur: 65, hero: 'shoulder_press', ex: ['shoulder_press', 'lateral_raise', 'reverse_fly', 'face_pull', 'shrug', 'leg_raise', 'plank'] },
   bras: { n: 'Bras', sub: 'Biceps + triceps', dur: 55, hero: 'preacher', ex: ['ez_curl', 'preacher', 'hammer', 'pushdown', 'seated_dip', 'overhead_ext'] }
 };
@@ -2110,7 +2110,7 @@ Object.assign(EXOS, {
     e: ['Tirer avec les bras en arrondissant le dos.', 'Remonter d’un coup, sans contrôler.'],
     f: 'Le bas des dorsaux, sur les côtés, et les biceps.',
     v: 'f', back: 1, base: { hip: [100, 145], foot: [86, 184], sit: 1 }, A: { hand: [88, 57] }, B: { hand: [90, 92] },
-    m: [['l', [34, 182], [34, 12], 5, 'fr', 'b', 1], ['l', [34, 12], [166, 12], 5, 'fr'], ['c', [100, 15], 4.5, 'steel'], ['l', [100, 15], 'handC', 1.3, 'cab'],
+    m: [['stack', 89, 26, 22, 150, 24], ['l', [34, 182], [34, 12], 5, 'fr', 'b', 1], ['l', [34, 12], [166, 12], 5, 'fr'], ['c', [100, 15], 4.5, 'steel'], ['l', [100, 15], 'handC', 1.3, 'cab'],
       ['bar', 'handL', 'handR', 30, 'grip', 'b'], ['l', [100, 155], [100, 184], 5, 'fr'], ['r', 76, 138, 48, 7, 0, 'pad'], ['r', 80, 147, 40, 8, 0, 'padd', 'm'], ['k', [106, 166], 'b']]
   },
   /* ---------- Jambes ---------- */
@@ -2157,7 +2157,7 @@ Object.assign(EXOS, {
     e: ['Se pencher en avant.', 'Aller trop vite.'],
     f: 'Le côté des fesses.',
     v: 'f', base: { hip: [100, 143], foot: [86, 182], sit: 1, a1: 16, a2: 4 }, A: { ks: 0 }, B: { ks: 9 },
-    m: [['r', 80, 89, 40, 56, 0, 'pad', 'b'], ['r', 76, 145, 48, 8, 0, 'padd'], ['l', [100, 153], [100, 182], 5, 'fr'], ['rp', ['kneeL', -5, 0], 5, 14, 0, 'pad', 'f'], ['rp', ['kneeR', 5, 0], 5, 14, 0, 'pad', 'f']]
+    m: [['stack', 89, 54, 22, 124, 24], ['r', 80, 89, 40, 56, 0, 'pad', 'b'], ['r', 76, 145, 48, 8, 0, 'padd'], ['l', [100, 153], [100, 182], 5, 'fr'], ['rp', ['kneeL', -5, 0], 5, 14, 0, 'pad', 'f'], ['rp', ['kneeR', 5, 0], 5, 14, 0, 'pad', 'f']]
   },
   adductor: {
     n: 'Adducteurs à la machine', lab: 'ADDUCTOR', zone: 'Machines guidées', sets: 3, reps: '15', rest: 60,
@@ -2168,7 +2168,7 @@ Object.assign(EXOS, {
     e: ['Partir trop écarté avec trop lourd.', 'Donner des à-coups.'],
     f: 'L’intérieur des cuisses.',
     v: 'f', base: { hip: [100, 143], foot: [86, 182], sit: 1, a1: 16, a2: 4 }, A: { ks: 9 }, B: { ks: 0 },
-    m: [['r', 80, 89, 40, 56, 0, 'pad', 'b'], ['r', 76, 145, 48, 8, 0, 'padd'], ['l', [100, 153], [100, 182], 5, 'fr'], ['rp', ['kneeL', 5, 0], 5, 14, 0, 'pad', 'f'], ['rp', ['kneeR', -5, 0], 5, 14, 0, 'pad', 'f']]
+    m: [['stack', 89, 54, 22, 124, 24], ['r', 80, 89, 40, 56, 0, 'pad', 'b'], ['r', 76, 145, 48, 8, 0, 'padd'], ['l', [100, 153], [100, 182], 5, 'fr'], ['rp', ['kneeL', 5, 0], 5, 14, 0, 'pad', 'f'], ['rp', ['kneeR', -5, 0], 5, 14, 0, 'pad', 'f']]
   },
   glute_kick: {
     n: 'Kickback fessier à la machine', lab: 'GLUTE KICKBACK', zone: 'Machines guidées', nok: 1, sets: 3, reps: '12 par jambe', rest: 60,
@@ -2184,7 +2184,7 @@ Object.assign(EXOS, {
       ['k', [146, 120], 'b'], STK(152), ['l', [104, 179], [163, 179], 3.5, 'fr']]
   },
   lying_curl: {
-    n: 'Leg curl allongé', lab: 'LYING LEG CURL', zone: 'Machines guidées', sets: 3, reps: '12', rest: 75,
+    n: 'Leg curl allongé', lab: 'PRONE LEG CURL', zone: 'Machines guidées', nok: 1, sets: 3, reps: '12', rest: 75,
     mus: ['hams'], q: 'leg curl allongé technique',
     s: ['Règle le boudin juste au-dessus des talons, genoux au bord du banc.'],
     p: ['À plat ventre, hanches collées au banc, mains sur les poignées.'],
@@ -2192,7 +2192,8 @@ Object.assign(EXOS, {
     e: ['Décoller les hanches du banc.', 'Lâcher la charge en bas.'],
     f: 'L’arrière des cuisses.',
     v: 's', base: { hip: [96, 140], lean: 86, neck: -8, hand: [150, 140] }, A: { b1: -86, b2: -92 }, B: { b1: -86, b2: -168 },
-    m: [['r', 40, 146, 120, 7, 0, 'pad'], ['l', [56, 153], [56, 182], 4, 'fr'], ['l', [140, 153], [140, 182], 4, 'fr'], ['l', 'knee', 'foot', 3.2, 'steel', 'b'], ['c', 'foot', 4.5, 'pad', 'f']]
+    m: [STK(84), ['l', [36, 182], [48, 150], 4, 'blk'], ['l', [150, 182], [140, 150], 4, 'blk'], ['l', [40, 150], [150, 150], 4, 'blk'], ['l', [62, 146], [100, 138], 9, 'pad'], ['l', [100, 138], [158, 144], 9, 'pad'],
+      ['l', [46, 146], 'knee', 3.2, 'blk', 'b'], ['l', 'knee', 'foot', 3.2, 'steel', 'b'], ['c', 'foot', 4.8, 'pad', 'f'], ['c', 'knee', 3.5, 'knob', 'f'], ['l', [150, 140], [160, 140], 4, 'grip', 'f']]
   },
   /* ---------- Épaules ---------- */
   db_press: {
@@ -2329,7 +2330,7 @@ const PLAN = ['pecs', 'dos', 'jambes', 'epaules', 'bras', null, null];
 const GROUPS = {
   pecs: { n: 'Pectoraux', s: 'Pecs', a: 'les pectoraux', k: 3, ex: ['incline_db', 'chest_press', 'dips_assist', 'low_fly', 'pec_deck', 'cable_fly', 'incline_smith', 'bench_smith', 'bench_db', 'pushups'] },
   dos: { n: 'Dos', s: 'Dos', a: 'le dos', k: 3, ex: ['lat_pulldown', 'seated_row', 'low_row', 'close_pulldown', 'straight_arm', 'assisted_pullup', 'db_row', 'back_ext'] },
-  jambes: { n: 'Jambes', s: 'Jambes', a: 'les jambes', k: 4, ex: ['leg_press', 'hack_squat', 'leg_ext', 'leg_curl', 'rdl', 'calf', 'hip_thrust', 'smith_squat', 'goblet', 'lunges', 'lying_curl', 'abductor', 'adductor', 'glute_kick'] },
+  jambes: { n: 'Jambes', s: 'Jambes', a: 'les jambes', k: 4, ex: ['leg_press', 'hack_squat', 'leg_ext', 'lying_curl', 'rdl', 'calf', 'hip_thrust', 'smith_squat', 'goblet', 'lunges', 'leg_curl', 'abductor', 'adductor', 'glute_kick'] },
   epaules: { n: 'Épaules', s: 'Épaules', a: 'les épaules', k: 3, ex: ['shoulder_press', 'lateral_raise', 'reverse_fly', 'db_press', 'face_pull', 'upright_row', 'front_raise', 'shrug'] },
   biceps: { n: 'Biceps', s: 'Biceps', a: 'les biceps', k: 2, ex: ['ez_curl', 'preacher', 'hammer', 'incline_curl', 'db_curl', 'cable_curl'] },
   triceps: { n: 'Triceps', s: 'Triceps', a: 'les triceps', k: 2, ex: ['pushdown', 'seated_dip', 'overhead_ext', 'skull', 'pushdown_bar', 'kickback'] },
@@ -2413,7 +2414,7 @@ const RIG = (function () {
   const INK = '#090707', EMB = '#ff2a3c';
   const C = {
     skin: 'url(#rg-skin)', skinD: '#b97c5f', far: 'url(#rg-far)', cloth: 'url(#rg-cloth)', clothF: '#151011', hair: 'url(#rg-hair)', hairD: '#9c6a1e', stub: '#c99a72', leather: '#6f4a31', gold: '#e9b949', sole: '#efe9e6', line: '#8d5340',
-    fr: '#4d4a4d', frHi: '#a7a2a5', pad: '#2f2a2c', padHi: '#c2bbbe', padd: '#3a3537', paddHi: '#7a7376', knob: '#f5a11c', knobHi: '#ffd27a', cab: '#c4b9bb', grip: '#f5efec', steel: '#a39a9d', plate: '#1a1516'
+    fr: '#e85d1c', frHi: '#ffb07a', blk: '#232022', blkHi: '#77706f', pad: '#1e1b1c', padHi: '#b0a9ac', padd: '#3c3839', paddHi: '#7a7376', knob: '#ffc31f', knobHi: '#fff0b0', bfo: '#f27a2c', cab: '#c4b9bb', grip: '#f5efec', steel: '#a39a9d', plate: '#1a1516'
   };
   const DEPTH = [3.5, -2.5], RIM = [1.25, 1.05];
   const rad = d => d * Math.PI / 180;
@@ -2436,7 +2437,7 @@ const RIG = (function () {
     '<linearGradient id="rg-hair" x1=".1" y1="0" x2=".9" y2="1"><stop offset="0" stop-color="#f8dc8a"/><stop offset=".5" stop-color="#dfa93f"/><stop offset="1" stop-color="#a87424"/></linearGradient>' +
     '<linearGradient id="rg-cloth" gradientUnits="userSpaceOnUse" x1="60" y1="70" x2="140" y2="196"><stop offset="0" stop-color="#3d3337"/><stop offset=".5" stop-color="#231b1d"/><stop offset="1" stop-color="#140f10"/></linearGradient>' +
     '<radialGradient id="rg-ember" cx=".38" cy=".32" r=".8"><stop offset="0" stop-color="#ffa587"/><stop offset=".42" stop-color="#ff3344"/><stop offset="1" stop-color="#a80a18"/></radialGradient>' +
-    '<linearGradient id="rg-pad" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5b5558"/><stop offset="1" stop-color="#262224"/></linearGradient>' +
+    '<linearGradient id="rg-pad" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3b3738"/><stop offset="1" stop-color="#121011"/></linearGradient>' +
     '<linearGradient id="rg-padd" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#555053"/><stop offset="1" stop-color="#2a2628"/></linearGradient>' +
     '<linearGradient id="rg-floor" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3a1418" stop-opacity=".85"/><stop offset="1" stop-color="#0e0c0c" stop-opacity="0"/></linearGradient>' +
     '<linearGradient id="rg-cone" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffd2c2" stop-opacity="0"/><stop offset=".16" stop-color="#ffd2c2" stop-opacity=".15"/><stop offset=".7" stop-color="#ffd2c2" stop-opacity=".05"/><stop offset="1" stop-color="#ffd2c2" stop-opacity="0"/></linearGradient>' +
@@ -2635,6 +2636,7 @@ const RIG = (function () {
   }
   function mline(a, b, w, sty) {
     if (sty === 'fr') return ln(a, b, w + 1.6, INK) + ln(a, b, w, C.fr) + ln([a[0] - .8, a[1] - .8], [b[0] - .8, b[1] - .8], Math.max(.9, w * .26), C.frHi, .85);
+    if (sty === 'blk') return ln(a, b, w + 1.6, INK) + ln(a, b, w, C.blk) + ln([a[0] - .8, a[1] - .8], [b[0] - .8, b[1] - .8], Math.max(.9, w * .26), C.blkHi, .8);
     if (sty === 'pad') return ln(a, b, w + 1.6, INK) + ln(a, b, w, C.pad) + ln([a[0] - .6, a[1] - 1.2], [b[0] - .6, b[1] - 1.2], Math.max(1, w * .24), C.padHi, .8);
     if (sty === 'padd') return ln(a, b, w + 1.6, INK) + ln(a, b, w, C.padd) + ln([a[0] - .6, a[1] - 1.2], [b[0] - .6, b[1] - 1.2], Math.max(1, w * .22), C.paddHi, .8);
     if (sty === 'steel') return ln(a, b, w + 1.4, INK) + ln(a, b, w, C.steel) + ln([a[0] - .5, a[1] - .5], [b[0] - .5, b[1] - .5], Math.max(.8, w * .3), '#e3dcde', .7);
@@ -2648,30 +2650,29 @@ const RIG = (function () {
       (w > h ? '<rect x="' + r1(x + 2) + '" y="' + r1(y + 1.1) + '" width="' + r1(w - 4) + '" height="1.1" rx=".5" fill="' + hi + '" opacity=".75"' + tr + '/>' : '<rect x="' + r1(x + 1.1) + '" y="' + r1(y + 2) + '" width="1.1" height="' + r1(h - 4) + '" rx=".5" fill="' + hi + '" opacity=".75"' + tr + '/>');
   }
   function stack(x, y, w, h, tr, t) {
-    const room = Math.abs(tr), n = Math.floor((h - 8 - room) / 6), sel = Math.max(3, Math.round(n * .35));
-    const lift = room * (tr < 0 ? 1 - t : t), top = y + h - 4 - n * 6;
-    let s = '<rect x="' + (x - .5) + '" y="' + (y - .5) + '" width="' + (w + 1) + '" height="' + (h + 1) + '" rx="3.4" fill="#0d0a0b" stroke="' + INK + '" stroke-width="1.6"/>' +
-      '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '" rx="3" fill="none" stroke="' + C.fr + '" stroke-width="2.2"/>' +
-      ln([x + 4, y + 3], [x + 4, y + h - 3], .8, '#3a3033') + ln([x + w - 4, y + 3], [x + w - 4, y + h - 3], .8, '#3a3033');
+    /* La tour de poids des machines Basic-Fit : deux tubes orange reliés par une arche, la pile grise au milieu */
+    const room = Math.abs(tr), n = Math.floor((h - 10 - room) / 6), sel = Math.max(3, Math.round(n * .35));
+    const lift = room * (tr < 0 ? 1 - t : t), top = y + h - 4 - n * 6, xl = x - 2.5, xr = x + w + 2.5, yb = y + h + 2;
+    const arch = 'M' + xl + ' ' + yb + 'V' + (y + 9) + 'Q' + xl + ' ' + (y - 3) + ' ' + (x + w / 2) + ' ' + (y - 3) + 'Q' + xr + ' ' + (y - 3) + ' ' + xr + ' ' + (y + 9) + 'V' + yb;
+    let s = '<rect x="' + x + '" y="' + (y + 2) + '" width="' + w + '" height="' + (h - 2) + '" fill="#2d2c30"/>' +
+      '<rect x="' + (x + 1) + '" y="' + (y + 2) + '" width="' + (w - 2) + '" height="' + (h - 2) + '" fill="none" stroke="#45434a" stroke-width="1"/>' +
+      ln([x + 4, y + 4], [x + 4, y + h - 3], .8, '#55535a') + ln([x + w - 4, y + 4], [x + w - 4, y + h - 3], .8, '#55535a');
     for (let i = 0; i < n; i++) {
       const mv = i < sel, py = top + i * 6 - (mv ? lift : 0);
-      s += '<rect x="' + (x + 3) + '" y="' + r1(py) + '" width="' + (w - 6) + '" height="4.7" rx="1" fill="' + (mv ? '#6e6064' : '#2e2628') + '"/>' +
-        '<rect x="' + (x + 3.6) + '" y="' + r1(py + .5) + '" width="' + (w - 7.2) + '" height="1" rx=".5" fill="' + (mv ? '#a3979a' : '#473d40') + '"/>';
+      s += '<rect x="' + (x + 3) + '" y="' + r1(py) + '" width="' + (w - 6) + '" height="4.7" rx="1" fill="' + (mv ? '#26242a' : '#18171b') + '" stroke="' + (mv ? '#6d6a72' : '#3a383e') + '" stroke-width=".7"/>';
     }
     s += '<rect x="' + (x + w / 2 - 3.5) + '" y="' + r1(top + (sel - 1) * 6 - lift + 1) + '" width="7" height="2.7" rx="1" fill="' + C.knob + '"/>';
-    /* carénage Matrix : chapeau arrondi en haut, flancs gris et pied large, comme les tours de poids de la salle */
-    s += '<rect x="' + (x - 2.5) + '" y="' + (y - 6) + '" width="' + (w + 5) + '" height="8" rx="3.5" fill="' + C.fr + '" stroke="' + INK + '" stroke-width="1.2"/>' +
-      '<rect x="' + (x - 1) + '" y="' + (y - 5) + '" width="' + (w + 2) + '" height="1.3" rx=".6" fill="' + C.frHi + '" opacity=".7"/>' +
-      '<rect x="' + (x - 3.5) + '" y="' + (y + h - 2) + '" width="' + (w + 7) + '" height="4.5" rx="2" fill="' + C.fr + '" stroke="' + INK + '" stroke-width="1.2"/>' +
-      '<rect x="' + (x - .5) + '" y="' + (y + 8) + '" width="2.2" height="' + (h - 16) + '" rx="1" fill="' + C.frHi + '" opacity=".35"/>';
     s += ln([x + w / 2, y + 2], [x + w / 2, top - lift], 1.2, C.cab);
+    s += '<path d="' + arch + '" fill="none" stroke="' + INK + '" stroke-width="7.4" stroke-linejoin="round"/><path d="' + arch + '" fill="none" stroke="' + C.fr + '" stroke-width="5"/>' +
+      '<path d="M' + (xl - 1) + ' ' + (yb - 4) + 'V' + (y + 9) + 'Q' + (xl - 1) + ' ' + (y - 4) + ' ' + (x + w / 2) + ' ' + (y - 4) + '" fill="none" stroke="' + C.frHi + '" stroke-width="1.3" opacity=".85"/>' +
+      '<rect x="' + (xl - 4) + '" y="' + (yb - 1) + '" width="' + (xr - xl + 8) + '" height="4.5" rx="2" fill="' + C.blk + '" stroke="' + INK + '" stroke-width="1.2"/>';
     return s;
   }
   const plates = (Q, r) => ci(Q, r + 1.2, INK) + '<circle cx="' + r1(Q[0]) + '" cy="' + r1(Q[1]) + '" r="' + r + '" fill="' + C.plate + '" stroke="#473c40" stroke-width="2"/>' +
-    '<circle cx="' + r1(Q[0]) + '" cy="' + r1(Q[1]) + '" r="' + r1(r * .62) + '" fill="none" stroke="' + EMB + '" stroke-width="1.5" opacity=".85"/>' +
+    '<circle cx="' + r1(Q[0]) + '" cy="' + r1(Q[1]) + '" r="' + r1(r * .62) + '" fill="none" stroke="' + C.bfo + '" stroke-width="1.6" opacity=".95"/>' +
     '<path d="M' + r1(Q[0] - r * .7) + ' ' + r1(Q[1] - r * .45) + 'A' + r1(r * .84) + ' ' + r1(r * .84) + ' 0 0 1 ' + r1(Q[0] - r * .1) + ' ' + r1(Q[1] - r * .83) + '" fill="none" stroke="#fff" stroke-width="1.1" opacity=".3" stroke-linecap="round"/>' + ci(Q, r * .2, C.steel);
   const dumb = Q => ci(Q, 7.6, INK) + '<circle cx="' + r1(Q[0]) + '" cy="' + r1(Q[1]) + '" r="6.4" fill="' + C.plate + '" stroke="#5e5256" stroke-width="1.8"/>' +
-    '<path d="M' + r1(Q[0] - 4.3) + ' ' + r1(Q[1] - 2.6) + 'A5 5 0 0 1 ' + r1(Q[0] - .4) + ' ' + r1(Q[1] - 5) + '" fill="none" stroke="#fff" stroke-width="1" opacity=".35" stroke-linecap="round"/>' + ci(Q, 2.1, EMB);
+    '<path d="M' + r1(Q[0] - 4.3) + ' ' + r1(Q[1] - 2.6) + 'A5 5 0 0 1 ' + r1(Q[0] - .4) + ' ' + r1(Q[1] - 5) + '" fill="none" stroke="#fff" stroke-width="1" opacity=".35" stroke-linecap="round"/>' + ci(Q, 2.1, C.bfo);
 
   /* Molette de réglage orange des machines Matrix (siège, dossier, amplitude) */
   const knob = Q => ln([Q[0] - 3.4, Q[1]], [Q[0], Q[1]], 2.2, C.steel) + ci(Q, 4.1, INK) + ci(Q, 3.2, C.knob) + ci([Q[0] - .9, Q[1] - .9], 1.1, C.knobHi);
