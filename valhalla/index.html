@@ -1647,7 +1647,7 @@ const EXOS = {
     f: 'Au milieu de la poitrine. Si tu sens surtout les épaules, baisse le siège d’un cran.',
     v: 's', base: { hip: [78, 140], lean: -4, foot: [114, 174], hc: [92, 54, 58] }, A: { ha: 4 }, B: { ha: 27 },
     m: [['l', [58, 182], [58, 52], 5, 'fr'], ['l', [58, 54], [94, 54], 5, 'fr'], ['r', 60, 90, 8, 56, -4, 'pad'], ['r', 62, 146, 44, 7, 0, 'padd'], ['l', [84, 153], [84, 182], 4, 'fr'],
-      ['l', [92, 54], 'hand', 3.2, 'steel', 'f'], ['c', 'hand', 3.4, 'grip', 'f'], STK(150)]
+      ['l', [92, 54], 'hand', 3.2, 'steel', 'f'], ['c', 'hand', 3.4, 'grip', 'f'], STK(22), ['l', [33, 179], [58, 179], 3.5, 'fr'], ['l', [44, 64], [58, 64], 4, 'fr']]
   },
   incline_db: {
     pz: 'haut', n: 'Développé incliné aux haltères', lab: 'Banc réglable + haltères', zone: 'Poids libres', sets: 4, reps: '8 à 10', rest: 120,
@@ -1686,16 +1686,16 @@ const EXOS = {
       ['l', [26, 22], 'handL', 1.3, 'cab', 'f', 1], ['c', 'handL', 3.2, 'grip', 'f', 1]]
   },
   dips_assist: {
-    pz: 'bas', n: 'Dips à la machine assistée', lab: 'ASSISTED DIP / CHIN', zone: 'Machines guidées', sets: 3, reps: '8 à 12', rest: 90,
-    mus: ['pecs', 'triceps', 'delts'], q: 'dips machine assistée exécution',
-    s: ['Choisis le contrepoids : plus tu mets lourd, plus la machine t’aide.', 'Attrape les poignées basses et pose les genoux sur le coussin.'],
-    p: ['Buste penché en avant d’environ 20° : c’est ce qui met les pecs au travail.', 'Épaules basses, loin des oreilles.'],
-    x: ['Descends jusqu’à ce que tes bras forment un angle droit.', 'Remonte en poussant, sans verrouiller sèchement les coudes.'],
-    e: ['Descendre trop bas en forçant sur les épaules.', 'Rester droit comme un piquet : tout passe dans les triceps.'],
+    pz: 'bas', n: 'Dips à la chaise romaine', lab: 'CHAISE ROMAINE (dips)', zone: 'Zone abdos et tractions', sets: 3, reps: '6 à 12', rest: 90,
+    mus: ['pecs', 'triceps', 'delts'], q: 'dips chaise romaine pectoraux exécution',
+    s: ['Monte sur les marches de la chaise romaine et attrape les deux poignées parallèles, dos tourné au dossier.', 'Si tu n’arrives pas encore à 6 répétitions, fais des négatives : monte bras tendus, descends en 4 secondes.'],
+    p: ['Bras tendus, épaules basses, genoux pliés et chevilles croisées derrière toi.', 'Penche le buste en avant : c’est ce qui fait travailler les pecs plutôt que les triceps.'],
+    x: ['Descends lentement en pliant les coudes, jusqu’à ce que tes épaules arrivent au niveau des coudes.', 'Remonte en poussant fort sur les poignées, sans verrouiller les coudes en haut.'],
+    e: ['Descendre trop bas : les épaules souffrent.', 'Rester droit comme un I : ce sont alors surtout les triceps.'],
     f: 'Le bas des pecs, qui dessine le contour de la poitrine, et les triceps. Plus tu te penches en avant, plus ce sont les pecs.',
-    v: 's', base: { hand: [103, 113] }, A: { hip: [93, 132], lean: 18, foot: [71, 168] }, B: { hip: [96, 112], lean: 8, foot: [74, 148] },
-    m: [['l', [60, 182], [60, 20], 5, 'fr'], ['l', [60, 22], [112, 22], 5, 'fr'], ['l', [60, 113], [112, 113], 4, 'fr'], ['l', [96, 113], [112, 113], 4.5, 'grip', 'f'],
-      ['l', ['knee', -9, 13], [60, 162], 3, 'steel'], ['rp', ['knee', -9, 10], 30, 6, 0, 'pad'], ['stack', 142, 66, 22, 112, -20]]
+    v: 's', base: { hand: [103, 113] }, A: { hip: [93, 132], lean: 18, foot: [73, 158] }, B: { hip: [96, 112], lean: 8, foot: [76, 140] },
+    m: [['l', [56, 182], [56, 16], 5, 'fr'], ['l', [56, 18], [104, 18], 4.5, 'fr'], ['l', [96, 18], [104, 18], 4.5, 'grip'], ['r', 46, 176, 30, 6, 0, 'fr'], ['r', 58, 40, 8, 48, 0, 'pad'],
+      ['l', [56, 113], [112, 113], 4, 'fr'], ['l', [98, 113], [112, 113], 4.5, 'grip', 'f']]
   },
   crunch_machine: {
     n: 'Crunch à la machine', lab: 'ABDOMINAL CRUNCH', zone: 'Machines guidées', sets: 3, reps: '15', rest: 60,
@@ -1707,7 +1707,7 @@ const EXOS = {
     f: 'Toute la sangle abdominale, surtout le haut.',
     v: 's', base: { hip: [78, 140], foot: [112, 174], handL: [-4, 12] }, A: { lean: -6 }, B: { lean: 30, neck: 12 },
     m: [['l', [54, 182], [54, 84], 5, 'fr'], ['r', 54, 92, 8, 54, -6, 'pad'], ['r', 62, 146, 44, 7, 0, 'padd'], ['l', [84, 153], [84, 182], 4, 'fr'],
-      ['c', [120, 168], 5, 'pad'], ['l', [120, 172], [104, 182], 3, 'fr'], ['l', 'hip', ['~', 30, -15], 3.2, 'steel'], ['l', ['~', 30, -15], ['~', -9, -14], 3.2, 'steel'], ['l', ['~', -9, -14], 'hand', 3.2, 'steel'], ['c', 'hand', 3.4, 'grip', 'f'], STK(150)]
+      ['c', [120, 168], 5, 'pad'], ['l', [120, 172], [104, 182], 3, 'fr'], ['l', 'hip', ['~', 30, -15], 3.2, 'steel'], ['l', ['~', 30, -15], ['~', -9, -14], 3.2, 'steel'], ['l', ['~', -9, -14], 'hand', 3.2, 'steel'], ['c', 'hand', 3.4, 'grip', 'f'], STK(18), ['l', [29, 179], [54, 179], 3.5, 'fr'], ['l', [40, 90], [54, 90], 4, 'fr']]
   },
 
   /* ======================= DOS ======================= */
@@ -1724,27 +1724,28 @@ const EXOS = {
       ['bar', 'handL', 'handR', 10, 'grip', 'b'], ['l', [100, 155], [100, 184], 5, 'fr'], ['r', 76, 138, 48, 7, 0, 'pad'], ['r', 80, 147, 40, 8, 0, 'padd', 'm']]
   },
   seated_row: {
-    n: 'Tirage horizontal assis', lab: 'SEATED ROW', zone: 'Machines guidées ou poulie basse', sets: 4, reps: '10', rest: 120,
-    mus: ['back', 'lats', 'biceps'], q: 'tirage horizontal poulie basse rowing assis exécution',
-    s: ['Poignées à hauteur du nombril.', 'Tu dois tendre les bras pour attraper les poignées.'],
-    p: ['Buste droit, poitrine sortie.', 'Épaules basses.'],
-    x: ['Tire les coudes loin derrière toi, le long du corps.', 'Serre les omoplates 1 seconde, puis reviens en laissant les épaules s’étirer vers l’avant.'],
-    e: ['Arrondir le dos.', 'Tirer seulement avec les bras, sans bouger les omoplates.'],
+    n: 'Tirage horizontal assis', lab: 'SEATED ROW', zone: 'Machines guidées', sets: 4, reps: '10', rest: 120,
+    mus: ['back', 'lats', 'biceps'], q: 'seated row machine appui poitrine exécution',
+    s: ['Règle le siège (molette orange) pour que les poignées arrivent à hauteur de ta poitrine.', 'Règle l’appui poitrine pour attraper les poignées bras tendus, sans décoller le buste.'],
+    p: ['Assis, poitrine collée contre l’appui, pieds à plat.', 'Prends les poignées : verticales pour le milieu du dos, horizontales pour le haut.'],
+    x: ['Tire les poignées vers toi en ramenant les coudes en arrière, serrés le long du corps.', 'Serre les omoplates 1 seconde, puis tends les bras lentement sans perdre l’appui.'],
+    e: ['Décoller la poitrine de l’appui pour tirer avec le dos en arrière.', 'Monter les épaules vers les oreilles.'],
     f: 'Le milieu du dos, entre les omoplates.',
-    v: 's', base: { hip: [70, 146], foot: [112, 160] }, A: { lean: 6, hand: [116, 114] }, B: { lean: -8, hand: [81, 120] },
-    m: [['l', [50, 153], [92, 153], 7, 'padd'], ['l', [60, 157], [60, 182], 4, 'fr'], ['l', [86, 157], [86, 182], 4, 'fr'], ['l', [117, 148], [121, 170], 5, 'fr'], ['l', [120, 170], [120, 182], 4, 'fr'],
-      ['l', [142, 118], [142, 182], 4, 'fr'], ['c', [142, 118], 4.5, 'steel'], ['l', [142, 118], 'hand', 1.3, 'cab', 'f'], ['c', 'hand', 3.4, 'grip', 'f'], STK(154)]
+    v: 's', base: { hip: [70, 146], lean: 0, foot: [106, 176] }, A: { hand: [120, 100] }, B: { hand: [84, 104] },
+    m: [['r', 46, 150, 46, 7, 0, 'padd'], ['l', [62, 157], [62, 182], 4, 'fr'], ['l', ['~', 6, 15], ['~', 30, 15], 9, 'pad', 'f'], ['l', ['~', 22, 19], [132, 120], 4, 'fr'],
+      ['l', [132, 182], [132, 52], 5, 'fr'], ['l', [132, 54], [150, 54], 5, 'fr'], ['c', [134, 62], 4, 'steel'], ['l', [134, 62], 'hand', 3.2, 'steel', 'f'], ['l', ['hand', 0, -5], ['hand', 0, 5], 3.6, 'grip', 'f'],
+      STK(150), ['l', [62, 179], [161, 179], 3.5, 'fr']]
   },
   assisted_pullup: {
-    n: 'Tractions assistées', lab: 'ASSISTED DIP / CHIN', zone: 'Machines guidées', sets: 3, reps: '6 à 10', rest: 120,
-    mus: ['lats', 'biceps'], q: 'tractions assistées machine exécution',
-    s: ['Contrepoids : commence avec environ la moitié de ton poids, puis réduis l’aide semaine après semaine.', 'Prise large, paumes vers l’avant, genoux sur le coussin.'],
-    p: ['Corps gainé, poitrine tournée vers la barre.', 'Baisse les épaules avant de tirer.'],
-    x: ['Tire jusqu’à passer le menton au-dessus des mains.', 'Redescends en 3 secondes jusqu’aux bras tendus.'],
-    e: ['Les demi-répétitions.', 'Hausser les épaules en haut du mouvement.'],
+    n: 'Tractions à la chaise romaine', lab: 'CHAISE ROMAINE (tractions)', zone: 'Zone abdos et tractions', sets: 3, reps: '4 à 8', rest: 120,
+    mus: ['lats', 'biceps'], q: 'tractions chaise romaine débutant négatives',
+    s: ['Attrape la barre du haut de la chaise romaine, prise plus large que les épaules, paumes vers l’avant.', 'Si tu n’arrives pas encore à 4 tractions : saute pour arriver en haut, puis descends en 4 secondes (négatives).'],
+    p: ['Suspendu bras tendus, genoux pliés, chevilles croisées.', 'Épaules basses, poitrine sortie.'],
+    x: ['Tire les coudes vers le bas et l’arrière jusqu’à passer le menton au-dessus de la barre.', 'Redescends lentement jusqu’aux bras tendus.'],
+    e: ['Se balancer pour s’aider.', 'Remonter à moitié : la répétition compte quand le menton passe la barre.'],
     f: 'Le grand dorsal et les biceps.',
     v: 'f', back: 1, noFeet: 1, base: { hand: [66, 34], kneel: 1 }, A: { hip: [100, 124] }, B: { hip: [100, 98] },
-    m: [['l', [34, 182], [34, 16], 5, 'fr', 'b', 1], ['l', [34, 34], [166, 34], 4.5, 'grip'], ['l', ['hip', 0, 45], [34, 156], 3, 'steel'], ['rp', ['hip', 0, 42], 46, 7, 0, 'pad']]
+    m: [['l', [34, 182], [34, 16], 5, 'fr', 'b', 1], ['l', [34, 34], [166, 34], 4.5, 'grip'], ['l', [34, 112], [62, 112], 4, 'fr', 'b', 1], ['l', [50, 112], [62, 112], 4.5, 'grip', 'b', 1], ['l', [24, 182], [44, 182], 4, 'fr', 'b', 1]]
   },
   straight_arm: {
     n: 'Pull-over à la poulie haute', lab: 'Poulie haute + barre droite', zone: 'Poulies réglables', sets: 3, reps: '12', rest: 75,
@@ -1758,15 +1759,16 @@ const EXOS = {
     m: [['l', [178, 182], [178, 10], 5, 'fr'], ['l', [178, 12], [146, 12], 5, 'fr'], ['c', [148, 16], 4.5, 'steel'], ['l', [148, 16], 'hand', 1.3, 'cab', 'f'], ['c', 'hand', 3.6, 'grip', 'f'], STK(152)]
   },
   back_ext: {
-    n: 'Extensions lombaires au banc à 45°', lab: 'BACK EXTENSION', zone: 'Banc à lombaires', sets: 3, reps: '12', rest: 75,
-    mus: ['lombaires', 'glutes', 'hams'], q: 'extension lombaires banc 45 degrés exécution',
-    s: ['Coussin juste sous le pli des hanches : tu dois pouvoir te plier librement.', 'Chevilles calées sous les boudins.'],
-    p: ['Bras croisés sur la poitrine.', 'Dos plat, regard vers le sol.'],
-    x: ['Descends le buste en pliant aux hanches.', 'Remonte jusqu’à être aligné avec tes jambes, pas plus haut. Serre les fessiers.'],
-    e: ['Cambrer en haut du mouvement.', 'Remonter avec un à-coup.'],
-    f: 'Le bas du dos, les fessiers et l’arrière des cuisses.',
-    v: 's', base: { hip: [96, 118], foot: [50, 164], fa: 50, handL: [9, 5], as: .62 }, A: { lean: 118, neck: -22 }, B: { lean: 50, neck: -4 },
-    m: [['l', [100, 135], [108, 182], 4.5, 'fr'], ['rp', [98, 131], 28, 8, -45, 'pad'], ['l', [44, 160], [58, 182], 4, 'fr'], ['c', [44, 160], 5, 'pad'], ['l', [53, 173], [63, 166], 5, 'fr']]
+    n: 'Extensions lombaires à la machine', lab: 'BACK EXTENSION', zone: 'Machines guidées', sets: 3, reps: '12', rest: 75,
+    mus: ['lombaires', 'glutes', 'hams'], q: 'back extension machine assise lombaires exécution',
+    s: ['Règle le dossier (molette orange) pour que le rouleau arrive en haut de ton dos.', 'Pieds sur le repose-pieds, sangle de cuisses serrée.'],
+    p: ['Assis au fond du siège, bras croisés sur la poitrine.', 'Buste penché en avant, dos droit.'],
+    x: ['Pousse le dossier vers l’arrière en redressant le buste, jusqu’à être légèrement penché en arrière.', 'Reviens lentement vers l’avant.'],
+    e: ['Partir d’un coup avec élan : le bas du dos n’aime pas.', 'Aller trop loin en arrière.'],
+    f: 'Le bas du dos, autour de la colonne.',
+    v: 's', base: { hip: [80, 142], foot: [116, 168], handL: [10, 8], elbL: [16, 2], as: .62 }, A: { lean: 34, neck: -6 }, B: { lean: -14, neck: 2 },
+    m: [['r', 56, 148, 46, 7, 0, 'padd'], ['l', [74, 155], [74, 182], 4, 'fr'], ['l', ['~', 2, -15], ['~', 22, -15], 9, 'pad'], ['l', ['~', 14, -19], [66, 150], 3.2, 'steel'],
+      ['l', [110, 172], [128, 168], 5, 'fr'], ['l', [118, 170], [118, 182], 4, 'fr'], STK(20), ['l', [31, 179], [74, 179], 3.5, 'fr']]
   },
 
   /* ======================= JAMBES ======================= */
@@ -1803,7 +1805,7 @@ const EXOS = {
     f: 'Le devant des cuisses, juste au-dessus du genou.',
     v: 's', base: { hip: [78, 140], lean: -14, hand: [80, 138] }, A: { b1: 84, b2: -3 }, B: { b1: 84, b2: 80 },
     m: [['l', [70, 144], [59, 96], 7, 'pad'], ['r', 62, 146, 50, 7, 0, 'padd'], ['l', [70, 153], [70, 182], 4, 'fr'], ['l', [106, 153], [106, 182], 4, 'fr'],
-      ['l', 'knee', 'ankF', 3.2, 'steel', 'f'], ['c', 'knee', 3.5, 'steel', 'f'], ['c', 'ankF', 5.5, 'pad', 'f'], STK(156)]
+      ['l', 'knee', 'ankF', 3.2, 'steel', 'f'], ['c', 'knee', 3.5, 'steel', 'f'], ['c', 'ankF', 5.5, 'pad', 'f'], STK(24), ['l', [35, 179], [70, 179], 3.5, 'fr']]
   },
   leg_curl: {
     n: 'Leg curl assis', lab: 'SEATED LEG CURL', zone: 'Machines guidées', sets: 3, reps: '12', rest: 75,
@@ -1815,7 +1817,7 @@ const EXOS = {
     f: 'L’arrière des cuisses.',
     v: 's', base: { hip: [78, 140], lean: -14, hand: [80, 138] }, A: { b1: 84, b2: 78 }, B: { b1: 84, b2: -16 },
     m: [['l', [70, 144], [59, 96], 7, 'pad'], ['r', 62, 146, 50, 7, 0, 'padd'], ['l', [70, 153], [70, 182], 4, 'fr'], ['l', [106, 153], [106, 182], 4, 'fr'],
-      ['l', 'knee', 'ankB', 3.2, 'steel', 'f'], ['c', 'knee', 3.5, 'steel', 'f'], ['c', 'ankB', 5.5, 'pad', 'f'], ['r', 95, 126, 24, 6, 0, 'pad', 'f'], STK(156)]
+      ['l', 'knee', 'ankB', 3.2, 'steel', 'f'], ['c', 'knee', 3.5, 'steel', 'f'], ['c', 'ankB', 5.5, 'pad', 'f'], ['r', 95, 126, 24, 6, 0, 'pad', 'f'], STK(24), ['l', [35, 179], [70, 179], 3.5, 'fr']]
   },
   rdl: {
     n: 'Soulevé de terre jambes tendues', lab: 'Deux haltères', zone: 'Poids libres', sets: 3, reps: '10', rest: 90,
@@ -1829,15 +1831,16 @@ const EXOS = {
     m: [['db', 'handF', 'b'], ['db', 'hand', 'f']]
   },
   calf: {
-    n: 'Extensions mollets debout', lab: 'Smith machine + marche', zone: 'Poids libres', sets: 4, reps: '15', rest: 60,
-    mus: ['calves'], q: 'extension mollets debout smith machine exécution',
-    s: ['Barre sur les trapèzes, avant des pieds sur une marche ou un disque.', 'Talons dans le vide.'],
-    p: ['Jambes tendues, corps gainé.', 'Regard devant.'],
-    x: ['Monte sur la pointe des pieds le plus haut possible, tiens 1 seconde.', 'Descends les talons sous la marche pour bien étirer.'],
-    e: ['Rebondir en bas.', 'Faire des petites répétitions rapides.'],
+    n: 'Mollets debout à la machine', lab: 'STANDING CALF', zone: 'Machines guidées', sets: 4, reps: '12 à 15', rest: 60,
+    mus: ['calves'], q: 'standing calf raise machine exécution',
+    s: ['Règle la hauteur des coussins d’épaules (molette orange) pour être un peu fléchi en dessous.', 'Avant des pieds sur la marche, talons dans le vide.'],
+    p: ['Épaules sous les coussins, jambes presque tendues.', 'Pieds parallèles, écartés de la largeur des hanches.'],
+    x: ['Monte sur la pointe des pieds le plus haut possible et tiens 1 seconde.', 'Redescends lentement jusqu’à sentir l’étirement derrière la jambe.'],
+    e: ['Rebondir en bas : tu perds l’étirement qui fait grossir le mollet.', 'Plier les genoux pour pousser.'],
     f: 'Les mollets, avec une brûlure en fin de série.',
     v: 's', base: { lean: 2, elbL: [14, -3], handL: [-2, -5], as: .62 }, A: { hip: [98, 111], foot: [100, 179], toe: [113, 176] }, B: { hip: [99, 100.5], foot: [103, 168], toe: [113, 176] },
-    m: [['l', [96, 182], [96, 12], 4, 'fr'], ['l', [79, 12], [113, 12], 5, 'fr'], ['r', 104, 178, 26, 5, 0, 'padd'], ['plates', ['sh', -4, -3], 13, 'b'], ['c', ['sh', -4, -3], 2.6, 'grip', 'f']]
+    m: [['l', [70, 182], [70, 30], 5, 'fr'], ['l', [70, 34], [86, 34], 5, 'fr'], ['l', [86, 34], ['sh', -2, -7], 4, 'fr'], ['rp', ['sh', 1, -6], 16, 6, 0, 'pad', 'f'], ['r', 104, 177, 26, 5, 0, 'padd'], ['l', [96, 182], [134, 182], 4, 'fr'],
+      STK(28), ['l', [39, 179], [70, 179], 3.5, 'fr'], ['k', [76, 64], 'b']]
   },
 
   /* ======================= ÉPAULES ======================= */
@@ -1899,7 +1902,7 @@ const EXOS = {
     m: [['db', 'handL', 'f', 1]]
   },
   leg_raise: {
-    n: 'Relevés de genoux à la chaise romaine', lab: 'LEG RAISE · chaise romaine', zone: 'Zone abdos', sets: 3, reps: '12', rest: 60,
+    n: 'Relevés de genoux à la chaise romaine', lab: 'CHAISE ROMAINE (relevés de jambes)', zone: 'Zone abdos et tractions', sets: 3, reps: '12', rest: 60,
     mus: ['abs'], q: 'relevé de genoux chaise romaine abdos exécution',
     s: ['Avant-bras sur les coussins, dos contre le dossier.', 'Mains sur les poignées.'],
     p: ['Épaules basses.', 'Jambes pendantes, sans toucher le sol.'],
@@ -1943,7 +1946,7 @@ const EXOS = {
     f: 'Le bas du biceps, près du coude.',
     v: 's', base: { hip: [70, 144], lean: 14, foot: [104, 176] }, A: { a1: 52, a2: 80 }, B: { a1: 52, a2: 166 },
     m: [['r', 54, 150, 36, 7, 0, 'padd'], ['l', [72, 157], [72, 182], 4, 'fr'], ['l', [100, 118], [100, 182], 5, 'fr'], ['l', [86, 107], [112, 119], 8, 'pad'],
-      ['l', ['elb', 1.8, -.8], 'hand', 3.2, 'steel', 'f'], ['c', 'hand', 3.4, 'grip', 'f'], STK(152)]
+      ['l', ['elb', 1.8, -.8], 'hand', 3.2, 'steel', 'f'], ['c', 'hand', 3.4, 'grip', 'f'], STK(152), ['l', [100, 179], [152, 179], 3.5, 'fr']]
   },
   hammer: {
     n: 'Curl marteau aux haltères', lab: 'Deux haltères', zone: 'Poids libres', sets: 3, reps: '12', rest: 60,
@@ -1968,16 +1971,16 @@ const EXOS = {
     m: [['l', [178, 182], [178, 8], 5, 'fr'], ['l', [178, 10], [120, 10], 5, 'fr'], ['c', [122, 14], 4.5, 'steel'], ['l', [122, 14], 'hand', 1.3, 'cab', 'f'], ['l', ['hand', -1, -4], ['hand', 1, 5], 3.4, 'grip', 'f'], STK(152)]
   },
   seated_dip: {
-    n: 'Dips assis à la machine', lab: 'SEATED DIP', zone: 'Machines guidées', sets: 3, reps: '10', rest: 90,
-    mus: ['triceps', 'pecs'], q: 'seated dip machine triceps exécution',
-    s: ['Siège réglé pour que tes coudes soient pliés à 90° au départ.', 'Attache la ceinture s’il y en a une.'],
-    p: ['Dos collé, buste droit.', 'Coudes serrés le long du corps.'],
-    x: ['Pousse les poignées vers le bas jusqu’à tendre les bras.', 'Remonte en 3 secondes.'],
-    e: ['Se pencher en avant pour s’aider du poids du corps.', 'Écarter les coudes.'],
+    n: 'Extension triceps à la machine', lab: 'TRICEPS EXTENSION', zone: 'Machines guidées', sets: 3, reps: '10 à 12', rest: 90,
+    mus: ['triceps'], q: 'triceps extension machine assise exécution',
+    s: ['Règle le siège (molette orange) pour que tes coudes reposent sur le coussin, alignés avec l’axe de la machine.', 'Attrape les poignées, dos contre le dossier.'],
+    p: ['Coudes posés sur le coussin, écartés de la largeur des épaules.', 'Avant-bras remontés, mains près du visage.'],
+    x: ['Tends les bras vers l’avant et le bas jusqu’à ce qu’ils soient tendus, sans bouger les coudes.', 'Serre les triceps 1 seconde, reviens lentement.'],
+    e: ['Décoller les coudes du coussin.', 'Pousser avec les épaules en se penchant.'],
     f: 'Les triceps, sur toute la longueur.',
-    v: 's', base: { hip: [80, 140], lean: 4, foot: [114, 174], hc: [54, 130, 39.8] }, A: { ha: 116.6 }, B: { ha: 75.3 },
-    m: [['l', [54, 182], [54, 120], 5, 'fr'], ['r', 62, 92, 8, 54, 4, 'pad'], ['r', 64, 146, 44, 7, 0, 'padd'], ['l', [86, 153], [86, 182], 4, 'fr'],
-      ['l', [54, 130], 'hand', 3.2, 'steel', 'f'], ['l', ['hand', -6, 0], ['hand', 6, 0], 4, 'grip', 'f'], STK(150)]
+    v: 's', base: { hip: [80, 142], lean: -4, foot: [114, 174], a1: 66 }, A: { a2: 168 }, B: { a2: 76 },
+    m: [['r', 58, 148, 46, 7, 0, 'padd'], ['l', [80, 155], [80, 182], 4, 'fr'], ['l', ['~', 0, -15], ['~', 36, -15], 9, 'pad'], ['l', ['~', 6, 3], ['elb', 3, 5], 7, 'pad', 'f'],
+      ['l', ['elb', 3, 9], [116, 182], 4, 'fr'], ['l', 'elb', 'hand', 3.2, 'steel', 'f'], ['l', ['hand', 0, -4], ['hand', 0, 4], 3.6, 'grip', 'f'], STK(22), ['l', [33, 179], [80, 179], 3.5, 'fr']]
   },
   overhead_ext: {
     n: 'Extension triceps au-dessus de la tête', lab: 'Poulie haute + corde', zone: 'Poulies réglables', sets: 3, reps: '12', rest: 60,
@@ -1994,8 +1997,8 @@ const EXOS = {
 
 const SESSIONS = {
   pecs: { n: 'Pectoraux', sub: 'Haut, milieu, bas et intérieur des pecs + abdos', dur: 70, hero: 'incline_db', ex: ['incline_db', 'chest_press', 'low_fly', 'pec_deck', 'dips_assist', 'crunch_machine'] },
-  dos: { n: 'Dos', sub: 'Dos complet', dur: 60, hero: 'lat_pulldown', ex: ['lat_pulldown', 'seated_row', 'assisted_pullup', 'straight_arm', 'back_ext'] },
-  jambes: { n: 'Jambes', sub: 'Cuisses, fessiers, mollets', dur: 70, hero: 'leg_press', ex: ['leg_press', 'smith_squat', 'leg_ext', 'leg_curl', 'rdl', 'calf'] },
+  dos: { n: 'Dos', sub: 'Dos complet', dur: 60, hero: 'lat_pulldown', ex: ['lat_pulldown', 'seated_row', 'low_row', 'straight_arm', 'back_ext'] },
+  jambes: { n: 'Jambes', sub: 'Cuisses, fessiers, mollets', dur: 70, hero: 'leg_press', ex: ['leg_press', 'hack_squat', 'leg_ext', 'leg_curl', 'rdl', 'calf'] },
   epaules: { n: 'Épaules', sub: 'Épaules + trapèzes + abdos', dur: 65, hero: 'shoulder_press', ex: ['shoulder_press', 'lateral_raise', 'reverse_fly', 'face_pull', 'shrug', 'leg_raise', 'plank'] },
   bras: { n: 'Bras', sub: 'Biceps + triceps', dur: 55, hero: 'preacher', ex: ['ez_curl', 'preacher', 'hammer', 'pushdown', 'seated_dip', 'overhead_ext'] }
 };
@@ -2051,6 +2054,18 @@ Object.assign(EXOS, {
     m: [['l', [22, 182], [22, 14], 5, 'fr', 'b', 1], ['l', [22, 14], [178, 14], 5, 'fr'], ['c', [26, 172], 4.5, 'steel', 'b', 1],
       ['l', [26, 172], 'handL', 1.3, 'cab', 'f', 1], ['c', 'handL', 3.2, 'grip', 'f', 1]]
   },
+  hack_squat: {
+    n: 'Hack squat ou pendulum squat', lab: 'HACK SQUAT / PENDULUM', zone: 'Machines à disques', sets: 4, reps: '8 à 10', rest: 150,
+    mus: ['quads', 'glutes'], q: 'hack squat pendulum squat machine exécution',
+    s: ['Dos contre le dossier, épaules sous les coussins.', 'Pieds au milieu du plateau, écartés de la largeur des épaules. Débloque la sécurité.'],
+    p: ['Jambes presque tendues, dos et tête collés au dossier.', 'Mains sur les poignées près des épaules.'],
+    x: ['Descends lentement en pliant les genoux jusqu’à ce que les cuisses soient parallèles au plateau.', 'Pousse avec tout le pied pour remonter, sans verrouiller les genoux en haut.'],
+    e: ['Décoller les talons.', 'Laisser les genoux rentrer vers l’intérieur.'],
+    f: 'L’avant des cuisses et les fessiers, sans charger le dos.',
+    v: 's', base: { foot: [116, 172], fa: -18, elbL: [14, -3], handL: [-2, -5], as: .62, lean: -20, neck: -4 }, A: { hip: [96, 148] }, B: { hip: [84, 110] },
+    m: [['l', [50, 70], [92, 182], 4, 'fr'], ['l', [62, 64], [104, 176], 4, 'fr'], ['l', ['~', 2, -9], ['~', 40, -9], 9, 'pad'], ['rp', ['~', -1, -3], 9, 5, 0, 'pad', 'f'],
+      ['l', [104, 176], [138, 164], 6, 'fr'], ['l', [138, 164], [142, 182], 4, 'fr'], ['l', [82, 182], [146, 182], 4, 'fr']]
+  },
   pushups: {
     pz: 'milieu', n: 'Pompes', lab: 'Au sol, sur un tapis', zone: 'Zone fonctionnelle', sets: 3, reps: '12 à 15', rest: 60,
     mus: ['pecs', 'triceps', 'delts'], q: 'pompes technique parfaite',
@@ -2064,16 +2079,16 @@ Object.assign(EXOS, {
   },
   /* ---------- Dos ---------- */
   low_row: {
-    n: 'Rowing à la machine', lab: 'LOW ROW / ROW', zone: 'Machines guidées', sets: 4, reps: '10', rest: 90,
-    mus: ['back', 'lats', 'biceps'], q: 'low row machine rowing technique',
-    s: ['Règle le plastron pour que tes bras tendus attrapent les poignées sans arrondir le dos.'],
-    p: ['Poitrine contre le plastron, pieds bien calés.', 'Épaules basses, loin des oreilles.'],
-    x: ['Tire les poignées vers le bas des côtes en serrant les omoplates.', 'Tiens 1 seconde, reviens en 3 secondes.'],
-    e: ['Tirer avec les bras sans serrer le dos.', 'Décoller la poitrine du plastron.'],
-    f: 'Entre les omoplates et sur les côtés du dos.',
-    v: 's', base: { hip: [70, 146], lean: 4, foot: [112, 172] }, A: { hand: [118, 112] }, B: { hand: [84, 118] },
-    m: [['r', 46, 150, 46, 7, 0, 'padd'], ['l', [60, 157], [60, 182], 4, 'fr'], ['r', 100, 96, 7, 40, 0, 'pad'], ['l', [106, 136], [132, 182], 5, 'fr'], ['l', [126, 100], [126, 182], 5, 'fr'],
-      ['c', [126, 104], 4.5, 'steel'], ['l', [126, 104], 'hand', 1.3, 'cab', 'f'], ['c', 'hand', 3.4, 'grip', 'f'], ['l', [104, 172], [128, 172], 5, 'fr']]
+    n: 'Rowing T-bar avec appui poitrine', lab: 'T-BAR ROW', zone: 'Machines à disques', sets: 4, reps: '8 à 10', rest: 120,
+    mus: ['back', 'lats', 'biceps'], q: 't-bar row appui poitrine machine exécution',
+    s: ['Charge des disques au bout du bras de la machine, en commençant léger.', 'Monte sur les marchepieds et pose la poitrine sur l’appui incliné.'],
+    p: ['Poitrine collée à l’appui, pieds bien calés, genoux un peu fléchis.', 'Attrape les poignées bras tendus.'],
+    x: ['Tire les poignées vers le ventre en ramenant les coudes vers le haut et l’arrière.', 'Serre les omoplates 1 seconde en haut, redescends lentement.'],
+    e: ['Décoller la poitrine de l’appui pour tirer plus lourd.', 'Lâcher la charge en descente.'],
+    f: 'L’épaisseur du dos, entre les omoplates, sans fatiguer le bas du dos.',
+    v: 's', base: { hip: [86, 122], lean: 50, foot: [100, 168], neck: -16 }, A: { hand: [124, 141] }, B: { hand: [108, 120] },
+    m: [['l', [62, 182], [150, 182], 4, 'fr'], ['l', [86, 174], [118, 166], 5, 'fr'], ['l', ['~', 0, 14], ['~', 22, 14], 9, 'pad', 'f'], ['l', ['~', 14, 18], [116, 166], 4, 'fr'],
+      ['l', [36, 176], ['hand', 4, 3], 4.5, 'fr', 'f'], ['l', ['hand', -4, 0], ['hand', 4, 0], 4, 'grip', 'f'], ['plates', ['hand', 12, 5], 11, 'f'], ['c', [36, 176], 4, 'steel']]
   },
   db_row: {
     n: 'Rowing aux haltères buste penché', lab: 'Deux haltères', zone: 'Poids libres', sets: 4, reps: '10', rest: 90,
@@ -2087,16 +2102,16 @@ Object.assign(EXOS, {
     m: [['db', 'handF', 'b'], ['db', 'hand', 'f']]
   },
   close_pulldown: {
-    n: 'Tirage vertical prise serrée', lab: 'Poulie haute + poignée triangle', zone: 'Poulies réglables', sets: 3, reps: '10 à 12', rest: 90,
-    mus: ['lats', 'biceps', 'back'], q: 'tirage vertical prise serrée triangle',
-    s: ['Accroche la poignée triangle à la poulie haute, cale tes cuisses sous les boudins.'],
-    p: ['Buste à peine incliné vers l’arrière, poitrine sortie.'],
-    x: ['Tire la poignée vers le haut de la poitrine, coudes vers les hanches.', 'Remonte en 3 secondes, bras presque tendus.'],
-    e: ['Se balancer en arrière pour tirer.', 'Laisser remonter les épaules aux oreilles.'],
-    f: 'Le bas des dorsaux, sur les côtés.',
-    v: 'f', back: 1, base: { hip: [100, 145], foot: [86, 184], sit: 1 }, A: { hand: [92, 57] }, B: { hand: [94, 88] },
+    n: 'Tirage vertical prise serrée', lab: 'LAT PULLDOWN', zone: 'Machines guidées', sets: 3, reps: '10 à 12', rest: 90,
+    mus: ['lats', 'biceps', 'back'], q: 'tirage vertical prise serrée supination',
+    s: ['Sur la même machine que le tirage vertical : cale tes cuisses sous les boudins (molette orange).', 'Mains serrées au milieu de la barre, écartées de la largeur de tes épaules, paumes vers toi.'],
+    p: ['Assis, pieds à plat, buste très légèrement penché en arrière.', 'Bras tendus, épaules basses.'],
+    x: ['Tire la barre jusqu’en haut de la poitrine en ramenant les coudes le long du corps.', 'Remonte lentement jusqu’aux bras tendus.'],
+    e: ['Tirer avec les bras en arrondissant le dos.', 'Remonter d’un coup, sans contrôler.'],
+    f: 'Le bas des dorsaux, sur les côtés, et les biceps.',
+    v: 'f', back: 1, base: { hip: [100, 145], foot: [86, 184], sit: 1 }, A: { hand: [88, 57] }, B: { hand: [90, 92] },
     m: [['l', [34, 182], [34, 12], 5, 'fr', 'b', 1], ['l', [34, 12], [166, 12], 5, 'fr'], ['c', [100, 15], 4.5, 'steel'], ['l', [100, 15], 'handC', 1.3, 'cab'],
-      ['bar', 'handL', 'handR', 2, 'grip', 'b'], ['l', [100, 155], [100, 184], 5, 'fr'], ['r', 76, 138, 48, 7, 0, 'pad'], ['r', 80, 147, 40, 8, 0, 'padd', 'm']]
+      ['bar', 'handL', 'handR', 30, 'grip', 'b'], ['l', [100, 155], [100, 184], 5, 'fr'], ['r', 76, 138, 48, 7, 0, 'pad'], ['r', 80, 147, 40, 8, 0, 'padd', 'm'], ['k', [106, 166], 'b']]
   },
   /* ---------- Jambes ---------- */
   goblet: {
@@ -2122,15 +2137,16 @@ Object.assign(EXOS, {
     m: [['db', 'handF', 'b'], ['db', 'hand', 'f']]
   },
   hip_thrust: {
-    n: 'Hip thrust', lab: 'Banc + barre ou machine', zone: 'Poids libres', sets: 4, reps: '10', rest: 90,
-    mus: ['glutes', 'hams'], q: 'hip thrust technique',
-    s: ['Haut du dos appuyé sur le bord d’un banc, barre posée dans le pli des hanches (avec une mousse).'],
-    p: ['Pieds à plat, écartés comme les hanches, tibias verticaux en haut du geste.'],
-    x: ['Pousse les hanches vers le plafond en serrant les fessiers.', 'Tiens 1 seconde en haut, redescends en 2 secondes.'],
-    e: ['Cambrer le bas du dos au lieu de serrer les fesses.', 'Pousser sur la pointe des pieds.'],
+    n: 'Hip thrust à la machine', lab: 'HIP THRUST (Glute Trainer)', zone: 'Machines guidées', nok: 1, sets: 4, reps: '10', rest: 90,
+    mus: ['glutes', 'hams'], q: 'hip thrust machine glute trainer exécution',
+    s: ['Assieds-toi, le haut du dos contre le dossier.', 'Passe le coussin ou la ceinture sur le pli de tes hanches, pieds à plat sur le plateau.'],
+    p: ['Pieds écartés de la largeur des hanches, tibias verticaux en haut du geste.', 'Menton rentré, regard vers l’avant.'],
+    x: ['Pousse avec les talons pour monter le bassin jusqu’à former une ligne droite des épaules aux genoux.', 'Serre fort les fesses 2 secondes en haut, redescends lentement.'],
+    e: ['Cambrer le bas du dos en haut au lieu de serrer les fesses.', 'Pousser avec la pointe des pieds.'],
     f: 'Les fessiers, très fort en haut du geste.',
     v: 's', base: { foot: [126, 176], neck: 12, elbL: [26, -8], handL: [44, 2] }, A: { hip: [92, 166], lean: -66 }, B: { hip: [96, 140], lean: -96 },
-    m: [['r', 30, 130, 34, 8, 0, 'pad'], ['l', [40, 138], [40, 182], 4, 'fr'], ['plates', 'hip', 14, 'f']]
+    m: [['l', [30, 132], [58, 156], 9, 'pad'], ['l', [44, 146], [44, 182], 4, 'fr'], ['l', [110, 180], [148, 180], 5, 'fr'], ['l', [150, 182], [150, 60], 5, 'fr'],
+      ['l', [150, 104], ['hip', 8, -9], 4, 'fr', 'f'], ['rp', ['hip', 1, -9], 24, 7, 0, 'pad', 'f'], ['k', [156, 120], 'b'], STK(160), ['l', [44, 179], [150, 179], 3.5, 'fr']]
   },
   abductor: {
     n: 'Abducteurs à la machine', lab: 'ABDUCTOR', zone: 'Machines guidées', sets: 3, reps: '15', rest: 60,
@@ -2155,15 +2171,17 @@ Object.assign(EXOS, {
     m: [['r', 80, 89, 40, 56, 0, 'pad', 'b'], ['r', 76, 145, 48, 8, 0, 'padd'], ['l', [100, 153], [100, 182], 5, 'fr'], ['rp', ['kneeL', 5, 0], 5, 14, 0, 'pad', 'f'], ['rp', ['kneeR', -5, 0], 5, 14, 0, 'pad', 'f']]
   },
   glute_kick: {
-    n: 'Kickback fessier à la poulie', lab: 'Poulie basse + sangle de cheville', zone: 'Poulies réglables', sets: 3, reps: '12 par jambe', rest: 60,
-    mus: ['glutes', 'hams'], q: 'kickback fessier poulie technique',
-    s: ['Attache la sangle à ta cheville, poulie tout en bas. Tiens-toi au montant.'],
-    p: ['Buste légèrement penché, genou d’appui un peu fléchi.'],
-    x: ['Pousse la jambe vers l’arrière en serrant la fesse.', 'Reviens en 2 secondes. Change de jambe à chaque série.'],
-    e: ['Cambrer le dos pour monter plus haut.', 'Balancer la jambe.'],
+    n: 'Kickback fessier à la machine', lab: 'GLUTE KICKBACK', zone: 'Machines guidées', nok: 1, sets: 3, reps: '12 par jambe', rest: 60,
+    mus: ['glutes', 'hams'], q: 'glute kickback machine exécution',
+    s: ['Règle l’appui poitrine (molette orange) à hauteur de ton sternum.', 'Pose la poitrine sur l’appui, tiens les poignées, place le pied qui travaille contre le plateau derrière toi.'],
+    p: ['Jambe d’appui légèrement fléchie, dos plat.', 'Le pied qui travaille bien calé contre le plateau.'],
+    x: ['Pousse le plateau vers l’arrière et vers le haut en tendant la jambe, jusqu’à ce qu’elle soit dans le prolongement du dos.', 'Serre la fesse 1 seconde, reviens lentement. Change de jambe à la fin de la série.'],
+    e: ['Cambrer le bas du dos pour monter plus haut.', 'Tourner le bassin sur le côté.'],
     f: 'La fesse de la jambe qui pousse.',
     v: 's', base: { hip: [96, 112], lean: 26, ffoot: [100, 176], fkd: -1, hand: [130, 96], neck: -10 }, A: { b1: 8, b2: -6 }, B: { b1: -42, b2: -60 },
-    m: [['l', [140, 182], [140, 14], 5, 'fr'], ['c', [140, 176], 4.5, 'steel'], ['l', [140, 176], 'foot', 1.3, 'cab', 'b'], ['l', [134, 96], [146, 96], 4, 'grip', 'f']]
+    m: [['l', [140, 182], [140, 60], 5, 'fr'], ['l', ['~', 6, 14], ['~', 26, 14], 9, 'pad', 'f'], ['l', ['~', 18, 18], [140, 104], 4, 'fr'], ['l', [134, 96], [146, 96], 4, 'grip', 'f'],
+      ['l', [104, 128], ['foot', -3, 2], 3.2, 'steel', 'f'], ['rp', ['foot', -7, 1], 7, 17, -20, 'padd', 'f'], ['c', [104, 128], 4, 'steel', 'f'], ['l', [104, 128], [104, 182], 4, 'fr'],
+      ['k', [146, 120], 'b'], STK(152), ['l', [104, 179], [163, 179], 3.5, 'fr']]
   },
   lying_curl: {
     n: 'Leg curl allongé', lab: 'LYING LEG CURL', zone: 'Machines guidées', sets: 3, reps: '12', rest: 75,
@@ -2310,8 +2328,8 @@ const PLAN = ['pecs', 'dos', 'jambes', 'epaules', 'bras', null, null];
    n = nom, s = nom court, a = avec l'article, k = nombre d'exercices ajoutés d'un coup quand il choisit cette partie. */
 const GROUPS = {
   pecs: { n: 'Pectoraux', s: 'Pecs', a: 'les pectoraux', k: 3, ex: ['incline_db', 'chest_press', 'dips_assist', 'low_fly', 'pec_deck', 'cable_fly', 'incline_smith', 'bench_smith', 'bench_db', 'pushups'] },
-  dos: { n: 'Dos', s: 'Dos', a: 'le dos', k: 3, ex: ['lat_pulldown', 'seated_row', 'assisted_pullup', 'db_row', 'straight_arm', 'low_row', 'close_pulldown', 'back_ext'] },
-  jambes: { n: 'Jambes', s: 'Jambes', a: 'les jambes', k: 4, ex: ['leg_press', 'smith_squat', 'leg_ext', 'leg_curl', 'rdl', 'calf', 'hip_thrust', 'goblet', 'lunges', 'lying_curl', 'abductor', 'adductor', 'glute_kick'] },
+  dos: { n: 'Dos', s: 'Dos', a: 'le dos', k: 3, ex: ['lat_pulldown', 'seated_row', 'low_row', 'close_pulldown', 'straight_arm', 'assisted_pullup', 'db_row', 'back_ext'] },
+  jambes: { n: 'Jambes', s: 'Jambes', a: 'les jambes', k: 4, ex: ['leg_press', 'hack_squat', 'leg_ext', 'leg_curl', 'rdl', 'calf', 'hip_thrust', 'smith_squat', 'goblet', 'lunges', 'lying_curl', 'abductor', 'adductor', 'glute_kick'] },
   epaules: { n: 'Épaules', s: 'Épaules', a: 'les épaules', k: 3, ex: ['shoulder_press', 'lateral_raise', 'reverse_fly', 'db_press', 'face_pull', 'upright_row', 'front_raise', 'shrug'] },
   biceps: { n: 'Biceps', s: 'Biceps', a: 'les biceps', k: 2, ex: ['ez_curl', 'preacher', 'hammer', 'incline_curl', 'db_curl', 'cable_curl'] },
   triceps: { n: 'Triceps', s: 'Triceps', a: 'les triceps', k: 2, ex: ['pushdown', 'seated_dip', 'overhead_ext', 'skull', 'pushdown_bar', 'kickback'] },
@@ -2395,7 +2413,7 @@ const RIG = (function () {
   const INK = '#090707', EMB = '#ff2a3c';
   const C = {
     skin: 'url(#rg-skin)', skinD: '#b97c5f', far: 'url(#rg-far)', cloth: 'url(#rg-cloth)', clothF: '#151011', hair: 'url(#rg-hair)', hairD: '#9c6a1e', stub: '#c99a72', leather: '#6f4a31', gold: '#e9b949', sole: '#efe9e6', line: '#8d5340',
-    fr: '#564a4e', frHi: '#93878b', pad: '#b01322', padHi: '#ea5565', padd: '#30282a', paddHi: '#62565a', cab: '#c4b9bb', grip: '#f5efec', steel: '#a39a9d', plate: '#1a1516'
+    fr: '#4d4a4d', frHi: '#a7a2a5', pad: '#2f2a2c', padHi: '#c2bbbe', padd: '#3a3537', paddHi: '#7a7376', knob: '#f5a11c', knobHi: '#ffd27a', cab: '#c4b9bb', grip: '#f5efec', steel: '#a39a9d', plate: '#1a1516'
   };
   const DEPTH = [3.5, -2.5], RIM = [1.25, 1.05];
   const rad = d => d * Math.PI / 180;
@@ -2418,8 +2436,8 @@ const RIG = (function () {
     '<linearGradient id="rg-hair" x1=".1" y1="0" x2=".9" y2="1"><stop offset="0" stop-color="#f8dc8a"/><stop offset=".5" stop-color="#dfa93f"/><stop offset="1" stop-color="#a87424"/></linearGradient>' +
     '<linearGradient id="rg-cloth" gradientUnits="userSpaceOnUse" x1="60" y1="70" x2="140" y2="196"><stop offset="0" stop-color="#3d3337"/><stop offset=".5" stop-color="#231b1d"/><stop offset="1" stop-color="#140f10"/></linearGradient>' +
     '<radialGradient id="rg-ember" cx=".38" cy=".32" r=".8"><stop offset="0" stop-color="#ffa587"/><stop offset=".42" stop-color="#ff3344"/><stop offset="1" stop-color="#a80a18"/></radialGradient>' +
-    '<linearGradient id="rg-pad" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d81d30"/><stop offset="1" stop-color="#780b16"/></linearGradient>' +
-    '<linearGradient id="rg-padd" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#453b3f"/><stop offset="1" stop-color="#1f191b"/></linearGradient>' +
+    '<linearGradient id="rg-pad" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5b5558"/><stop offset="1" stop-color="#262224"/></linearGradient>' +
+    '<linearGradient id="rg-padd" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#555053"/><stop offset="1" stop-color="#2a2628"/></linearGradient>' +
     '<linearGradient id="rg-floor" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3a1418" stop-opacity=".85"/><stop offset="1" stop-color="#0e0c0c" stop-opacity="0"/></linearGradient>' +
     '<linearGradient id="rg-cone" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffd2c2" stop-opacity="0"/><stop offset=".16" stop-color="#ffd2c2" stop-opacity=".15"/><stop offset=".7" stop-color="#ffd2c2" stop-opacity=".05"/><stop offset="1" stop-color="#ffd2c2" stop-opacity="0"/></linearGradient>' +
     '<radialGradient id="rg-halo"><stop offset="0" stop-color="#ff2a3c" stop-opacity=".95"/><stop offset=".38" stop-color="#ff2a3c" stop-opacity=".62"/><stop offset=".7" stop-color="#ff2a3c" stop-opacity=".2"/><stop offset="1" stop-color="#ff2a3c" stop-opacity="0"/></radialGradient>' +
@@ -2640,7 +2658,12 @@ const RIG = (function () {
       s += '<rect x="' + (x + 3) + '" y="' + r1(py) + '" width="' + (w - 6) + '" height="4.7" rx="1" fill="' + (mv ? '#6e6064' : '#2e2628') + '"/>' +
         '<rect x="' + (x + 3.6) + '" y="' + r1(py + .5) + '" width="' + (w - 7.2) + '" height="1" rx=".5" fill="' + (mv ? '#a3979a' : '#473d40') + '"/>';
     }
-    s += '<rect x="' + (x + w / 2 - 3.5) + '" y="' + r1(top + (sel - 1) * 6 - lift + 1) + '" width="7" height="2.7" rx="1" fill="' + EMB + '"/>';
+    s += '<rect x="' + (x + w / 2 - 3.5) + '" y="' + r1(top + (sel - 1) * 6 - lift + 1) + '" width="7" height="2.7" rx="1" fill="' + C.knob + '"/>';
+    /* carénage Matrix : chapeau arrondi en haut, flancs gris et pied large, comme les tours de poids de la salle */
+    s += '<rect x="' + (x - 2.5) + '" y="' + (y - 6) + '" width="' + (w + 5) + '" height="8" rx="3.5" fill="' + C.fr + '" stroke="' + INK + '" stroke-width="1.2"/>' +
+      '<rect x="' + (x - 1) + '" y="' + (y - 5) + '" width="' + (w + 2) + '" height="1.3" rx=".6" fill="' + C.frHi + '" opacity=".7"/>' +
+      '<rect x="' + (x - 3.5) + '" y="' + (y + h - 2) + '" width="' + (w + 7) + '" height="4.5" rx="2" fill="' + C.fr + '" stroke="' + INK + '" stroke-width="1.2"/>' +
+      '<rect x="' + (x - .5) + '" y="' + (y + 8) + '" width="2.2" height="' + (h - 16) + '" rx="1" fill="' + C.frHi + '" opacity=".35"/>';
     s += ln([x + w / 2, y + 2], [x + w / 2, top - lift], 1.2, C.cab);
     return s;
   }
@@ -2650,6 +2673,8 @@ const RIG = (function () {
   const dumb = Q => ci(Q, 7.6, INK) + '<circle cx="' + r1(Q[0]) + '" cy="' + r1(Q[1]) + '" r="6.4" fill="' + C.plate + '" stroke="#5e5256" stroke-width="1.8"/>' +
     '<path d="M' + r1(Q[0] - 4.3) + ' ' + r1(Q[1] - 2.6) + 'A5 5 0 0 1 ' + r1(Q[0] - .4) + ' ' + r1(Q[1] - 5) + '" fill="none" stroke="#fff" stroke-width="1" opacity=".35" stroke-linecap="round"/>' + ci(Q, 2.1, EMB);
 
+  /* Molette de réglage orange des machines Matrix (siège, dossier, amplitude) */
+  const knob = Q => ln([Q[0] - 3.4, Q[1]], [Q[0], Q[1]], 2.2, C.steel) + ci(Q, 4.1, INK) + ci(Q, 3.2, C.knob) + ci([Q[0] - .9, Q[1] - .9], 1.1, C.knobHi);
   function prim(m, J, t, cx) {
     const k = m[0];
     let layer = 'b', mirror = 0;
@@ -2668,6 +2693,7 @@ const RIG = (function () {
       if (k === 'stack') return stack(m[1], m[2], m[3], m[4], m[5], t);
       if (k === 'plates') return plates(Q(m[1]), m[2]);
       if (k === 'db') return dumb(Q(m[1]));
+      if (k === 'k') return knob(Q(m[1]));
       if (k === 'bar') { const a = Q(m[1]), b = Q(m[2]); return mline([a[0] - m[3], a[1]], [b[0] + m[3], b[1]], 3.6, m[4]); }
       return '';
     };
@@ -2677,6 +2703,7 @@ const RIG = (function () {
     else if (k === 'rp') layer = m[6] || 'b';
     else if (k === 'plates') layer = m[3] || 'b';
     else if (k === 'db') { layer = m[2] || 'f'; mirror = m[3]; }
+    else if (k === 'k') { layer = m[2] || 'f'; mirror = m[3]; }
     else if (k === 'bar') layer = m[5] || 'f';
     let s = one(false); if (mirror) s += one(true);
     return { layer, s };
@@ -2686,7 +2713,16 @@ const RIG = (function () {
   function machine(ex, J, t) {
     let b = '', f = '', mid = '';
     FY = ex.floor || 182;
-    (ex.m || []).forEach(function (m) {
+    const ms = (ex.m || []).slice();
+    if (ex.zone === 'Machines guidées' && !ex.nok) ms.forEach(function (m) {
+      /* le montant du siège (vertical, du siège jusqu'au sol) porte la molette orange de réglage de hauteur */
+      if (m[0] === 'l' && m[4] === 'fr' && Array.isArray(m[1]) && Array.isArray(m[2]) && m[1][0] === m[2][0]) {
+        const lo = Math.max(m[1][1], m[2][1]), hi = Math.min(m[1][1], m[2][1]);
+        if (lo >= FY - 1 && hi >= 128 && hi <= 168) ms.push(['k', [m[1][0] + 5.5, hi + Math.min(11, (lo - hi) * .4)], 'b']);
+      }
+    });
+    (ex.k || []).forEach(function (q) { ms.push(['k', q, 'f']); });
+    ms.forEach(function (m) {
       const r = prim(m, J, t, J.cx || 100);
       if (r.layer === 'f' || (r.layer === 'a' && !J.armsBack)) f += r.s; else if (r.layer === 'm' && J.view === 'f') mid += r.s; else b += r.s;
     });
