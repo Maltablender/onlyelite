@@ -1646,8 +1646,8 @@ const EXOS = {
     e: ['Les épaules qui roulent vers l’avant en fin de poussée.', 'Décoller le dos pour tricher.'],
     f: 'Au milieu de la poitrine. Si tu sens surtout les épaules, baisse le siège d’un cran.',
     v: 's', base: { hip: [78, 140], lean: -4, foot: [114, 174], hc: [92, 54, 58] }, A: { ha: 4 }, B: { ha: 27 },
-    m: [['l', [58, 182], [58, 52], 5, 'blk'], ['l', [58, 54], [94, 54], 5, 'blk'], ['r', 60, 90, 8, 56, -4, 'pad'], ['r', 62, 146, 44, 7, 0, 'padd'], ['l', [84, 153], [84, 182], 4, 'blk'],
-      ['l', [92, 54], 'hand', 3.2, 'steel', 'f'], ['c', 'hand', 3.4, 'grip', 'f'], STK(22), ['l', [33, 179], [58, 179], 3.5, 'blk'], ['l', [44, 64], [58, 64], 4, 'blk']]
+    m: [['l', [58, 182], [58, 120], 5, 'blk'], ['q', [58, 122], [56, 40], [94, 46], 5.5, 'blk'], ['r', 60, 90, 8, 56, -4, 'pad'], ['rp', [66, 84], 8, 12, -4, 'pad'], ['r', 62, 146, 44, 7, 0, 'padd'], ['l', [84, 153], [84, 182], 4, 'blk'], ['l', [84, 182], [116, 182], 4, 'blk'],
+      ['q', [92, 54], ['hand', 10, -30], 'hand', 4.2, 'blk', 'f'], ['l', ['hand', 0, -5], ['hand', 0, 5], 3.8, 'grip', 'f'], ['cam', [92, 54], 6, 'f'], STK(22), ['l', [33, 179], [58, 179], 3.5, 'blk'], ['l', [44, 70], [58, 70], 4, 'blk'], ['l', [84, 130], [70, 130], 3, 'blk']]
   },
   incline_db: {
     pz: 'haut', n: 'Développé incliné aux haltères', lab: 'Banc réglable + haltères', zone: 'Poids libres', sets: 4, reps: '8 à 10', rest: 120,
@@ -1720,7 +1720,7 @@ const EXOS = {
     e: ['Tirer derrière la nuque.', 'Se balancer en arrière pour s’aider de l’élan.'],
     f: 'Sous les aisselles, sur les côtés du dos : les « ailes ».',
     v: 'f', back: 1, base: { hip: [100, 145], foot: [86, 184], sit: 1 }, A: { hand: [62, 55] }, B: { hand: [60, 95] },
-    m: [['stack', 89, 26, 22, 150, 24], ['l', [34, 182], [34, 12], 5, 'fr', 'b', 1], ['l', [34, 12], [166, 12], 5, 'fr'], ['c', [100, 15], 4.5, 'steel'], ['l', [100, 15], 'handC', 1.3, 'cab'],
+    m: [['stack', 89, 30, 22, 150, 24], ['l', [100, 28], [100, 12], 7, 'fr'], ['rp', [100, 10], 18, 6, 0, 'fr'], ['c', [100, 15], 4.5, 'steel'], ['l', [100, 182], [100, 172], 5, 'fr'], ['l', [86, 182], [114, 182], 4, 'fr'], ['l', [100, 15], 'handC', 1.3, 'cab'],
       ['bar', 'handL', 'handR', 4, 'grip', 'b'], ['l', ['handL', -4, 0], ['handL', -14, 7], 3.6, 'grip', 'b'], ['l', ['handR', 4, 0], ['handR', 14, 7], 3.6, 'grip', 'b'], ['l', [100, 155], [100, 184], 5, 'fr'], ['r', 76, 138, 48, 7, 0, 'pad'], ['r', 80, 147, 40, 8, 0, 'padd', 'm']]
   },
   seated_row: {
@@ -1805,7 +1805,7 @@ const EXOS = {
     f: 'Le devant des cuisses, juste au-dessus du genou.',
     v: 's', base: { hip: [78, 140], lean: -14, hand: [80, 138] }, A: { b1: 84, b2: -3 }, B: { b1: 84, b2: 80 },
     m: [['l', [70, 144], [59, 96], 7, 'pad'], ['r', 62, 146, 50, 7, 0, 'padd'], ['l', [70, 153], [70, 182], 4, 'fr'], ['l', [106, 153], [106, 182], 4, 'fr'],
-      ['l', 'knee', 'ankF', 3.2, 'steel', 'f'], ['c', 'knee', 3.5, 'steel', 'f'], ['c', 'ankF', 5.5, 'pad', 'f'], STK(24), ['l', [35, 179], [70, 179], 3.5, 'fr']]
+      ['l', [113, 144], 'ankF', 4, 'blk', 'f'], ['l', ['ankF', -6, 0], ['ankF', 6, 0], 7, 'pad', 'f'], ['cam', [113, 144], 6.5, 'f'], ['l', [80, 150], [76, 132], 3, 'blk'], ['l', [76, 132], [84, 132], 3.4, 'grip'], STK(24), ['l', [35, 179], [70, 179], 3.5, 'fr']]
   },
   leg_curl: {
     n: 'Leg curl assis', lab: 'SEATED LEG CURL', zone: 'Machines guidées', sets: 3, reps: '12', rest: 75,
@@ -1817,7 +1817,7 @@ const EXOS = {
     f: 'L’arrière des cuisses.',
     v: 's', base: { hip: [78, 140], lean: -14, hand: [80, 138] }, A: { b1: 84, b2: 78 }, B: { b1: 84, b2: -16 },
     m: [['l', [70, 144], [59, 96], 7, 'pad'], ['r', 62, 146, 50, 7, 0, 'padd'], ['l', [70, 153], [70, 182], 4, 'fr'], ['l', [106, 153], [106, 182], 4, 'fr'],
-      ['l', 'knee', 'ankB', 3.2, 'steel', 'f'], ['c', 'knee', 3.5, 'steel', 'f'], ['c', 'ankB', 5.5, 'pad', 'f'], ['r', 95, 126, 24, 6, 0, 'pad', 'f'], STK(24), ['l', [35, 179], [70, 179], 3.5, 'fr']]
+      ['l', [113, 144], 'ankB', 4, 'blk', 'f'], ['l', ['ankB', -6, 0], ['ankB', 6, 0], 7, 'pad', 'f'], ['r', 95, 126, 24, 6, 0, 'pad', 'f'], ['l', [96, 129], [70, 112], 3, 'blk'], ['cam', [113, 144], 6.5, 'f'], STK(24), ['l', [35, 179], [70, 179], 3.5, 'fr']]
   },
   rdl: {
     n: 'Soulevé de terre jambes tendues', lab: 'Deux haltères', zone: 'Poids libres', sets: 3, reps: '10', rest: 90,
@@ -1945,8 +1945,8 @@ const EXOS = {
     e: ['Décoller les coudes du coussin.', 'Lâcher la descente.'],
     f: 'Le bas du biceps, près du coude.',
     v: 's', base: { hip: [70, 144], lean: 14, foot: [104, 176] }, A: { a1: 52, a2: 80 }, B: { a1: 52, a2: 166 },
-    m: [['r', 54, 150, 36, 7, 0, 'padd'], ['l', [72, 157], [72, 182], 4, 'blk'], ['l', [100, 118], [100, 182], 5, 'blk'], ['l', [86, 107], [112, 119], 8, 'pad'],
-      ['l', ['elb', 1.8, -.8], 'hand', 3.2, 'steel', 'f'], ['c', 'hand', 3.4, 'grip', 'f'], STK(152), ['l', [100, 179], [152, 179], 3.5, 'blk']]
+    m: [['r', 54, 150, 36, 7, 0, 'padd'], ['l', [72, 157], [72, 182], 4, 'blk'], ['l', [104, 128], [104, 182], 5, 'blk'], ['l', [86, 113], [110, 129], 10, 'pad'],
+      ['l', ['elb', 1.8, -.8], 'hand', 3.6, 'blk', 'f'], ['l', ['hand', 0, -5], ['hand', 0, 5], 3.8, 'grip', 'f'], ['cam', ['elb', 1.8, -.8], 5.5, 'f'], ['l', [100, 182], [128, 182], 4, 'blk'], STK(152), ['l', [100, 179], [152, 179], 3.5, 'blk']]
   },
   hammer: {
     n: 'Curl marteau aux haltères', lab: 'Deux haltères', zone: 'Poids libres', sets: 3, reps: '12', rest: 60,
@@ -2110,7 +2110,7 @@ Object.assign(EXOS, {
     e: ['Tirer avec les bras en arrondissant le dos.', 'Remonter d’un coup, sans contrôler.'],
     f: 'Le bas des dorsaux, sur les côtés, et les biceps.',
     v: 'f', back: 1, base: { hip: [100, 145], foot: [86, 184], sit: 1 }, A: { hand: [88, 57] }, B: { hand: [90, 92] },
-    m: [['stack', 89, 26, 22, 150, 24], ['l', [34, 182], [34, 12], 5, 'fr', 'b', 1], ['l', [34, 12], [166, 12], 5, 'fr'], ['c', [100, 15], 4.5, 'steel'], ['l', [100, 15], 'handC', 1.3, 'cab'],
+    m: [['stack', 89, 30, 22, 150, 24], ['l', [100, 28], [100, 12], 7, 'fr'], ['rp', [100, 10], 18, 6, 0, 'fr'], ['c', [100, 15], 4.5, 'steel'], ['l', [100, 182], [100, 172], 5, 'fr'], ['l', [86, 182], [114, 182], 4, 'fr'], ['l', [100, 15], 'handC', 1.3, 'cab'],
       ['bar', 'handL', 'handR', 30, 'grip', 'b'], ['l', [100, 155], [100, 184], 5, 'fr'], ['r', 76, 138, 48, 7, 0, 'pad'], ['r', 80, 147, 40, 8, 0, 'padd', 'm'], ['k', [106, 166], 'b']]
   },
   /* ---------- Jambes ---------- */
@@ -2414,7 +2414,7 @@ const RIG = (function () {
   const INK = '#090707', EMB = '#ff2a3c';
   const C = {
     skin: 'url(#rg-skin)', skinD: '#b97c5f', far: 'url(#rg-far)', cloth: 'url(#rg-cloth)', clothF: '#151011', hair: 'url(#rg-hair)', hairD: '#9c6a1e', stub: '#c99a72', leather: '#6f4a31', gold: '#e9b949', sole: '#efe9e6', line: '#8d5340',
-    fr: '#e85d1c', frHi: '#ffb07a', blk: '#232022', blkHi: '#77706f', pad: '#1e1b1c', padHi: '#b0a9ac', padd: '#3c3839', paddHi: '#7a7376', knob: '#ffc31f', knobHi: '#fff0b0', bfo: '#f27a2c', cab: '#c4b9bb', grip: '#f5efec', steel: '#a39a9d', plate: '#1a1516'
+    fr: '#e85d1c', frHi: '#ffb07a', blk: '#232022', blkHi: '#77706f', pad: '#1e1b1c', padHi: '#b0a9ac', padd: '#3c3839', paddHi: '#7a7376', knob: '#ffc31f', knobHi: '#fff0b0', bfo: '#f27a2c', frSh: '#a83d0e', frF: '#7e2f0c', blkSh: '#0c0b0b', blkF: '#141213', padF: '#0b0a0a', cab: '#c4b9bb', grip: '#f5efec', steel: '#a39a9d', plate: '#1a1516'
   };
   const DEPTH = [3.5, -2.5], RIM = [1.25, 1.05];
   const rad = d => d * Math.PI / 180;
@@ -2634,19 +2634,35 @@ const RIG = (function () {
     if (typeof Q[0] === 'string') { const q = J[Q[0]]; return [q[0] + Q[1], q[1] + Q[2]]; }
     return Q;
   }
+  /* Côté ombré d'un tube : vers le bas et la droite, là où le projecteur n'éclaire pas */
+  function nrm(a, b) { const u = unit(sub(b, a)); let n = [u[1], -u[0]]; if (n[1] < 0 || (Math.abs(n[1]) < .2 && n[0] < 0)) n = [-n[0], -n[1]]; return n; }
+  const off = (p, n, k) => [p[0] + n[0] * k, p[1] + n[1] * k];
   function mline(a, b, w, sty) {
-    if (sty === 'fr') return ln(a, b, w + 1.6, INK) + ln(a, b, w, C.fr) + ln([a[0] - .8, a[1] - .8], [b[0] - .8, b[1] - .8], Math.max(.9, w * .26), C.frHi, .85);
-    if (sty === 'blk') return ln(a, b, w + 1.6, INK) + ln(a, b, w, C.blk) + ln([a[0] - .8, a[1] - .8], [b[0] - .8, b[1] - .8], Math.max(.9, w * .26), C.blkHi, .8);
-    if (sty === 'pad') return ln(a, b, w + 1.6, INK) + ln(a, b, w, C.pad) + ln([a[0] - .6, a[1] - 1.2], [b[0] - .6, b[1] - 1.2], Math.max(1, w * .24), C.padHi, .8);
-    if (sty === 'padd') return ln(a, b, w + 1.6, INK) + ln(a, b, w, C.padd) + ln([a[0] - .6, a[1] - 1.2], [b[0] - .6, b[1] - 1.2], Math.max(1, w * .22), C.paddHi, .8);
-    if (sty === 'steel') return ln(a, b, w + 1.4, INK) + ln(a, b, w, C.steel) + ln([a[0] - .5, a[1] - .5], [b[0] - .5, b[1] - .5], Math.max(.8, w * .3), '#e3dcde', .7);
-    if (sty === 'grip') return ln(a, b, w + 1.4, INK) + ln(a, b, w, C.grip);
+    const n = nrm(a, b);
+    if (sty === 'fr' || sty === 'blk') {
+      const base = C[sty], sh = C[sty + 'Sh'], hi = C[sty + 'Hi'];
+      return ln(a, b, w + 2, INK) + ln(a, b, w, base) + ln(off(a, n, w * .27), off(b, n, w * .27), w * .42, sh, .9) +
+        ln(off(a, n, -w * .24), off(b, n, -w * .24), Math.max(.9, w * .22), hi, .9);
+    }
+    if (sty === 'frF' || sty === 'blkF') return ln(a, b, w + 1.6, INK) + ln(a, b, w, C[sty]);
+    if (sty === 'padF') return ln(a, b, w + 1.6, INK) + ln(a, b, w, C.padF);
+    if (sty === 'pad' || sty === 'padd') {
+      const base = sty === 'pad' ? C.pad : C.padd, hi = sty === 'pad' ? C.padHi : C.paddHi;
+      return ln(a, b, w + 2, INK) + ln(a, b, w, base) + ln(off(a, n, w * .3), off(b, n, w * .3), w * .36, '#050404', .8) +
+        ln(off(a, n, -w * .3), off(b, n, -w * .3), Math.max(1, w * .18), hi, .85) +
+        '<line x1="' + r1(a[0] - n[0] * w * .06) + '" y1="' + r1(a[1] - n[1] * w * .06) + '" x2="' + r1(b[0] - n[0] * w * .06) + '" y2="' + r1(b[1] - n[1] * w * .06) + '" stroke="' + hi + '" stroke-width=".55" stroke-dasharray="1.5 1.3" opacity=".55"/>';
+    }
+    if (sty === 'steel') return ln(a, b, w + 1.4, INK) + ln(a, b, w, C.steel) + ln(off(a, n, -w * .2), off(b, n, -w * .2), Math.max(.8, w * .3), '#eee8ea', .75);
+    if (sty === 'grip') return ln(a, b, w + 1.6, INK) + ln(a, b, w, '#3a3638') + ln(off(a, n, -w * .22), off(b, n, -w * .22), Math.max(.8, w * .25), '#9a9497', .9);
     return ln(a, b, w, C[sty] || sty);
   }
   function mrect(x, y, w, h, rot, sty) {
     const fill = sty === 'pad' ? 'url(#rg-pad)' : sty === 'padd' ? 'url(#rg-padd)' : (C[sty] || sty), hi = sty === 'pad' ? C.padHi : C.paddHi;
     const tr = rot ? ' transform="rotate(' + rot + ' ' + r1(x + w / 2) + ' ' + r1(y + h / 2) + ')"' : '';
-    return '<rect x="' + r1(x) + '" y="' + r1(y) + '" width="' + w + '" height="' + h + '" rx="2.8" fill="' + fill + '" stroke="' + INK + '" stroke-width="1.2"' + tr + '/>' +
+    const pad = sty === 'pad' || sty === 'padd';
+    return (pad ? '<rect x="' + r1(x + 1.3) + '" y="' + r1(y + 1.6) + '" width="' + w + '" height="' + h + '" rx="3" fill="#060505" stroke="' + INK + '" stroke-width="1.2"' + tr + '/>' : '') +
+      '<rect x="' + r1(x) + '" y="' + r1(y) + '" width="' + w + '" height="' + h + '" rx="2.8" fill="' + fill + '" stroke="' + INK + '" stroke-width="1.2"' + tr + '/>' +
+      (pad && w > 6 && h > 6 ? '<rect x="' + r1(x + 1.6) + '" y="' + r1(y + 1.6) + '" width="' + r1(w - 3.2) + '" height="' + r1(h - 3.2) + '" rx="2" fill="none" stroke="' + hi + '" stroke-width=".5" stroke-dasharray="1.5 1.3" opacity=".5"' + tr + '/>' : '') +
       (w > h ? '<rect x="' + r1(x + 2) + '" y="' + r1(y + 1.1) + '" width="' + r1(w - 4) + '" height="1.1" rx=".5" fill="' + hi + '" opacity=".75"' + tr + '/>' : '<rect x="' + r1(x + 1.1) + '" y="' + r1(y + 2) + '" width="1.1" height="' + r1(h - 4) + '" rx=".5" fill="' + hi + '" opacity=".75"' + tr + '/>');
   }
   function stack(x, y, w, h, tr, t) {
@@ -2662,7 +2678,9 @@ const RIG = (function () {
       s += '<rect x="' + (x + 3) + '" y="' + r1(py) + '" width="' + (w - 6) + '" height="4.7" rx="1" fill="' + (mv ? '#26242a' : '#18171b') + '" stroke="' + (mv ? '#6d6a72' : '#3a383e') + '" stroke-width=".7"/>';
     }
     s += '<rect x="' + (x + w / 2 - 3.5) + '" y="' + r1(top + (sel - 1) * 6 - lift + 1) + '" width="7" height="2.7" rx="1" fill="' + C.knob + '"/>';
-    s += ln([x + w / 2, y + 2], [x + w / 2, top - lift], 1.2, C.cab);
+    s += ln([x + 2.2, y + 6], [x + 2.2, y + h - 2], .9, '#8d878a', .8) + ln([x + w - 2.2, y + 6], [x + w - 2.2, y + h - 2], .9, '#8d878a', .8);
+    s += ln([x + w / 2, y + 7], [x + w / 2, top - lift - 3], 1.2, C.cab) + '<rect x="' + (x + 4) + '" y="' + r1(top - lift - 3.4) + '" width="' + (w - 8) + '" height="2.8" rx="1" fill="#77727a" stroke="' + INK + '" stroke-width=".6"/>';
+    s += ci([x + w / 2, y + 6], 3.6, INK) + ci([x + w / 2, y + 6], 2.9, '#55525a') + ci([x + w / 2, y + 6], 1, '#c9c3c6');
     s += '<path d="' + arch + '" fill="none" stroke="' + INK + '" stroke-width="7.4" stroke-linejoin="round"/><path d="' + arch + '" fill="none" stroke="' + C.fr + '" stroke-width="5"/>' +
       '<path d="M' + (xl - 1) + ' ' + (yb - 4) + 'V' + (y + 9) + 'Q' + (xl - 1) + ' ' + (y - 4) + ' ' + (x + w / 2) + ' ' + (y - 4) + '" fill="none" stroke="' + C.frHi + '" stroke-width="1.3" opacity=".85"/>' +
       '<rect x="' + (xl - 4) + '" y="' + (yb - 1) + '" width="' + (xr - xl + 8) + '" height="4.5" rx="2" fill="' + C.blk + '" stroke="' + INK + '" stroke-width="1.2"/>';
@@ -2695,6 +2713,14 @@ const RIG = (function () {
       if (k === 'plates') return plates(Q(m[1]), m[2]);
       if (k === 'db') return dumb(Q(m[1]));
       if (k === 'k') return knob(Q(m[1]));
+      if (k === 'q') { const p0 = Q(m[1]), p1 = Q(m[2]), p2 = Q(m[3]), w = m[4], d = 'M' + P(p0) + 'Q' + P(p1) + ' ' + P(p2), dh = 'M' + P([p0[0] - w * .25, p0[1] - w * .25]) + 'Q' + P([p1[0] - w * .25, p1[1] - w * .25]) + ' ' + P([p2[0] - w * .25, p2[1] - w * .25]);
+        const base = C[m[5]] || m[5], hi = C[m[5] + 'Hi'] || '#fff', sh = C[m[5] + 'Sh'] || INK;
+        return '<path d="' + d + '" fill="none" stroke="' + INK + '" stroke-width="' + (w + 2) + '" stroke-linecap="round"/><path d="' + d + '" fill="none" stroke="' + base + '" stroke-width="' + w + '" stroke-linecap="round"/>' +
+          '<path d="M' + P([p0[0] + w * .25, p0[1] + w * .25]) + 'Q' + P([p1[0] + w * .25, p1[1] + w * .25]) + ' ' + P([p2[0] + w * .25, p2[1] + w * .25]) + '" fill="none" stroke="' + sh + '" stroke-width="' + r1(w * .4) + '" stroke-linecap="round" opacity=".85"/>' +
+          '<path d="' + dh + '" fill="none" stroke="' + hi + '" stroke-width="' + r1(Math.max(.9, w * .22)) + '" stroke-linecap="round" opacity=".85"/>'; }
+      if (k === 'cam') { const c = Q(m[1]), r = m[2]; let z = ci(c, r + 1.3, INK) + ci(c, r, '#1d1b1c') + '<circle cx="' + r1(c[0]) + '" cy="' + r1(c[1]) + '" r="' + r1(r * .78) + '" fill="none" stroke="#4a4648" stroke-width="1.1"/>';
+        for (let a = 0; a < 3; a++) { const an = a * 2.094 + t * 2.4; z += ln(c, [c[0] + Math.cos(an) * r * .7, c[1] + Math.sin(an) * r * .7], 1.6, '#3a3638'); }
+        return z + ci(c, r * .3, C.steel) + ci(c, r * .12, '#2e2628'); }
       if (k === 'bar') { const a = Q(m[1]), b = Q(m[2]); return mline([a[0] - m[3], a[1]], [b[0] + m[3], b[1]], 3.6, m[4]); }
       return '';
     };
@@ -2705,6 +2731,8 @@ const RIG = (function () {
     else if (k === 'plates') layer = m[3] || 'b';
     else if (k === 'db') { layer = m[2] || 'f'; mirror = m[3]; }
     else if (k === 'k') { layer = m[2] || 'f'; mirror = m[3]; }
+    else if (k === 'cam') { layer = m[3] || 'b'; mirror = m[4]; }
+    else if (k === 'q') { layer = m[6] || 'b'; mirror = m[7]; }
     else if (k === 'bar') layer = m[5] || 'f';
     let s = one(false); if (mirror) s += one(true);
     return { layer, s };
@@ -2723,6 +2751,14 @@ const RIG = (function () {
       }
     });
     (ex.k || []).forEach(function (q) { ms.push(['k', q, 'f']); });
+    if (J.view === 's' && !ex.flat) {
+      const far = [], st = q => Array.isArray(q) && typeof q[0] === 'number';
+      ms.forEach(function (m) {
+        if (m[0] === 'l' && (m[5] || 'b') === 'b' && st(m[1]) && st(m[2]) && /^(fr|blk|pad|padd)$/.test(m[4]) && m[3] >= 3.5)
+          far.push(['l', [m[1][0] + DEPTH[0], m[1][1] + DEPTH[1]], [m[2][0] + DEPTH[0], m[2][1] + DEPTH[1]], m[3], m[4] === 'fr' ? 'frF' : m[4] === 'blk' ? 'blkF' : 'padF', 'b']);
+      });
+      ms.unshift.apply(ms, far);
+    }
     ms.forEach(function (m) {
       const r = prim(m, J, t, J.cx || 100);
       if (r.layer === 'f' || (r.layer === 'a' && !J.armsBack)) f += r.s; else if (r.layer === 'm' && J.view === 'f') mid += r.s; else b += r.s;
