@@ -1401,6 +1401,7 @@ label.f{display:block;margin:14px 0}label.f>span{display:block;font-size:13px;fo
 .camui h1{font-size:28px;margin:4px 0 6px;color:#fff}.camui .lede{color:#ddd;margin:0 0 12px}.camui .agree{color:#fff;margin:0 0 14px}.camui .row{gap:8px;flex-wrap:wrap}.camui .eyebrow{color:#bbb}
 .camtop{position:relative;display:flex;align-items:center;gap:10px;padding:calc(14px + env(safe-area-inset-top)) 16px 14px;background:linear-gradient(rgba(0,0,0,.6),transparent);font-size:14px}.camtop .dim{margin-left:auto;color:#ccc}
 .cambar{position:relative;margin-top:auto;display:flex;justify-content:center;gap:14px;padding:16px 16px calc(18px + env(safe-area-inset-bottom));background:linear-gradient(transparent,rgba(0,0,0,.7))}
+.tph{display:flex;justify-content:space-between;margin:18px 0 6px;font-size:12px;font-weight:600;letter-spacing:.02em;color:#6b6b6b}.tph:first-child{margin-top:0}
 </style>
 </head>
 <body>
@@ -1503,7 +1504,7 @@ function contractView(){
   if(O.signed_at) return; const pad=padInit($('#pad')); $('#pc').onclick=pad.clear;
   $('#go').onclick=async()=>{ const er=$('#sg .err'); const nm=$('#sn').value.trim(); if(nm.length<3) return er.textContent=t('signName'); if(pad.empty()) return er.textContent=t('signHere'); if(!$('#ag').checked) return er.textContent=t('signAgree');
     const b=$('#go'); b.disabled=true; try{ const h=await sha256(O.contract); await rpc('onb_sign',{t:TOK,p_name:nm,p_img:pad.png(),p_sha:h}); O=await rpc('onb_get',{t:TOK}); toast('✓'); contractView(); }catch(e){ er.textContent=e.message; b.disabled=false; } }; }
-function tasksHTML(now){ const tk=O.tasks||[]; return tk.map((x,i)=>`<label class="task${now===i?' now':''}"><input type="checkbox" data-ti="${i}" ${x.done?'checked':''}><span>${esc(x.t)}${now===i?`<span class="tag">${esc(t('now'))}</span>`:''}${x.d?`<br><small class="muted">${esc(x.d)}</small>`:''}</span></label>`).join('')||'<p class="muted">—</p>'; }
+function tasksHTML(now){ const tk=O.tasks||[]; return tk.map((x,i)=>`${x.p&&(!i||x.p!==tk[i-1].p)?`<p class="tph">${esc(x.p)}<span>${tk.filter(y=>y.p===x.p&&y.done).length}/${tk.filter(y=>y.p===x.p).length}</span></p>`:''}<label class="task${now===i?' now':''}"><input type="checkbox" data-ti="${i}" ${x.done?'checked':''}><span>${esc(x.t)}${now===i?`<span class="tag">${esc(t('now'))}</span>`:''}${x.d?`<br><small class="muted">${esc(x.d)}</small>`:''}</span></label>`).join('')||'<p class="muted">—</p>'; }
 function bindTasks(root, re){ root.querySelectorAll('[data-ti]').forEach(c=>c.onchange=async()=>{ try{ await rpc('onb_task',{t:TOK,i:+c.dataset.ti,d:c.checked}); O=await rpc('onb_get',{t:TOK}); if(re) re(); }catch(e){ toast(e.message); c.checked=!c.checked; } }); }
 function tasksView(){ app.innerHTML=`<div class="wrap"><button class="back" id="bk">${esc(t('back'))}</button><h1>${esc(t('tasks'))}</h1><div class="card" id="tk">${tasksHTML()}</div></div>`; $('#bk').onclick=home; bindTasks($('#tk'), tasksView); }
 
