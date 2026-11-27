@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<title>Only Elite</title>
+<link rel="icon" href="../icon-192.png">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<style>
+:root{--ink:#070605;--panel:#12100c;--line:rgba(233,196,106,.16);--line2:rgba(233,196,106,.32);--gold:#e9c46a;--hi:#fff1c8;--text:#f4efe4;--muted:#958d7d;--ok:#86dc9a;--err:#ff7a66;--r:16px;color-scheme:dark}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:var(--ink);color:var(--text);font:15px/1.5 "Inter Tight",system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+body{background:radial-gradient(80% 50% at 50% -10%,rgba(242,193,78,.14),transparent 70%),var(--ink)}
+button,input,select,textarea{font:inherit;color:inherit}
+.wrap{max-width:720px;margin:0 auto;padding:22px 16px 60px}
+.brand{display:flex;align-items:center;gap:10px;font:italic 500 22px Georgia,serif;color:var(--hi)}.brand b{font:600 11px ui-monospace,monospace;letter-spacing:.3em;color:var(--gold);font-style:normal}
+h1{font:500 34px/1.1 Georgia,"Bodoni Moda",serif;margin:18px 0 6px}h1 em{color:var(--gold)}
+.lede{color:var(--muted);margin:0 0 18px}
+.card{background:linear-gradient(180deg,rgba(28,24,17,.8),rgba(12,10,7,.9));border:1px solid var(--line);border-radius:var(--r);padding:18px;margin:12px 0}
+.step{display:flex;align-items:center;gap:14px;padding:14px;border-radius:14px;border:1px solid var(--line);background:rgba(0,0,0,.3);cursor:pointer;margin:8px 0;width:100%;text-align:left}
+.step:hover{border-color:var(--line2)}.step i{flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-weight:700;border:1px solid var(--line2);color:var(--gold)}
+.step.done i{background:var(--ok);border-color:var(--ok);color:#06140b}.step b{display:block}.step small{color:var(--muted)}.step .go{margin-left:auto;color:var(--gold)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 18px;border-radius:12px;border:1px solid var(--line2);background:rgba(0,0,0,.35);cursor:pointer;font-weight:600}
+.btn.gold{border-color:var(--gold);color:#140f04;background:linear-gradient(180deg,#fff1c8,#e9c46a)}.btn.red{border-color:rgba(255,122,102,.6);background:rgba(255,122,102,.18);color:#ffd0c8}
+.btn:disabled{opacity:.5;cursor:default}.btn.sm{padding:8px 12px;font-size:13px;border-radius:10px}
+label.f{display:block;margin:12px 0}label.f>span{display:block;font:600 10.5px ui-monospace,monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:5px}
+.in{width:100%;padding:12px;border-radius:11px;border:1px solid var(--line2);background:rgba(0,0,0,.4);outline:none}.in:focus{border-color:var(--gold)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}.chips label{display:flex;align-items:center;gap:6px;padding:8px 11px;border-radius:999px;border:1px solid var(--line2);font-size:13px;cursor:pointer}
+.chips input{accent-color:#e9c46a}
+.err{color:#ffb1a4;font-size:13px;margin:8px 0}.ok{color:var(--ok)}
+.muted{color:var(--muted);font-size:13px}
+.back{background:none;border:0;color:var(--muted);cursor:pointer;padding:0;margin:4px 0 6px}
+.doc{width:100%;height:60vh;border:1px solid var(--line2);border-radius:12px;background:#fff}
+.pad{width:100%;height:180px;border:1px dashed var(--gold);border-radius:12px;background:#fffdf6;touch-action:none;display:block}
+.task{display:flex;gap:12px;align-items:flex-start;padding:12px;border-bottom:1px solid var(--line)}.task:last-child{border-bottom:0}
+.task input{width:22px;height:22px;accent-color:#86dc9a;flex:none;margin-top:1px}.task.now{background:rgba(233,196,106,.1);border-radius:10px}
+.tag{font:700 10px ui-monospace,monospace;letter-spacing:.1em;padding:2px 7px;border-radius:6px;background:var(--gold);color:#140f04;margin-left:6px}
+/* appel */
+.call{position:fixed;inset:0;display:flex;flex-direction:column;background:#050403}
+.grid{flex:1;display:grid;gap:8px;padding:8px;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));align-content:center;overflow:auto}
+.tile{position:relative;border-radius:14px;overflow:hidden;background:#15120c;aspect-ratio:4/3;border:1px solid var(--line)}
+.tile video{width:100%;height:100%;object-fit:cover;display:block;background:#0c0a07}.tile.me video{transform:scaleX(-1)}
+.tile .nm{position:absolute;left:8px;bottom:8px;padding:3px 9px;border-radius:8px;background:rgba(0,0,0,.6);font-size:12.5px}
+.tile .off{position:absolute;inset:0;display:grid;place-items:center;font:600 40px Georgia,serif;color:var(--gold);background:#15120c}
+.tile.talk{border-color:var(--gold);box-shadow:0 0 0 2px rgba(233,196,106,.55)}
+.bar{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;padding:10px;padding-bottom:max(10px,env(safe-area-inset-bottom));background:rgba(8,7,5,.95);border-top:1px solid var(--line)}
+.cc{position:absolute;left:50%;transform:translateX(-50%);bottom:84px;width:min(860px,94vw);display:flex;flex-direction:column;gap:4px;pointer-events:none}
+.cc div{align-self:center;max-width:100%;padding:6px 12px;border-radius:10px;background:rgba(0,0,0,.72);font-size:15px;text-align:center}.cc b{color:var(--gold);font-weight:600}.cc small{display:block;color:#cfc6b4;font-size:13px}
+.side{position:fixed;top:0;right:0;bottom:0;width:min(440px,100%);background:#0e0c08;border-left:1px solid var(--line2);z-index:20;display:flex;flex-direction:column;box-shadow:-20px 0 50px rgba(0,0,0,.6)}
+.side[hidden]{display:none}.side header{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid var(--line)}
+.side .body{flex:1;overflow:auto;padding:14px 16px}
+.ln{padding:8px 0;border-bottom:1px solid rgba(233,196,106,.07);font-size:14px}.ln b{color:var(--gold)}.ln small{display:block;color:var(--muted)}
+.hostb{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.toast{position:fixed;left:50%;bottom:96px;transform:translateX(-50%);padding:10px 16px;border-radius:12px;background:#1b170f;border:1px solid var(--gold);z-index:40;opacity:0;transition:.25s;pointer-events:none}
+.toast.on{opacity:1}
+.pushc{position:fixed;left:50%;top:16px;transform:translateX(-50%);width:min(560px,94vw);z-index:30;padding:14px 16px;border-radius:14px;background:#1d180c;border:1px solid var(--gold);box-shadow:0 20px 50px rgba(0,0,0,.6)}
+.recap h3{font:500 20px Georgia,serif;color:var(--hi);margin:16px 0 6px}.recap ul{margin:0;padding-left:18px}
+.lobby video{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:14px;background:#15120c;transform:scaleX(-1)}
+@media (max-width:600px){h1{font-size:28px}.grid{grid-template-columns:1fr 1fr}.tile{aspect-ratio:3/4}}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<div class="toast" id="toast"></div>
+<script>
+'use strict';
+const SB_URL='https://uzfnkxasmnxvemkdzyur.supabase.co', SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InV6Zm5reGFzbW54dmVta2R6eXVyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTM2MTg3OTksImV4cCI6MjEwOTE5NDc5OX0.-ppu53kIB5d7oYnrHal0kGfJsl_06TqxzOzqOLmmDZk';
+const H=Object.fromEntries(location.hash.slice(1).split('&').filter(Boolean).map(x=>x.split('=').map(decodeURIComponent)));
+const ROOM=/^[a-f0-9]{18}$/.test(H.r||'')?H.r:'', TOK=/^[a-f0-9]{36}$/.test(H.m||'')?H.m:'', HOST=/^[a-f0-9]{24}$/.test(H.h||'')?H.h:'';
+const $=s=>document.querySelector(s), app=$('#app');
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+let tT; const toast=m=>{ const t=$('#toast'); t.textContent=m; t.classList.add('on'); clearTimeout(tT); tT=setTimeout(()=>t.classList.remove('on'),3500); };
+const rpc=async(fn,args)=>{ const r=await fetch(`${SB_URL}/rest/v1/rpc/${fn}`,{method:'POST',headers:{apikey:SB_KEY,Authorization:'Bearer '+SB_KEY,'Content-Type':'application/json'},body:JSON.stringify(args||{})}); const t=await r.text(); let j=null; try{ j=JSON.parse(t); }catch(_){ } if(!r.ok) throw new Error((j&&(j.message||j.hint))||('Erreur '+r.status)); return j; };
+const ai=async body=>{ const r=await fetch(`${SB_URL}/functions/v1/oe-ai`,{method:'POST',headers:{apikey:SB_KEY,Authorization:'Bearer '+SB_KEY,'Content-Type':'application/json'},body:JSON.stringify(body)}); const j=await r.json().catch(()=>({error:'Réponse illisible'})); if(!r.ok||j.error) throw new Error(j.error||('Erreur '+r.status)); return j; };
+const sb = window.supabase ? window.supabase.createClient(SB_URL, SB_KEY, {realtime:{params:{eventsPerSecond:30}}}) : null;
+
+/* ---------- textes (français / anglais) ---------- */
+const T={fr:{hello:'Bienvenue',space:'Ton espace',lede:'Tout ce qu\'il faut pour démarrer avec l\'agence, au même endroit.',form:'Mon formulaire',formS:'Qui tu es, tes réseaux, tes disponibilités',contract:'Mon contrat',contractS:'À lire et à signer',tasks:'Mes étapes',tasksS:'Ce qu\'on met en place ensemble',call:'Rejoindre l\'appel',callS:'Ton équipe t\'attend',back:'← Retour',send:'Envoyer',saved:'C\'est envoyé, merci !',signTitle:'Signature',signName:'Ton nom complet',signAgree:'J\'ai lu le contrat et je l\'accepte',signHere:'Signe ici avec ton doigt ou ta souris',clear:'Effacer',sign:'Signer le contrat',signed:'Contrat signé le',print:'Télécharger / imprimer',noContract:'Ton contrat n\'a pas encore été envoyé. Il arrivera ici.',done:'fait',now:'En ce moment',join:'Rejoindre',name:'Ton prénom',lang:'Ta langue (pour les sous-titres)',cam:'Caméra',mic:'Micro',leave:'Quitter',subs:'Sous-titres',chat:'Transcription',mySpace:'Mon espace',allow:'Autorise la caméra et le micro quand ton téléphone te le demande.',ended:'L\'appel est terminé.',noCall:'Ce lien d\'appel n\'existe pas ou a expiré.',noSpeech:'Sous-titres indisponibles sur ce navigateur (utilise Chrome ou Safari).',alone:'En attente des autres participants…',bad:'Ce lien n\'est pas valide.',push:'Nouveau :'},
+ en:{hello:'Welcome',space:'Your space',lede:'Everything you need to get started with the agency, in one place.',form:'My form',formS:'Who you are, your socials, your availability',contract:'My contract',contractS:'Read and sign',tasks:'My steps',tasksS:'What we set up together',call:'Join the call',callS:'Your team is waiting',back:'← Back',send:'Send',saved:'Sent, thank you!',signTitle:'Signature',signName:'Your full legal name',signAgree:'I have read the contract and I agree',signHere:'Sign here with your finger or mouse',clear:'Clear',sign:'Sign the contract',signed:'Contract signed on',print:'Download / print',noContract:'Your contract hasn\'t been sent yet. It will appear here.',done:'done',now:'Right now',join:'Join',name:'Your first name',lang:'Your language (for subtitles)',cam:'Camera',mic:'Mic',leave:'Leave',subs:'Subtitles',chat:'Transcript',mySpace:'My space',allow:'Allow camera and microphone when your phone asks.',ended:'The call has ended.',noCall:'This call link doesn\'t exist or has expired.',noSpeech:'Subtitles are not available on this browser (use Chrome or Safari).',alone:'Waiting for the others…',bad:'This link is not valid.',push:'New:'}};
+let L='fr'; const t=k=>(T[L]||T.fr)[k]||T.fr[k];
+const LANGS=[['fr-FR','Français'],['en-US','English'],['th-TH','ไทย (Thaï)'],['es-ES','Español'],['pt-BR','Português'],['it-IT','Italiano'],['de-DE','Deutsch'],['ru-RU','Русский'],['vi-VN','Tiếng Việt'],['tl-PH','Tagalog'],['id-ID','Bahasa Indonesia'],['ja-JP','日本語'],['ko-KR','한국어'],['zh-CN','中文'],['ar-SA','العربية']];
+
+/* ---------- espace de la modèle ---------- */
+let O=null;
+async function loadOnb(){ if(!TOK) return null; try{ O=await rpc('onb_get',{t:TOK}); if(O && O.lang==='en') L='en'; }catch(_){ O=null; } return O; }
+const FORM=[
+ ['legal','Nom et prénom (comme sur ta pièce d\'identité)','Full legal name','text',1],['stage','Nom de scène souhaité (si tu en as un)','Preferred stage name','text'],
+ ['birth','Date de naissance','Date of birth','date',1],['country','Pays et ville','Country and city','text',1],['langs','Langues parlées','Languages spoken','text'],
+ ['email','E-mail','Email','email',1],['phone','WhatsApp','WhatsApp','tel',1],
+ ['ig','Instagram actuel','Current Instagram','text'],['tt','TikTok / autres réseaux','TikTok / other socials','text'],
+ ['of','Déjà un compte OnlyFans ?','Already on OnlyFans?','sel',1,['Non','Oui, actif','Oui, inactif']],['ofrev','Si oui : revenus mensuels actuels','If yes: current monthly income','text'],
+ ['hours','Temps disponible par semaine pour le contenu','Hours per week for content','sel',1,['Moins de 5 h','5 à 10 h','10 à 20 h','Plus de 20 h']],
+ ['passions','Tes passions, ce que tu aimes faire','Your passions','area'],
+ ['content','Ce que tu acceptes de faire (coche)','What you agree to do (tick)','chk',1,['Photos lingerie / maillot','Contenu suggestif sans nudité','Nudité partielle','Nudité','Contenu explicite solo','Contenu avec partenaire','Visage visible','Appels vidéo / contenu personnalisé']],
+ ['limits','Tes limites, ce que tu ne feras jamais','Your hard limits','area'],['goal','Ton objectif de revenus par mois','Monthly income goal','text'],['how','Comment as-tu connu l\'agence ?','How did you hear about us?','text']];
+const lbl=f=>L==='en'?f[2]:f[1];
+function home(){ if(!O){ app.innerHTML=`<div class="wrap"><div class="brand">Only <b>ELITE</b></div><h1>${esc(t('bad'))}</h1></div>`; return; }
+  const tk=O.tasks||[], dn=tk.filter(x=>x.done).length, pf=O.push&&O.push.kind==='call'&&O.push.room&&(Date.now()-Date.parse(O.push.at)<6*3600e3);
+  app.innerHTML=`<div class="wrap"><div class="brand">Only <b>ELITE</b></div><h1>${esc(t('hello'))} <em>${esc(O.first||'')}</em></h1><p class="lede">${esc(t('lede'))}</p>
+   ${pf?`<button class="step" style="border-color:var(--gold);background:rgba(233,196,106,.1)" id="goCall"><i>📞</i><span><b>${esc(t('call'))}</b><small>${esc(t('callS'))}</small></span><span class="go">→</span></button>`:''}
+   <button class="step${O.form_at?' done':''}" data-go="form"><i>${O.form_at?'✓':'1'}</i><span><b>${esc(t('form'))}</b><small>${esc(t('formS'))}</small></span><span class="go">→</span></button>
+   <button class="step${O.signed_at?' done':''}" data-go="contract"><i>${O.signed_at?'✓':'2'}</i><span><b>${esc(t('contract'))}</b><small>${O.signed_at?esc(t('signed'))+' '+new Date(O.signed_at).toLocaleDateString(L):esc(t('contractS'))}</small></span><span class="go">→</span></button>
+   <button class="step${tk.length&&dn===tk.length?' done':''}" data-go="tasks"><i>${tk.length&&dn===tk.length?'✓':'3'}</i><span><b>${esc(t('tasks'))}</b><small>${dn}/${tk.length} · ${esc(t('tasksS'))}</small></span><span class="go">→</span></button>
+   <p class="muted" style="margin-top:22px">${esc(O.agency||'Only Elite')} · ${L==='en'?'This link is personal: do not share it.':'Ce lien est personnel : ne le partage pas.'}</p></div>`;
+  app.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>({form:formView, contract:contractView, tasks:tasksView})[b.dataset.go]());
+  const gc=$('#goCall'); if(gc) gc.onclick=()=>{ location.hash=`r=${O.push.room}&m=${TOK}`; location.reload(); }; }
+function formBody(){ const F=O.form||{};
+  return FORM.map(f=>{ const [k,,,type,req,opts]=f, v=F[k]; const lab=`<span>${esc(lbl(f))}${req?' *':''}</span>`;
+    if(type==='area') return `<label class="f">${lab}<textarea class="in" rows="3" data-k="${k}">${esc(v||'')}</textarea></label>`;
+    if(type==='sel') return `<label class="f">${lab}<select class="in" data-k="${k}"><option value="">—</option>${opts.map(o=>`<option ${v===o?'selected':''}>${esc(o)}</option>`).join('')}</select></label>`;
+    if(type==='chk') return `<div class="f" style="margin:12px 0">${lab}<div class="chips">${opts.map(o=>`<label><input type="checkbox" data-kc="${k}" value="${esc(o)}" ${(v||[]).includes(o)?'checked':''}>${esc(o)}</label>`).join('')}</div></div>`;
+    return `<label class="f">${lab}<input class="in" type="${type}" data-k="${k}" value="${esc(v||'')}"></label>`; }).join(''); }
+function readForm(root){ const d={}; root.querySelectorAll('[data-k]').forEach(i=>d[i.dataset.k]=i.value.trim()); FORM.filter(f=>f[3]==='chk').forEach(f=>d[f[0]]=[...root.querySelectorAll(`[data-kc="${f[0]}"]:checked`)].map(x=>x.value));
+  const miss=FORM.filter(f=>f[4] && (Array.isArray(d[f[0]])?!d[f[0]].length:!d[f[0]])).map(lbl); return {d, miss}; }
+async function submitForm(root, after){ const {d,miss}=readForm(root); const er=root.querySelector('.err'); if(miss.length){ er.textContent=(L==='en'?'Missing: ':'À remplir : ')+miss.join(', '); return; }
+  const b=root.querySelector('[data-send]'); b.disabled=true; try{ await rpc('onb_form',{t:TOK,d}); O=await rpc('onb_get',{t:TOK}); toast(t('saved')); after(); }catch(e){ er.textContent=e.message; b.disabled=false; } }
+function formView(){ app.innerHTML=`<div class="wrap"><button class="back" id="bk">${esc(t('back'))}</button><h1>${esc(t('form'))}</h1><div class="card" id="fm">${formBody()}<div class="err"></div><button class="btn gold" data-send>${esc(t('send'))}</button></div></div>`;
+  $('#bk').onclick=home; $('#fm [data-send]').onclick=()=>submitForm($('#fm'), home); }
+async function sha256(s){ const b=await crypto.subtle.digest('SHA-256', new TextEncoder().encode(s)); return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join(''); }
+function padInit(cv){ const ctx=cv.getContext('2d'); const fit=()=>{ const r=cv.getBoundingClientRect(), k=devicePixelRatio||1; cv.width=r.width*k; cv.height=r.height*k; ctx.scale(k,k); ctx.lineWidth=2.4; ctx.lineCap='round'; ctx.strokeStyle='#10204a'; }; fit();
+  let dn=false, any=false, last=null; const P=e=>{ const r=cv.getBoundingClientRect(); return [e.clientX-r.left, e.clientY-r.top]; };
+  cv.onpointerdown=e=>{ dn=true; last=P(e); cv.setPointerCapture(e.pointerId); }; cv.onpointermove=e=>{ if(!dn) return; const p=P(e); ctx.beginPath(); ctx.moveTo(...last); ctx.lineTo(...p); ctx.stroke(); last=p; any=true; }; cv.onpointerup=()=>{ dn=false; };
+  return { empty:()=>!any, clear:()=>{ ctx.clearRect(0,0,cv.width,cv.height); any=false; }, png:()=>cv.toDataURL('image/png') }; }
+function printContract(){ const w=window.open('','_blank'); if(!w) return; w.document.write(O.contract+`<div style="font-family:Georgia,serif;max-width:760px;margin:20px auto;padding:0 24px">${O.signed_at?`<p><b>Signé électroniquement par ${esc(O.sign_name||'')}</b> le ${new Date(O.signed_at).toLocaleString('fr-FR')}<br><small>Empreinte du document (SHA-256) : ${esc(O.contract_sha)}</small></p>`:''}</div><script>setTimeout(()=>print(),400)<\/script>`); w.document.close(); }
+function contractView(){
+  if(!O.contract){ app.innerHTML=`<div class="wrap"><button class="back" id="bk">${esc(t('back'))}</button><h1>${esc(t('contract'))}</h1><div class="card">${esc(t('noContract'))}</div></div>`; $('#bk').onclick=home; return; }
+  app.innerHTML=`<div class="wrap"><button class="back" id="bk">${esc(t('back'))}</button><h1>${esc(t('contract'))}</h1>
+   <iframe class="doc" sandbox="allow-same-origin" id="doc"></iframe>
+   <div class="card" id="sg">${O.signed_at?`<p class="ok">✓ ${esc(t('signed'))} ${new Date(O.signed_at).toLocaleString(L)} · ${esc(O.sign_name||'')}</p><button class="btn" id="pr">${esc(t('print'))}</button>`:`
+    <h3 style="margin:0 0 6px;font:500 20px Georgia,serif">${esc(t('signTitle'))}</h3>
+    <label class="f"><span>${esc(t('signName'))}</span><input class="in" id="sn" autocomplete="name"></label>
+    <div class="f"><span class="muted">${esc(t('signHere'))}</span><canvas class="pad" id="pad"></canvas><button class="btn sm" id="pc" style="margin-top:6px">${esc(t('clear'))}</button></div>
+    <label style="display:flex;gap:10px;align-items:flex-start;margin:12px 0"><input type="checkbox" id="ag" style="width:20px;height:20px;accent-color:#e9c46a"> <span>${esc(t('signAgree'))}</span></label>
+    <div class="err"></div><button class="btn gold" id="go">${esc(t('sign'))}</button>`}</div></div>`;
+  $('#doc').srcdoc=O.contract; $('#bk').onclick=home; const pr=$('#pr'); if(pr) pr.onclick=printContract;
+  if(O.signed_at) return; const pad=padInit($('#pad')); $('#pc').onclick=pad.clear;
+  $('#go').onclick=async()=>{ const er=$('#sg .err'); const nm=$('#sn').value.trim(); if(nm.length<3) return er.textContent=t('signName'); if(pad.empty()) return er.textContent=t('signHere'); if(!$('#ag').checked) return er.textContent=t('signAgree');
+    const b=$('#go'); b.disabled=true; try{ const h=await sha256(O.contract); await rpc('onb_sign',{t:TOK,p_name:nm,p_img:pad.png(),p_sha:h}); O=await rpc('onb_get',{t:TOK}); toast('✓'); contractView(); }catch(e){ er.textContent=e.message; b.disabled=false; } }; }
+function tasksHTML(now){ const tk=O.tasks||[]; return tk.map((x,i)=>`<label class="task${now===i?' now':''}"><input type="checkbox" data-ti="${i}" ${x.done?'checked':''}><span>${esc(x.t)}${now===i?`<span class="tag">${esc(t('now'))}</span>`:''}${x.d?`<br><small class="muted">${esc(x.d)}</small>`:''}</span></label>`).join('')||'<p class="muted">—</p>'; }
+function bindTasks(root, re){ root.querySelectorAll('[data-ti]').forEach(c=>c.onchange=async()=>{ try{ await rpc('onb_task',{t:TOK,i:+c.dataset.ti,d:c.checked}); O=await rpc('onb_get',{t:TOK}); if(re) re(); }catch(e){ toast(e.message); c.checked=!c.checked; } }); }
+function tasksView(){ app.innerHTML=`<div class="wrap"><button class="back" id="bk">${esc(t('back'))}</button><h1>${esc(t('tasks'))}</h1><div class="card" id="tk">${tasksHTML()}</div></div>`; $('#bk').onclick=home; bindTasks($('#tk'), tasksView); }
+
+/* ---------- appel vidéo (jusqu'à 4-6 personnes, sans limite de temps) ---------- */
+const ICE=[{urls:['stun:stun.l.google.com:19302','stun:stun1.l.google.com:19302']},{urls:'stun:global.stun.twilio.com:3478'}];
+const ME={id:Math.random().toString(36).slice(2,10), name:'', lang:'fr-FR', cam:true, mic:true, subs:true};
+const PEERS=new Map(); let LS=null, CH=null, CI=null, REC=null, LINES=[], lastId=0, LIVE=new Map();
+const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+async function lobby(){
+  CI=await rpc('call_info',{r:ROOM}).catch(()=>null); if(!CI){ app.innerHTML=`<div class="wrap"><div class="brand">Only <b>ELITE</b></div><h1>${esc(t('noCall'))}</h1></div>`; return; }
+  if(CI.ended){ app.innerHTML=`<div class="wrap"><div class="brand">Only <b>ELITE</b></div><h1>${esc(t('ended'))}</h1>${TOK?`<button class="btn gold" id="sp">${esc(t('mySpace'))}</button>`:''}</div>`; const sp=$('#sp'); if(sp) sp.onclick=()=>{ location.hash='m='+TOK; location.reload(); }; return; }
+  let saved={}; try{ saved=JSON.parse(localStorage.getItem('oe_call_me')||'{}'); }catch(_){ }
+  ME.name = H.n || (O&&O.first) || saved.name || ''; ME.lang = saved.lang || (L==='en'?'en-US':'fr-FR');
+  app.innerHTML=`<div class="wrap lobby"><div class="brand">Only <b>ELITE</b></div><h1>${esc(CI.title||'Appel')}</h1><p class="lede">${esc(CI.agency||'')} · ${esc(t('allow'))}</p>
+   <video id="pv" autoplay playsinline muted></video>
+   <div class="card"><label class="f"><span>${esc(t('name'))}</span><input class="in" id="nm" value="${esc(ME.name)}" maxlength="40"></label>
+   <label class="f"><span>${esc(t('lang'))}</span><select class="in" id="lg">${LANGS.map(([v,l])=>`<option value="${v}" ${v===ME.lang?'selected':''}>${l}</option>`).join('')}</select></label>
+   <div class="err" id="le"></div><button class="btn gold" id="jn" style="width:100%">${esc(t('join'))}</button></div></div>`;
+  try{ LS=await navigator.mediaDevices.getUserMedia({video:{width:{ideal:1280},height:{ideal:720},facingMode:'user'},audio:{echoCancellation:true,noiseSuppression:true}}); $('#pv').srcObject=LS; }
+  catch(e){ try{ LS=await navigator.mediaDevices.getUserMedia({audio:true}); ME.cam=false; $('#le').textContent=L==='en'?'Camera unavailable: you will join with audio only.':'Caméra indisponible : tu rejoindras avec le micro seulement.'; }catch(_){ LS=new MediaStream(); ME.cam=false; ME.mic=false; $('#le').textContent=L==='en'?'Camera and mic blocked: allow them in your browser settings, then reload.':'Caméra et micro bloqués : autorise-les dans les réglages du navigateur, puis recharge la page.'; } }
+  $('#jn').onclick=()=>{ ME.name=$('#nm').value.trim()||'Invité'; ME.lang=$('#lg').value; try{ localStorage.setItem('oe_call_me',JSON.stringify({name:ME.name,lang:ME.lang})); }catch(_){ } join(); };
+}
+function tileHTML(id, name, me){ return `<div class="tile${me?' me':''}" id="tl-${id}"><video autoplay playsinline ${me?'muted':''}></video><div class="off" hidden>${esc((name||'?')[0].toUpperCase())}</div><span class="nm">${esc(name)}${me?(L==='en'?' (you)':' (toi)'):''}</span></div>`; }
+async function join(){
+  app.innerHTML=`<div class="call"><div class="grid" id="grid">${tileHTML('me',ME.name,true)}</div><div class="cc" id="cc"></div>
+   <div class="bar"><button class="btn" id="bMic">🎙 ${esc(t('mic'))}</button><button class="btn" id="bCam">🎥 ${esc(t('cam'))}</button><button class="btn" id="bCc">💬 ${esc(t('subs'))}</button><button class="btn" id="bTx">📝 ${esc(t('chat'))}</button>${TOK?`<button class="btn" id="bSp">⭐ ${esc(t('mySpace'))}</button>`:''}${HOST?`<button class="btn gold" id="bHost">👑 ${L==='en'?'Host':'Hôte'}</button>`:''}<button class="btn red" id="bOut">${esc(t('leave'))}</button></div></div>
+   <aside class="side" id="side" hidden><header><b id="sideT"></b><button class="btn sm" id="sideX">✕</button></header><div class="body" id="sideB"></div></aside>`;
+  const me=$('#tl-me video'); me.srcObject=LS; paintMe();
+  $('#bMic').onclick=()=>{ ME.mic=!ME.mic; LS.getAudioTracks().forEach(x=>x.enabled=ME.mic); paintMe(); ME.mic?startRec():stopRec(); bcast('state',{mic:ME.mic,cam:ME.cam}); };
+  $('#bCam').onclick=()=>{ ME.cam=!ME.cam; LS.getVideoTracks().forEach(x=>x.enabled=ME.cam); paintMe(); bcast('state',{mic:ME.mic,cam:ME.cam}); };
+  $('#bCc').onclick=()=>{ ME.subs=!ME.subs; $('#bCc').style.opacity=ME.subs?1:.5; $('#cc').hidden=!ME.subs; };
+  $('#bTx').onclick=()=>openSide('tx'); $('#sideX').onclick=()=>$('#side').hidden=true;
+  const sp=$('#bSp'); if(sp) sp.onclick=()=>openSide('space'); const hb=$('#bHost'); if(hb) hb.onclick=()=>openSide('host');
+  $('#bOut').onclick=leave; addEventListener('beforeunload',()=>{ try{ bcast('bye',{}); }catch(_){ } });
+  if(!sb){ toast('Connexion impossible (réseau bloqué).'); return; }
+  CH=sb.channel('oe-call-'+ROOM,{config:{broadcast:{self:false,ack:false},presence:{key:ME.id}}});
+  CH.on('broadcast',{event:'sig'},({payload:p})=>onSig(p));
+  CH.on('broadcast',{event:'line'},({payload:p})=>addLine(p));
+  CH.on('broadcast',{event:'live'},({payload:p})=>{ LIVE.set(p.from,{who:p.who,text:p.text,at:Date.now()}); paintCC(); });
+  CH.on('broadcast',{event:'push'},({payload:p})=>onPush(p));
+  CH.on('broadcast',{event:'ended'},()=>{ toast(t('ended')); setTimeout(leave,1500); });
+  CH.on('presence',{event:'sync'},()=>syncPeers());
+  CH.subscribe(async st=>{ if(st==='SUBSCRIBED'){ await CH.track({id:ME.id,name:ME.name,lang:ME.lang,at:Date.now()}); syncPeers(); } });
+  const old=await rpc('call_lines',{r:ROOM,after:0}).catch(()=>[]); (old||[]).forEach(addLine);
+  startRec(); setInterval(paintCC,1000);
+  setInterval(()=>{ if(!PEERS.size) { const g=$('#grid'); if(g && !g.querySelector('.wait')) g.insertAdjacentHTML('beforeend',`<div class="tile wait" style="display:grid;place-items:center;color:var(--muted)">${esc(t('alone'))}</div>`); } else document.querySelectorAll('.wait').forEach(x=>x.remove()); },1500);
+}
+function paintMe(){ $('#bMic').style.opacity=ME.mic?1:.45; $('#bCam').style.opacity=ME.cam?1:.45; const o=$('#tl-me .off'); if(o) o.hidden=ME.cam && LS.getVideoTracks().length>0; }
+const bcast=(ev,p)=>CH && CH.send({type:'broadcast',event:ev,payload:{...p,from:ME.id}});
+const sig=(to,data)=>bcast('sig',{to,data,name:ME.name});
+function others(){ const st=CH?CH.presenceState():{}; const L2=[]; Object.values(st).forEach(arr=>arr.forEach(x=>{ if(x.id!==ME.id) L2.push(x); })); return L2; }
+function syncPeers(){ const now=others(), ids=new Set(now.map(x=>x.id));
+  now.forEach(x=>{ if(!PEERS.has(x.id)){ const p=mkPeer(x.id, x.name); if(ME.id<x.id) offer(p); } else { const p=PEERS.get(x.id); p.name=x.name; } });
+  [...PEERS.keys()].forEach(id=>{ if(!ids.has(id)) drop(id); }); }
+function mkPeer(id, name){ const pc=new RTCPeerConnection({iceServers:ICE}); const p={id,name,pc}; PEERS.set(id,p);
+  LS.getTracks().forEach(tr=>pc.addTrack(tr, LS));
+  pc.onicecandidate=e=>{ if(e.candidate) sig(id,{ice:e.candidate.toJSON()}); };
+  pc.ontrack=e=>{ let tl=$('#tl-'+id); if(!tl){ $('#grid').insertAdjacentHTML('beforeend', tileHTML(id, p.name)); tl=$('#tl-'+id); } const v=tl.querySelector('video'); if(v.srcObject!==e.streams[0]) v.srcObject=e.streams[0]; v.play().catch(()=>{}); talkMeter(id, e.streams[0]); };
+  pc.onconnectionstatechange=()=>{ if(pc.connectionState==='failed'){ try{ pc.restartIce(); }catch(_){ } if(ME.id<id) offer(p, true); } };
+  if(!$('#tl-'+id)) $('#grid').insertAdjacentHTML('beforeend', tileHTML(id, name));
+  return p; }
+const sdpOf = d => ({type:d.type, sdp:d.sdp});   // texte simple : passe par n'importe quel canal
+async function offer(p, restart){ const o=await p.pc.createOffer(restart?{iceRestart:true}:{}); await p.pc.setLocalDescription(o); sig(p.id,{sdp:sdpOf(p.pc.localDescription)}); }
+async function onSig(m){ if(m.to!==ME.id) return; let p=PEERS.get(m.from); if(!p) p=mkPeer(m.from, m.name||'');
+  const d=m.data; try{
+    if(d.sdp){ await p.pc.setRemoteDescription(d.sdp); if(d.sdp.type==='offer'){ const a=await p.pc.createAnswer(); await p.pc.setLocalDescription(a); sig(p.id,{sdp:sdpOf(p.pc.localDescription)}); } (p.q||[]).forEach(c=>p.pc.addIceCandidate(c).catch(()=>{})); p.q=[]; }
+    else if(d.ice){ if(p.pc.remoteDescription) await p.pc.addIceCandidate(d.ice).catch(()=>{}); else (p.q=p.q||[]).push(d.ice); }
+  }catch(e){ console.warn(e); } }
+function drop(id){ const p=PEERS.get(id); if(p){ try{ p.pc.close(); }catch(_){ } PEERS.delete(id); } const tl=$('#tl-'+id); if(tl) tl.remove(); LIVE.delete(id); }
+function talkMeter(id, stream){ try{ const ac=new (window.AudioContext||window.webkitAudioContext)(), an=ac.createAnalyser(); ac.createMediaStreamSource(stream).connect(an); const buf=new Uint8Array(an.fftSize);
+  const tick=()=>{ if(!PEERS.has(id)) return ac.close(); an.getByteTimeDomainData(buf); let s=0; for(const v of buf) s+=Math.abs(v-128); const tl=$('#tl-'+id); if(tl) tl.classList.toggle('talk', s/buf.length>4); requestAnimationFrame(tick); }; tick(); }catch(_){ } }
+function leave(){ stopRec(); try{ bcast('bye',{}); CH&&CH.unsubscribe(); }catch(_){ } PEERS.forEach(p=>p.pc.close()); PEERS.clear(); LS&&LS.getTracks().forEach(x=>x.stop());
+  app.innerHTML=`<div class="wrap"><div class="brand">Only <b>ELITE</b></div><h1>${L==='en'?'You left the call':'Tu as quitté l\'appel'}</h1><button class="btn gold" id="rj">${esc(t('join'))}</button> ${TOK?`<button class="btn" id="sp">${esc(t('mySpace'))}</button>`:''}</div>`;
+  $('#rj').onclick=()=>location.reload(); const sp=$('#sp'); if(sp) sp.onclick=()=>{ location.hash='m='+TOK; location.reload(); }; }
+
+/* ---------- sous-titres, transcription et traduction ---------- */
+let recOn=false;
+function startRec(){ if(!SR){ if(!startRec.warned){ startRec.warned=1; toast(t('noSpeech')); } return; } if(recOn||!ME.mic) return; recOn=true;
+  REC=new SR(); REC.lang=ME.lang; REC.continuous=true; REC.interimResults=true;
+  REC.onresult=e=>{ for(let i=e.resultIndex;i<e.results.length;i++){ const r=e.results[i], txt=r[0].transcript.trim(); if(!txt) continue;
+      if(r.isFinal){ sendLine(txt); bcast('live',{who:ME.name,text:''}); } else bcast('live',{who:ME.name,text:txt}); } };
+  REC.onend=()=>{ if(recOn && ME.mic) setTimeout(()=>{ try{ REC.start(); }catch(_){ } },250); };
+  REC.onerror=e=>{ if(e.error==='not-allowed'){ recOn=false; toast(t('noSpeech')); } };
+  try{ REC.start(); }catch(_){ } }
+function stopRec(){ recOn=false; try{ REC&&REC.stop(); }catch(_){ } }
+async function sendLine(text){ const targets=[...new Set(['fr', ...others().map(x=>String(x.lang||'').slice(0,2))])];
+  try{ const l=CI&&CI.ai ? await ai({op:'line',room:ROOM,who:ME.name,lang:ME.lang,text,targets}) : await rpc('call_line',{r:ROOM,p_who:ME.name,p_lang:ME.lang.slice(0,2),p_text:text}).then(x=>({id:x&&x.id,who:ME.name,lang:ME.lang.slice(0,2),text,tr:null,at:new Date().toISOString()}));
+    if(l&&l.id){ addLine(l); bcast('line',l); } }catch(e){ console.warn(e); } }
+const myL=()=>ME.lang.slice(0,2);
+function addLine(l){ if(!l||!l.id||LINES.some(x=>x.id===l.id)) return; LINES.push(l); LINES.sort((a,b)=>a.id-b.id); lastId=Math.max(lastId,l.id);
+  if(l.who!==ME.name) LIVE.set('L'+l.id,{who:l.who,text:l.text,tr:l.tr&&l.lang!==myL()?l.tr[myL()]:'',at:Date.now()}); paintCC(); if(!$('#side')?.hidden && SIDE==='tx') sideBody(); }
+function paintCC(){ const cc=$('#cc'); if(!cc) return; const now=Date.now(); [...LIVE.entries()].forEach(([k,v])=>{ if(now-v.at>7000 || (!v.text)) LIVE.delete(k); });
+  cc.innerHTML=[...LIVE.values()].slice(-3).map(v=>`<div><b>${esc(v.who)}</b> ${esc(v.text)}${v.tr?`<small>${esc(v.tr)}</small>`:''}</div>`).join(''); }
+
+/* ---------- panneaux : transcription, mon espace, hôte ---------- */
+let SIDE='', STEP_NOW=null;
+function openSide(k){ SIDE=k; $('#side').hidden=false; $('#sideT').textContent=k==='tx'?t('chat'):k==='space'?t('mySpace'):(L==='en'?'Host controls':'Contrôles de l\'hôte'); sideBody(); }
+async function sideBody(){ const B=$('#sideB'); if(!B) return;
+  if(SIDE==='tx'){ B.innerHTML=LINES.map(l=>`<div class="ln"><b>${esc(l.who)}</b> ${esc(l.text)}${l.tr&&l.lang!==myL()&&l.tr[myL()]?`<small>${esc(l.tr[myL()])}</small>`:''}</div>`).join('')||`<p class="muted">${L==='en'?'Nothing yet.':'Rien pour l\'instant.'}</p>`; B.scrollTop=B.scrollHeight; return; }
+  if(SIDE==='space'){ await loadOnb(); if(!O){ B.innerHTML='—'; return; }
+    B.innerHTML=`<div id="spTabs" class="hostb" style="margin-bottom:10px"><button class="btn sm" data-sv="tasks">${esc(t('tasks'))}</button><button class="btn sm" data-sv="form">${esc(t('form'))}</button><button class="btn sm" data-sv="contract">${esc(t('contract'))}</button></div><div id="spB"></div>`;
+    B.querySelectorAll('[data-sv]').forEach(b=>b.onclick=()=>spaceView(b.dataset.sv)); spaceView(SPV||'tasks'); return; }
+  if(SIDE==='host'){ const hi=await rpc('call_host',{r:ROOM,k:HOST}).catch(e=>({error:e.message})); if(!hi||hi.error){ B.innerHTML=`<p class="err">${esc(hi&&hi.error||'Clé d\'hôte invalide')}</p>`; return; }
+    const base=location.origin+location.pathname; const lm=hi.onb_token?`${base}#r=${ROOM}&m=${hi.onb_token}`:'', lg=`${base}#r=${ROOM}`;
+    const msg=`${hi.model?('Coucou '+hi.model+' ! '):''}Clique ici pour rejoindre l'appel : ${lm||lg}`;
+    B.innerHTML=`<p class="muted" style="margin-top:0">Inviter</p>
+     ${lm?`<div class="hostb"><button class="btn sm" data-cp="${esc(lm)}">Copier le lien de ${esc(hi.model||'la modèle')}</button>${hi.phone?`<a class="btn sm" target="_blank" rel="noopener" href="https://wa.me/${esc(String(hi.phone).replace(/\D/g,''))}?text=${encodeURIComponent(msg)}">WhatsApp à ${esc(hi.model)}</a>`:'<span></span>'}</div>`:''}
+     <div class="hostb" style="margin-top:8px"><button class="btn sm" data-cp="${esc(lg)}">Copier le lien invité (associé, équipe)</button><a class="btn sm" target="_blank" rel="noopener" href="https://wa.me/?text=${encodeURIComponent('Rejoins l\'appel : '+lg)}">Envoyer par WhatsApp</a></div>
+     ${hi.onb_token?`<p class="muted" style="margin:18px 0 6px">Envoyer à ${esc(hi.model||'la modèle')} en un clic (ça s'ouvre sur son écran)</p>
+     <div class="hostb"><button class="btn sm" data-push="form">📋 Formulaire ${hi.form?'✓':''}</button><button class="btn sm" data-push="contract" ${hi.contract?'':'disabled title="Envoie d\'abord le contrat depuis Only Elite"'}>✍️ Contrat ${hi.signed?'✓ signé':''}</button><button class="btn sm" data-push="tasks">✅ Ses étapes</button><button class="btn sm" data-push="space">⭐ Son espace</button></div>
+     <p class="muted" style="margin:18px 0 6px">Étape en cours (s'affiche en grand chez elle)</p>
+     ${(hi.tasks||[]).map((x,i)=>`<button class="btn sm" style="width:100%;justify-content:flex-start;margin:3px 0;text-align:left${STEP_NOW===i?';border-color:var(--gold)':''}" data-step="${i}">${x.done?'✓':'▶'} ${esc(x.t)}</button>`).join('')}`:'<p class="muted">Cet appel n\'est relié à aucune modèle : lance-le depuis sa fiche dans Only Elite pour pouvoir lui envoyer formulaire, contrat et étapes.</p>'}
+     <p class="muted" style="margin:18px 0 6px">Fin d'appel</p><button class="btn gold" id="hEnd" style="width:100%">Terminer l'appel et faire le compte rendu</button>
+     <div id="recap" class="recap">${hi.recap?recapHTML(hi.recap):''}</div>`;
+    B.querySelectorAll('[data-cp]').forEach(b=>b.onclick=async()=>{ try{ await navigator.clipboard.writeText(b.dataset.cp); b.textContent='Copié ✓'; }catch(_){ prompt('Copie ce lien :', b.dataset.cp); } });
+    B.querySelectorAll('[data-push]').forEach(b=>b.onclick=async()=>{ const p={kind:b.dataset.push}; bcast('push',p); rpc('call_push',{r:ROOM,k:HOST,p}).catch(()=>{}); toast('Envoyé ✓ Ça s\'ouvre chez elle'); });
+    B.querySelectorAll('[data-step]').forEach(b=>b.onclick=()=>{ STEP_NOW=+b.dataset.step; const p={kind:'step',i:STEP_NOW}; bcast('push',p); rpc('call_push',{r:ROOM,k:HOST,p}).catch(()=>{}); toast('Étape affichée chez elle ✓'); sideBody(); });
+    $('#hEnd').onclick=endCall; }
+}
+let SPV='tasks';
+function spaceView(v){ SPV=v; const B=$('#spB'); if(!B) return;
+  if(v==='tasks'){ B.innerHTML=`<div class="card" style="margin:0" id="tkS">${tasksHTML(STEP_NOW)}</div>`; bindTasks($('#tkS'), ()=>spaceView('tasks')); }
+  if(v==='form'){ B.innerHTML=`<div class="card" style="margin:0" id="fmS">${formBody()}<div class="err"></div><button class="btn gold" data-send>${esc(t('send'))}</button></div>`; $('#fmS [data-send]').onclick=()=>submitForm($('#fmS'), ()=>spaceView('tasks')); }
+  if(v==='contract'){ if(!O.contract){ B.innerHTML=`<p class="muted">${esc(t('noContract'))}</p>`; return; }
+    B.innerHTML=`<iframe class="doc" style="height:45vh" sandbox="allow-same-origin" id="docS"></iframe><div id="sgS" class="card" style="margin:8px 0 0"></div>`; $('#docS').srcdoc=O.contract;
+    const S=$('#sgS'); if(O.signed_at){ S.innerHTML=`<p class="ok">✓ ${esc(t('signed'))} ${new Date(O.signed_at).toLocaleString(L)}</p>`; return; }
+    S.innerHTML=`<label class="f"><span>${esc(t('signName'))}</span><input class="in" id="snS"></label><span class="muted">${esc(t('signHere'))}</span><canvas class="pad" id="padS" style="height:150px"></canvas><button class="btn sm" id="pcS" style="margin-top:6px">${esc(t('clear'))}</button><label style="display:flex;gap:10px;margin:10px 0"><input type="checkbox" id="agS" style="width:20px;height:20px;accent-color:#e9c46a"> <span>${esc(t('signAgree'))}</span></label><div class="err"></div><button class="btn gold" id="goS">${esc(t('sign'))}</button>`;
+    const pad=padInit($('#padS')); $('#pcS').onclick=pad.clear;
+    $('#goS').onclick=async()=>{ const er=S.querySelector('.err'); const nm=$('#snS').value.trim(); if(nm.length<3) return er.textContent=t('signName'); if(pad.empty()) return er.textContent=t('signHere'); if(!$('#agS').checked) return er.textContent=t('signAgree');
+      $('#goS').disabled=true; try{ await rpc('onb_sign',{t:TOK,p_name:nm,p_img:pad.png(),p_sha:await sha256(O.contract)}); O=await rpc('onb_get',{t:TOK}); toast('✓'); spaceView('contract'); }catch(e){ er.textContent=e.message; $('#goS').disabled=false; } }; }
+  document.querySelectorAll('#spTabs [data-sv]').forEach(b=>b.style.borderColor=b.dataset.sv===v?'var(--gold)':''); }
+async function onPush(p){ if(!TOK) return; await loadOnb();
+  if(p.kind==='step'){ STEP_NOW=p.i; const x=(O.tasks||[])[p.i]; if(x){ const d=document.createElement('div'); d.className='pushc'; d.innerHTML=`<span class="tag" style="margin:0">${esc(t('now'))}</span><h3 style="margin:8px 0 4px;font:500 22px Georgia,serif">${esc(x.t)}</h3>${x.d?`<p class="muted" style="margin:0">${esc(x.d)}</p>`:''}<button class="btn sm" style="margin-top:10px">OK</button>`; document.body.append(d); d.querySelector('button').onclick=()=>d.remove(); setTimeout(()=>d.remove(),20000); }
+    openSide('space'); spaceView('tasks'); return; }
+  toast(t('push')+' '+({form:t('form'),contract:t('contract'),tasks:t('tasks'),space:t('mySpace')}[p.kind]||''));
+  openSide('space'); spaceView(p.kind==='space'?'tasks':p.kind); }
+function recapHTML(r){ const L2=(t2,a)=>a&&a.length?`<h3>${t2}</h3><ul>${a.map(x=>`<li>${esc(typeof x==='string'?x:[x.qui,x.quoi,x.quand].filter(Boolean).join(' · '))}</li>`).join('')}</ul>`:'';
+  return `<h3>Résumé</h3><p>${esc(r.resume||'')}</p>${L2('Points forts',r.points_forts)}${L2('L\'agence s\'est engagée à',r.engagements_agence)}${L2('La modèle s\'est engagée à',r.engagements_modele)}${L2('Décisions',r.decisions)}${L2('Prochaines étapes',r.prochaines_etapes)}${L2('Points de vigilance',r.points_de_vigilance)}<p class="muted">Le compte rendu complet, avec la transcription traduite, est enregistré dans Only Elite › Onboarding.</p>`; }
+async function endCall(){ const b=$('#hEnd'); b.disabled=true; b.textContent='Compte rendu en cours…';
+  try{ await rpc('call_end',{r:ROOM,k:HOST}); bcast('ended',{}); }catch(e){ toast(e.message); }
+  try{ const j=await ai({op:'recap',room:ROOM,key:HOST}); $('#recap').innerHTML=recapHTML(j.recap); b.textContent='Compte rendu prêt ✓'; }
+  catch(e){ $('#recap').innerHTML=`<p class="err">${esc(e.message)}</p><p class="muted">La transcription reste enregistrée : tu pourras relancer le compte rendu depuis Only Elite.</p>`; b.textContent='Appel terminé'; } }
+
+/* ---------- démarrage ---------- */
+(async()=>{ await loadOnb();
+  if(ROOM) return lobby();
+  if(TOK){ home(); if(sb){ sb.channel('oe-onb-'+TOK).on('broadcast',{event:'push'},async()=>{ await loadOnb(); home(); }).subscribe(); } setInterval(async()=>{ const p=JSON.stringify(O&&O.push); await loadOnb(); if(JSON.stringify(O&&O.push)!==p) home(); },15000); return; }
+  app.innerHTML=`<div class="wrap"><div class="brand">Only <b>ELITE</b></div><h1>${esc(t('bad'))}</h1></div>`; })();
+</script>
+</body>
+</html>
