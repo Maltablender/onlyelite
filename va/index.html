@@ -1051,7 +1051,7 @@ const OEFX=(()=>{
         const bg=x.createLinearGradient(0,l.y-7*s,0,l.y+6*s); bg.addColorStop(0,`rgba(255,140,60,${a})`); bg.addColorStop(1,`rgba(255,230,160,${a})`); x.fillStyle=bg; x.beginPath(); x.moveTo(l.x-4.2*s,l.y-7*s); x.quadraticCurveTo(l.x,l.y-9*s,l.x+4.2*s,l.y-7*s); x.lineTo(l.x+3*s,l.y+5*s); x.lineTo(l.x-3*s,l.y+5*s); x.closePath(); x.fill();
         x.fillStyle=`rgba(255,255,225,${a*fl})`; x.beginPath(); x.arc(l.x,l.y+4*s,1.5*s,0,6.28); x.fill(); return true; }); }
     // chouette perchée dans le grand arbre : tourne la tête, cligne des yeux
-    function owlDraw(tr,T,N){ const s=tr.s, os=s*1.05, ox=tr.tx+28*s, oy=tr.ty-95*s, look=Math.sin(T*.35)*.7, bl=(T%5.3)<.16, hx=look*1.2*os;
+    function owlDraw(tr,T,N){ const s=tr.s, os=s*1.05, ox=tr.tx-30*s, oy=tr.ty-82*s, look=Math.sin(T*.35)*.7, bl=(T%5.3)<.16, hx=look*1.2*os;
       x.save(); x.translate(ox,oy); x.fillStyle=rgb([70,62,76]); x.beginPath(); x.ellipse(0,-7*os,5.4*os,7.6*os,0,0,6.28); x.fill();
       x.fillStyle=rgb([104,92,104]); x.beginPath(); x.ellipse(0,-5*os,3.4*os,5*os,0,0,6.28); x.fill();
       x.strokeStyle=rgb([150,120,60]); x.lineWidth=.9*os; x.beginPath(); x.moveTo(-2*os,0); x.lineTo(-2*os,1.6*os); x.moveTo(2*os,0); x.lineTo(2*os,1.6*os); x.stroke();
@@ -1277,7 +1277,7 @@ const OEFX=(()=>{
         [[-6,6,3.2],[0,9,4.2],[5,5,2.6],[9,4,2]].forEach(([ox,hh,r],j)=>{ x.strokeStyle=`rgba(225,235,240,${.8*N})`; x.lineWidth=1.2; x.beginPath(); x.moveTo(bx+ox,by); x.lineTo(bx+ox,by-hh); x.stroke(); x.fillStyle=`rgba(${c},${(.65+.35*Math.sin(T*1.3+n*2+j))*N})`; x.beginPath(); x.ellipse(bx+ox,by-hh,r,r*.6,0,Math.PI,0); x.fill(); }); x.restore(); }); }
     // hérisson qui trottine
     function hedgehog(T,N){ const fn=hill(.93,.025,2.4,4.2), cyc=(T*.012)%2, goR=cyc<1, uu=goR?cyc:2-cyc, dirw=goR?1:-1, px=W*(mob?.55+uu*.35:.66+uu*.2), py=fn(px)+14, s=(mob?.9:1.2), st=Math.sin(T*10);
-      x.save(); x.translate(px,py); x.scale(dirw*s,s); x.fillStyle='rgb(96,78,70)'; x.beginPath(); x.ellipse(0,-4,8,4.5,0,Math.PI,0); x.fill();
+      x.save(); x.translate(px,py); x.scale(dirw*s,s); x.fillStyle='rgba(8,10,24,.35)'; x.beginPath(); x.ellipse(0,.4,9,1.6,0,0,6.28); x.fill(); x.fillStyle='rgb(150,124,108)'; x.beginPath(); x.ellipse(1,-2.6,8,3.4,0,0,6.28); x.fill(); x.fillStyle='rgb(96,78,70)'; x.beginPath(); x.ellipse(0,-4,8,4.5,0,Math.PI,0); x.fill();
       x.strokeStyle='rgb(70,56,52)'; x.lineWidth=.8; x.beginPath(); for(let q=0;q<9;q++){ const a=Math.PI+q/8*Math.PI; x.moveTo(Math.cos(a)*6,-4+Math.sin(a)*3.4); x.lineTo(Math.cos(a)*10,-4+Math.sin(a)*6.4); } x.stroke();
       x.fillStyle='rgb(170,140,120)'; x.beginPath(); x.moveTo(6,-5); x.lineTo(11,-2.5); x.lineTo(6,-1); x.fill(); x.fillStyle='#111'; x.beginPath(); x.arc(11,-2.6,.8,0,6.28); x.fill();
       x.strokeStyle='rgb(150,120,100)'; x.lineWidth=1.1; x.beginPath(); x.moveTo(-4,-1); x.lineTo(-4+st,0); x.moveTo(4,-1); x.lineTo(4-st,0); x.stroke(); x.restore(); }
@@ -1363,7 +1363,7 @@ const OEFX=(()=>{
       { const k=Math.min(1,L*1.15), haze=mix([cm[0],cm[1],cm[2]],[255,255,255],.25);
         [[.70,.16,2.2,.13,[122,152,196],.85],[.75,.10,3.4,.57,[100,138,160],1]].forEach(([b,a,f,ph,col,op],j)=>{ const fn=X=>{ const u=(X/W*f+ph)%1, t=1-Math.abs(u*2-1); return H*b - Math.pow(t,1.6)*H*a - Math.sin(X/W*Math.PI*f*5.3+ph*9)*H*a*.08; };
           const c=mix(mix([[60,70,120],[46,58,98]][j],col,k),haze,.35-.15*j); const gm=x.createLinearGradient(0,H*(b-a-.03),0,H*b+40); gm.addColorStop(0,rgb(c,op)); gm.addColorStop(1,rgb(mix(c,haze,.5),op));
-          x.fillStyle=gm; x.beginPath(); x.moveTo(0,H); for(let X=0;X<=W;X+=10) x.lineTo(X,fn(X)); x.lineTo(W,H); x.fill(); if(N>.1){ x.strokeStyle=`rgba(205,215,255,${(.22-.1*j)*N})`; x.lineWidth=1.2; x.beginPath(); for(let X=0;X<=W;X+=10) X?x.lineTo(X,fn(X)):x.moveTo(X,fn(X)); x.stroke(); if(j===0 && N>.4) wolfDraw(fn,T,N); }
+          x.fillStyle=gm; x.beginPath(); x.moveTo(0,H); for(let X=0;X<=W;X+=10) x.lineTo(X,fn(X)); x.lineTo(W,H); x.fill(); if(N>.1){ x.strokeStyle=`rgba(205,215,255,${(.22-.1*j)*N})`; x.lineWidth=1.2; x.beginPath(); for(let X=0;X<=W;X+=10) X?x.lineTo(X,fn(X)):x.moveTo(X,fn(X)); x.stroke();  }
           if(j===0 && L>.3){ x.save(); x.beginPath(); x.moveTo(0,H); for(let X=0;X<=W;X+=10) x.lineTo(X,fn(X)); x.lineTo(W,H); x.clip(); const sn=x.createLinearGradient(0,H*(b-a),0,H*(b-a*.55)); sn.addColorStop(0,`rgba(255,255,255,${.75*Math.min(1,L)})`); sn.addColorStop(1,'rgba(255,255,255,0)'); x.fillStyle=sn; x.fillRect(0,H*(b-a)-4,W,H*a*.5); x.restore(); } });
         const hz=x.createLinearGradient(0,H*.55,0,H*.82); hz.addColorStop(0,'rgba(255,255,255,0)'); hz.addColorStop(1,`rgba(255,246,226,${.22*k})`); x.fillStyle=hz; x.fillRect(0,H*.55,W,H*.27); }
       [[.80,.035,1.3,.4],[.86,.03,1.8,2.1],[.93,.025,2.4,4.2]].forEach(([b,a,f,ph],i)=>{ const fn=hill(b,a,f,ph), c=mix(nite[i],day[i],Math.min(1,L*1.15));
