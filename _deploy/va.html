@@ -585,6 +585,16 @@ html.fdr .oe-amb{display:block!important}
 @keyframes oelSheen{0%,100%{background-position:100% 0}50%{background-position:0 0}}
 @media (prefers-reduced-motion:reduce){.oel *,.oel-c::before{animation:none!important}.oel-l{stroke-dashoffset:0}}
 .brand .oel{--oel:.92}
+.rdv{display:flex;align-items:center;gap:14px;margin:14px 0 4px;padding:16px 18px;border-radius:18px;background:#fff;border:1.5px solid #c9d1ff;box-shadow:0 14px 34px -24px rgba(27,59,255,.6)}
+.rdv.on{border-color:#1b3bff;background:linear-gradient(135deg,#f4f6ff,#fff);animation:rdvP 2s ease-in-out infinite}
+@keyframes rdvP{50%{box-shadow:0 0 0 6px rgba(27,59,255,.12),0 14px 34px -24px rgba(27,59,255,.6)}}
+.rdv-i{flex:none;width:46px;height:46px;border-radius:14px;display:grid;place-items:center;font-size:22px;background:#eef1ff}
+.rdv-t{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}.rdv-t small{font-size:12px;color:#1b3bff;font-weight:700;text-transform:uppercase;letter-spacing:.06em}.rdv-t b{font-size:17px;color:#111}.rdv-t span{font-size:14px;color:#3d3b37}.rdv-t em{font-style:normal;font-size:12.5px;color:#77736c;margin-top:2px}
+.rdv-b{flex:none;padding:12px 18px;border-radius:12px;background:#1b3bff;color:#fff!important;font-weight:700;font-size:14.5px;text-decoration:none;white-space:nowrap}
+.rdv-b[aria-disabled=true]{background:#e3e1dc;color:#77736c!important}
+@media (max-width:560px){.rdv{flex-wrap:wrap}.rdv-b{width:100%;text-align:center}}
+.dsec.vt{color:#a9b7ff}
+.tk.vtd .bx{border-color:#1b3bff}.tk.vtd.done{opacity:.55}.tk.vtd.done .tx span{text-decoration:line-through}
 </style>
 </head>
 <body>
@@ -1683,7 +1693,7 @@ const NT={ and:/Android/i.test(navigator.userAgent), sam:/SamsungBrowser/i.test(
   app:(()=>{ try{ return matchMedia('(display-mode: standalone)').matches || navigator.standalone===true; }catch(_){ return false; } })(), on:false, reg:null, busy:false };
 const b64u = s => { const p='='.repeat((4-s.length%4)%4), b=atob((s+p).replace(/-/g,'+').replace(/_/g,'/')); return Uint8Array.from(b, c=>c.charCodeAt(0)); };
 async function ntInit(){ if(!('serviceWorker' in navigator) || location.protocol!=='https:') return;
-  try{ NT.reg=await navigator.serviceWorker.register('/sw.js'); navigator.serviceWorker.addEventListener('message', e=>{ if(e.data && e.data.oe==='open-day'){ if(e.data.url) readFocus(e.data.url); FOC.scroll=true; S.tab=isF()?'boss':'day'; try{ save(); }catch(_){ } if(isF()){ bossLoad(true).then(()=>paint()); } paint(); refresh(); } });
+  try{ NT.reg=await navigator.serviceWorker.register('/sw.js'); navigator.serviceWorker.addEventListener('message', e=>{ if(e.data && e.data.oe==='open-day'){ if(e.data.url && rdvGo(e.data.url)) return; if(e.data.url) readFocus(e.data.url); FOC.scroll=true; S.tab=isF()?'boss':'day'; try{ save(); }catch(_){ } if(isF()){ bossLoad(true).then(()=>paint()); } paint(); refresh(); } });
     if(NT.sup){ const sub=await NT.reg.pushManager.getSubscription(); NT.on = !!sub && Notification.permission==='granted'; if(sub && NT.on && K) rpc('va_push_sub',{t:K, sub:sub.toJSON(), ua:navigator.userAgent}).catch(()=>{}); } }catch(_){ }
   bellSync(); if(S.tab==='day' && !S.anim) paint(); }
 async function ntOn(){ if(NT.busy) return; NT.busy=true;
@@ -1759,6 +1769,20 @@ function diagBlock(){ const D=diagData(); if(!D.length) return ''; const bad=D.r
   const open=S.diagUser!=null ? S.diagUser : (S.diagOpen || bad>0), ic={r:'✗', o:'⚠', g:'✓'};
   return `<section class="dg-w${open?' on':''}"><button type="button" class="dg-tg" id="dgTog" aria-expanded="${open}"><span class="dg-ti">📋</span><span class="dg-tt"><b>Bilan de la dernière analyse</b><small>${at?'Faite '+esc(ago(at))+' · ':''}${bad?`<em class="r">${bad} à corriger</em>`:''}${warn?`<em class="o">${warn} à surveiller</em>`:''}${!bad&&!warn?'<em class="g">Tout est bon 🎉</em>':''}</small></span><span class="dg-ar">${open?'Cacher':'Voir'}</span></button>
     ${open?`<div class="dg-g">${D.map(d=>`<article class="dg"><header><b>${pfIco(d.pf)} @${esc(d.h)}</b>${d.wu?`<span class="wu ${d.wu.lvl}">${esc(d.wu.t)}</span>`:''}</header>${d.it.map(z=>`<div class="it ${z.lvl}"><i>${ic[z.lvl]||'•'}</i><span>${esc(z.t)}${z.fix?`<small>${esc(z.fix)}</small>`:''}</span></div>`).join('')||'<div class="it g"><i>✓</i><span>Rien à signaler</span></div>'}</article>`).join('')}</div><p class="dg-n">Ce qui est à corriger est aussi ajouté en haut de ta liste (⚠ À corriger). Coche quand c'est fait : la prochaine analyse vérifie.</p>`:''}</section>`; }
+/* ---------- rendez-vous d'équipe et consignes du responsable ---------- */
+const SALLE='https://maltablender.github.io/onlyelite/salle/';
+const rdvLink=room=>`${SALLE}#r=${encodeURIComponent(room)}&n=${encodeURIComponent(String((S.me||{}).name||'VA'))}`;
+const rdvWhen=ms=>{ const d=ms-Date.now(); if(d<=0) return 'maintenant'; const m=Math.round(d/6e4); if(m<60) return `dans ${m} min`; const h=Math.round(m/60); if(h<36) return `dans ${h} h`; return `dans ${Math.round(h/24)} jours`; };
+async function pullExtra(){ try{ const x=await rpc('va_extra',{t:K}); if(x){ const sig=JSON.stringify(x); if(sig!==S.xsig){ S.extra=x; S.xsig=sig; if(S.tab==='day' && !S.anim) paint(); } } }catch(_){ } }
+function rdvBlock(){ const L=((S.extra||{}).rdv)||[]; if(!L.length) return ''; return L.slice(0,1).map((r,i)=>{ const at=Date.parse(r.at), open=r.live||at-Date.now()<10*6e4, d=new Date(at);
+  return `<div class="rdv${open?' on':''}"><span class="rdv-i">📅</span><div class="rdv-t"><small>${i?'Rendez-vous suivant':'Ton prochain rendez-vous'}</small><b>${esc(r.title||'Appel d\'équipe')}</b><span>${esc(d.toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'long'}))} à ${esc(d.toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'}))} · ${esc(rdvWhen(at))}</span>${open?'':'<em>Tu recevras une notif 3 min avant. Le bouton s\'active 10 min avant.</em>'}</div><a class="rdv-b" href="${esc(rdvLink(r.room))}" target="_blank" rel="noopener" ${open?'':'aria-disabled="true" data-rdvwait="1"'}>${open?'Rejoindre l\'appel':'Bientôt'}</a></div>`; }).join(''); }
+function vtodoBlock(){ const L=((S.extra||{}).todos)||[]; if(!L.length) return ''; const n=L.filter(x=>!x.done).length;
+  return `<div class="dsec vt">📌 Consignes de ton responsable${n?' · '+n+' à faire':''}</div><div class="tl">${L.map(x=>`<button type="button" class="tk vtd${x.done?' done':''}" data-vtd="${esc(x.id)}" data-vdone="${x.done?1:0}"><span class="bx">${x.done?'✓':''}</span><span class="tx"><b>Consigne de l'appel${x.due?' · pour '+esc(x.due):''}</b><span>${esc(x.text)}</span></span></button>`).join('')}</div>`; }
+document.addEventListener('click', async e=>{ const w=e.target.closest('[data-rdvwait]'); if(w){ e.preventDefault(); toast('Le bouton s\'active 10 minutes avant le rendez-vous.'); return; }
+  const b=e.target.closest('[data-vtd]'); if(!b) return; e.preventDefault(); const done=b.dataset.vdone!=='1'; b.classList.toggle('done',done); b.dataset.vdone=done?1:0; b.querySelector('.bx').textContent=done?'✓':'';
+  try{ await rpc('va_todo_set',{t:K, p_id:b.dataset.vtd, p_done:done}); const x=((S.extra||{}).todos||[]).find(z=>z.id===b.dataset.vtd); if(x) x.done=done; if(done) toast('Consigne faite ✓'); }catch(_){ toast('Pas de connexion : réessaie.'); } });
+// ouvert depuis la notification du rendez-vous : on entre directement dans l'appel
+function rdvGo(src){ const m=String(src||'').match(/[#&]rdv=([a-f0-9]{18})/); if(!m) return false; try{ history.replaceState(null,'',location.pathname+location.search); }catch(_){ } location.href=rdvLink(m[1]); return true; }
 function paintDay(main){ const L=todayTodo(), todo=L.filter(x=>!x.done), done=L.filter(x=>x.done), p=L.length?Math.round(done.length/L.length*100):0, [t1,t2]=MOTIV(p), me=S.me||{};
   const vr=me.verify, vPending = vr && !vr.done_at, vAt = vr && (vr.done_at||vr.at);
   const d=new Date(); const dateTxt=d.toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'long'}); const zn=tzName(); const [mi,mt]=SKY.moment(); const first=String(me.name||'').split(' ')[0];
@@ -1794,6 +1818,7 @@ function paintDay(main){ const L=todayTodo(), todo=L.filter(x=>!x.done), done=L.
       <span class="vst">${vPending?`Demandée à ${new Date(vr.at).toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'})} : tes comptes sont vérifiés un par un (story, reel, post, warm-up) et tes tâches se cochent toutes seules. Ça peut prendre quelques minutes.`:vAt?`Dernière vérification : ${esc(ago(vAt))}. Tu peux aussi cocher toi-même chaque tâche.`:'Coche chaque tâche toi-même, ou fais vérifier tes comptes : ce qui est publié se coche tout seul.'}</span></div>${ntBlock()}</section>
     ${lims.length && !rulesOk && todo.length?`<div class="oe-gate"><h3>🛡️ Avant de commencer</h3><p>Ces règles protègent tes comptes du ban. Lis-les, puis engage-toi : tes tâches se débloquent juste après.</p><div class="oe-rules">${lims.map(([pf,l])=>rcard(pf,l)).join('')}</div><button type="button" class="gbtn2" id="rulesOk">✓ J'ai lu, je m'engage à respecter ces règles</button></div>`:''}
     ${fk.size?`<div class="foc"><span>🔵</span><div><b>Voici pourquoi tu as reçu la notif</b><small>Les tâches en bleu sont à faire maintenant${[...fk].length?' : '+esc([...fk].map(k=>'@'+splitH(k).h).join(', ')):''}.</small></div><button type="button" id="focX" aria-label="Fermer">×</button></div>`:''}
+    ${rdvBlock()}${vtodoBlock()}
     ${diagBlock()}
     ${L.length?`${fixL.length?`<div class="dsec fix">⚠ À corriger · trouvé par l'analyse · ${fixL.length}</div><div class="tl">${fixL.map(row).join('')}</div>`:''}${lateN?`<div class="dsec late">⏪ En retard · à faire en premier, dans l'ordre · ${lateN}</div><div class="tl${lims.length&&!rulesOk?' oe-gated':''}">${free.filter(x=>x.carry).map(row).join('')}${seqL.map(lrow).join('')}</div>`:''}
       ${free.some(x=>!x.carry)?`<div class="dsec">À faire maintenant · ${free.filter(x=>!x.carry).length}</div><div class="tl${lims.length&&!rulesOk?' oe-gated':''}">${free.filter(x=>!x.carry).map(row).join('')}</div>`:''}
@@ -2098,13 +2123,13 @@ function credForm(h, c){ const m=document.createElement('div'); m.className='mod
     if(!ok) return toast('Enregistrement impossible.'); m.remove(); await refresh(); toast('Identifiants enregistrés 🔒'); }; }
 // badges et flamme envoyés au fondateur (affichés à côté de ton nom dans son chat)
 let statSig=''; function pushStats(){ try{ if(!S.me || isF()) return; const st=OEFX.stats(S.me.member||K, streak()); const sg=JSON.stringify(st); if(sg===statSig) return; statSig=sg; rpc('va_set_stats',{t:K, ...st}).catch(()=>{ statSig=''; }); }catch(_){ } }
-async function refresh(){ try{ const me=await rpc('va_me',{t:K}); if(!me){ try{ localStorage.removeItem(KEY); }catch(_){ } return noKey('Ce code n\'est plus actif. Demande ton nouveau code à ton responsable.'); } S.me=me; if(S.anim) return; if(!(me.chans||[]).some(c=>c.id===S.ch)) S.ch=((me.chans||[]).find(c=>c.id!=='all')||(me.chans||[])[0]||{}).id||'all'; if(S.tab==='boss') paintNav(); else if(S.tab!=='msg') paint(); else { paintNav(); const b=$('#chs'); if(b) b.firstChild.textContent='Chat '+chName(S.ch)+' '; } }catch(_){ } }
+async function refresh(){ pullExtra(); try{ const me=await rpc('va_me',{t:K}); if(!me){ try{ localStorage.removeItem(KEY); }catch(_){ } return noKey('Ce code n\'est plus actif. Demande ton nouveau code à ton responsable.'); } S.me=me; if(S.anim) return; if(!(me.chans||[]).some(c=>c.id===S.ch)) S.ch=((me.chans||[]).find(c=>c.id!=='all')||(me.chans||[])[0]||{}).id||'all'; if(S.tab==='boss') paintNav(); else if(S.tab!=='msg') paint(); else { paintNav(); const b=$('#chs'); if(b) b.firstChild.textContent='Chat '+chName(S.ch)+' '; } }catch(_){ } }
 let started=false;
 async function boot(){ if(!K) return noKey(); app.innerHTML='<div class="spin"></div>';
   let me; try{ me=await rpc('va_me',{t:K}); }catch(e){ return noKey('Connexion impossible pour l\'instant. Vérifie ta connexion internet et réessaie.'); }
   if(!me){ try{ localStorage.removeItem(KEY); }catch(_){ } return noKey('Ce code n\'est plus actif. Demande ton nouveau code à ton responsable.'); }
-  S.me=me; if(!(me.chans||[]).some(c=>c.id===S.ch)) S.ch=((me.chans||[]).find(c=>c.id!=='all')||(me.chans||[])[0]||{}).id||'all';
-  addMsgs(await rpc('va_msgs',{t:K, after:0}).catch(()=>[])); shell(); paint();
+  S.me=me; if(rdvGo(location.hash)) return; if(!(me.chans||[]).some(c=>c.id===S.ch)) S.ch=((me.chans||[]).find(c=>c.id!=='all')||(me.chans||[])[0]||{}).id||'all';
+  pullExtra(); addMsgs(await rpc('va_msgs',{t:K, after:0}).catch(()=>[])); shell(); paint();
   if(started) return; started=true;
   let n=0, dk0=dayKey(); setInterval(()=>{ n++; if(document.hidden && n%4) return; poll(); if(S.tab==='msg' ? n%2===0 : n%8===0) pullReads(); if(n%30===3) pushStats(); if(n%15===0 || (S.tab==='day' && n%8===0)) refresh(); if(S.tab==='boss' && n%5===0) bossLoad().then(ch=>{ const ae=document.activeElement; if(ch && S.tab==='boss' && !document.querySelector('.modal') && !(ae && /INPUT|TEXTAREA/.test(ae.tagName))) paintBoss($('#main')); }); if(dayKey()!==dk0){ dk0=dayKey(); S.ck={}; if(S.tab==='day') paint(); } }, 4000);
   ntInit(); if(isF()) scanLoop(); pullReads(); setTimeout(pushStats, 2500); }
